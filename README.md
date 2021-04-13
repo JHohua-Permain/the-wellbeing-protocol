@@ -1,1 +1,1 @@
-# the-wellbeing-protocol
+# The Wellbeing Protocol
