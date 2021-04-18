@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import './widgets/main_scaffold.dart';
+import './features/home/home_screen.dart';
 
-const ROUTE_HOME = "/";
+const PATH_HOME = "/";
 
 final Map<String, WidgetBuilder> routes = {
-    ROUTE_HOME: (context) => throw UnimplementedError()
+    PATH_HOME: (context) => buildWidget(HomeScreen())
 };
