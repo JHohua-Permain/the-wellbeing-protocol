@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './router.dart';
+import './constants.dart';
+import 'common/router.dart';
 
 class MyApp extends StatefulWidget {
 
@@ -12,7 +13,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext buildContext) {
     return MaterialApp(
-      title: "The Wellbeing Protocol", //TODO: Un-hardcode
+      title: APP_NAME,
       initialRoute: PATH_HOME,
       routes: routes,
     );

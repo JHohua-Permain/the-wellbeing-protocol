@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Scaffold buildWidget(Widget widget) {
+Scaffold buildScaffold(Widget widget) {
   return Scaffold(
       body: widget
   );
