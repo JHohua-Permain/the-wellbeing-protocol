@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: MediaQuery.of(context).size.height * 0.21,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: const Color(0xFFFFAD8B),
@@ -80,10 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             )),
                         Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Colors.purple,
-                                child: Icon(Icons.qr_code))),
+                            child:
+                                // CircleAvatar(
+                                //     radius: 20,
+                                //     backgroundColor: Colors.blue[200],
+                                //child: Icon(Icons.qr_code))),
+
+                                Image.asset('assets/images/QRCode.png')),
                       ],
                     ),
                   ],
