@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../features/home/home_screen.dart';
+import '../widgets/home_screen.dart';
 
 const PATH_HOME = "/";
 

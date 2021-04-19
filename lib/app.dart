@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './constants.dart';
-import './features/home/home_screen.dart';
+import './widgets/home_screen.dart';
 
 class MyApp extends StatefulWidget {
 

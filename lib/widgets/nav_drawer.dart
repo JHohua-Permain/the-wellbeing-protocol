@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:the_wellbeing_protocol/features/user/profile_screen.dart';
+import 'general_screen.dart';
+import 'top_bar.dart';
+import '../features/user/profile_body.dart';
 
 class NavDrawer extends StatefulWidget {
   @override
@@ -19,7 +21,7 @@ class _NavDrawerState extends State<NavDrawer> {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+                  MaterialPageRoute(builder: (context) => GeneralScreen(body: ProfileBody(), appBarTitle: "Account")));
             },
             title: Text("Ddjm"),
             subtitle: Text("0xadf61.....dsds"),
