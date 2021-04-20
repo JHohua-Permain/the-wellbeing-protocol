@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/features/user/transaction_history_body.dart';
 import 'package:the_wellbeing_protocol/widgets/general_screen.dart';
+import 'package:the_wellbeing_protocol/widgets/qr_scan_page.dart';
 
 class HomeBody extends StatefulWidget {
   @override
@@ -81,7 +82,14 @@ class _HomeBodyState extends State<HomeBody> {
                     ),
                   ),
                   Spacer(),
-                  Image.asset('assets/images/QRCode.png'),
+                  InkWell(
+                    child: Image.asset('assets/images/QRCode.png'),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => GeneralScreen(
+                              body: QRCreatePage(), appBarTitle: "Scan")));
+                    },
+                  ),
                 ],
               ),
             ],
