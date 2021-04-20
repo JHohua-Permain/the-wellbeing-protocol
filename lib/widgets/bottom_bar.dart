@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../features/comminity_fund.dart';
+import '../features/shop.dart';
 
 class BottamNavbar extends StatefulWidget {
   @override
@@ -11,40 +13,53 @@ class _BNavState extends State<BottamNavbar> {
   int _currentIndex = 0;
   //final List<Widget> _children = [];
   final tabs = [
-    Center(
-      child: Text('Wallet'),
-    ),
-    Center(
-      child: Text('Shop'),
-    ),
-    Center(
-      child: Text('Community Fund'),
-    ),
+    //we need to give home screen/page class name here
+    ShopPage(),
+    CommunityPage(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My Flutter App'),
+      body: Container(
+        child: tabs[_currentIndex],
+        decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.black))),
       ),
-      // body: _children[_currentIndex],
-      // body: Container(),
-      body: tabs[_currentIndex],
-
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Color(0xFF292929),
+        selectedFontSize: 13,
+        unselectedFontSize: 13,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Theme.of(context).bottomAppBarColor,
+        showUnselectedLabels: true,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.check_box),
-            title: Text('Wallet'),
+            icon: ImageIcon(
+              AssetImage('assets/images/Rect.png'),
+            ),
+            title: Text(
+              'Wallet',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_box),
-            title: Text('Shop'),
+            icon: ImageIcon(
+              AssetImage('assets/images/Rect.png'),
+            ),
+            title: Text(
+              'Shop',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_box_sharp),
-            title: Text('Community Fund'),
+            icon: ImageIcon(
+              AssetImage('assets/images/Rect.png'),
+            ),
+            title: Text(
+              'Community fund',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
         ],
         onTap: (index) {
