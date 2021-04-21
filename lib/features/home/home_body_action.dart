@@ -12,7 +12,7 @@ class HomeBodyActions extends StatelessWidget {
             children: <Widget>[
               Center(
                 child: Card(
-                  elevation: 12,
+                  elevation: 8,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -58,7 +58,7 @@ class HomeBodyActions extends StatelessWidget {
               ),
               Center(
                 child: Card(
-                  elevation: 12,
+                  elevation: 8,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -104,7 +104,7 @@ class HomeBodyActions extends StatelessWidget {
               ),
               Center(
                 child: Card(
-                  elevation: 12,
+                  elevation: 8,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
