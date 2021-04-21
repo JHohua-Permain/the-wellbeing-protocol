@@ -3,10 +3,10 @@ import 'nav_drawer.dart';
 import './general_screen.dart';
 import './top_bar.dart';
 import '../features/home/home_body.dart';
+import '../features/home/home_body_action.dart';
 import '../features/user/transaction_history_body.dart';
 
 class HomeScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,6 @@ class HomeScreen extends StatelessWidget {
         drawer: NavDrawer(),
         drawerEdgeDragWidth: 0,
         drawerEnableOpenDragGesture: true,
-        body: HomeBody()
-    );
+        body: Column(children: [HomeBody(), HomeBodyActions()]));
   }
 }
