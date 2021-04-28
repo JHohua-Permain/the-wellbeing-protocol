@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../models/account_model.dart';
 
 class AppDrawer extends StatelessWidget {
-  final AccountModel account;
-  final VoidCallback toAccount;
+  final String name;
+  final String publicAddress;
 
-  AppDrawer(this.account, this.toAccount);
+  AppDrawer({this.name, this.publicAddress});
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +13,15 @@ class AppDrawer extends StatelessWidget {
         children: [
           SizedBox(height: 100),
           ListTile(
-            onTap: toAccount,
+            onTap: () => Navigator.of(context).pushNamed('/account'),
             title: Text(
-              account.name,
+              name,
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey[800],
               ),
             ),
-            subtitle: Text(account.publicAddress),
+            subtitle: Text(publicAddress),
             leading: CircleAvatar(
               backgroundColor: Colors.grey[350],
               radius: 40,

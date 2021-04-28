@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../models/account_model.dart';
 
 class AccountView extends StatelessWidget {
-  final AccountModel account;
   final TextEditingController nameController;
+  final TextEditingController publicAddressController;
+  final TextEditingController phoneNumController;
 
-  AccountView(this.account)
-      : nameController = TextEditingController(text: account.name);
+  AccountView({String name, String publicAddress, String phoneNum})
+      : nameController = TextEditingController(text: name),
+        publicAddressController = TextEditingController(text: publicAddress),
+        phoneNumController = TextEditingController(text: phoneNum);
 
   @override
   Widget build(BuildContext context) {
@@ -54,35 +56,35 @@ class AccountView extends StatelessWidget {
             ),
           ),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-        //   child: TextFormField(
-        //     controller: walletAddress,
-        //     decoration: InputDecoration(
-        //       focusedBorder: UnderlineInputBorder(
-        //           borderSide: BorderSide(color: Colors.grey)),
-        //       labelText: "Wallet Address",
-        //       labelStyle: TextStyle(fontSize: 12, color: Colors.grey[950]),
-        //       suffixIcon: Icon(
-        //         Icons.copy,
-        //         size: 15,
-        //         color: Colors.grey[950],
-        //       ),
-        //     ),
-        //   ),
-        // ),
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-        //   child: TextFormField(
-        //     controller: phoneNum,
-        //     decoration: InputDecoration(
-        //       focusedBorder: UnderlineInputBorder(
-        //           borderSide: BorderSide(color: Colors.grey)),
-        //       labelText: "Phone Number",
-        //       labelStyle: TextStyle(fontSize: 12, color: Colors.grey[950]),
-        //     ),
-        //   ),
-        // ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+          child: TextFormField(
+            controller: publicAddressController,
+            decoration: InputDecoration(
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey)),
+              labelText: "Wallet Address",
+              labelStyle: TextStyle(fontSize: 12, color: Colors.grey[950]),
+              suffixIcon: Icon(
+                Icons.copy,
+                size: 15,
+                color: Colors.grey[950],
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+          child: TextFormField(
+            controller: phoneNumController,
+            decoration: InputDecoration(
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey)),
+              labelText: "Phone Number",
+              labelStyle: TextStyle(fontSize: 12, color: Colors.grey[950]),
+            ),
+          ),
+        ),
       ],
     );
   }
