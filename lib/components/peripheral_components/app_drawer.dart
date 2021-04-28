@@ -1,35 +1,28 @@
 import 'package:flutter/material.dart';
-import 'general_screen.dart';
-import 'top_bar.dart';
-import '../features/user/profile_body.dart';
+import '../../models/account_model.dart';
 
-class NavDrawer extends StatefulWidget {
-  @override
-  _NavDrawerState createState() => _NavDrawerState();
-}
+class AppDrawer extends StatelessWidget {
+  final AccountModel account;
+  final VoidCallback toAccount;
 
-class _NavDrawerState extends State<NavDrawer> {
+  AppDrawer(this.account, this.toAccount);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         children: [
-          SizedBox(
-            height: 100,
-          ),
+          SizedBox(height: 100),
           ListTile(
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => GeneralScreen(
-                      body: ProfileBody(), appBarTitle: "Account")));
-            },
-            title: Text("Joniee Haddon",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[800],
-                )),
-            //subtitle: Text("0xadf61.....dsds"),
+            onTap: toAccount,
+            title: Text(
+              account.name,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey[800],
+              ),
+            ),
+            subtitle: Text(account.publicAddress),
             leading: CircleAvatar(
               backgroundColor: Colors.grey[350],
               radius: 40,
