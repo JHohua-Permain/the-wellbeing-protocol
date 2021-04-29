@@ -12,6 +12,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title, style: TextStyle(color: Colors.black)),
+      shape: Border(bottom: BorderSide(width: 2)),
       automaticallyImplyLeading: false,
       leading: InkWell(
         onTap: () {
