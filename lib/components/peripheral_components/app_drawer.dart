@@ -13,7 +13,10 @@ class AppDrawer extends StatelessWidget {
         children: [
           SizedBox(height: 100),
           ListTile(
-            onTap: () => Navigator.of(context).pushNamed('/account'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).pushNamed('/account');
+            },
             title: Text(
               name,
               style: TextStyle(

@@ -6,14 +6,24 @@ class TemplateScreen extends StatelessWidget {
   final String appBarTitle;
   final VoidCallback appBarToInfoScreen;
   final Widget body;
+  final bool showBottomBar;
 
-  TemplateScreen({this.appBarTitle, this.appBarToInfoScreen, this.body});
+  TemplateScreen(
+      {this.appBarTitle,
+      this.appBarToInfoScreen,
+      this.body,
+      this.showBottomBar});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(title: appBarTitle, toInfoScreen: appBarToInfoScreen),
-      bottomNavigationBar: AppBottomNavigationBar(),
+      appBar:
+          CommonAppBar(title: appBarTitle, toInfoScreen: appBarToInfoScreen),
+      bottomNavigationBar: (showBottomBar ?? false) //null Check operator
+          ? AppBottomNavigationBar(
+              fromAnyOtherPage: (showBottomBar ?? false),
+            )
+          : null,
       body: body,
     );
   }

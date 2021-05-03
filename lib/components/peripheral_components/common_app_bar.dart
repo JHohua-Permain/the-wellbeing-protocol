@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_wellbeing_protocol/components/components.dart';
+
+import '../../_mocks.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -17,6 +20,25 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: InkWell(
         onTap: () {
           Navigator.of(context).pop();
+          // Navigator.of(context).push(MaterialPageRoute(
+          //     builder: (context) => WalletScreen(
+          //         drawerName: testAccount.name,
+          //         drawerPublicAddress: testAccount.publicAddress)));
+
+          //Navigator.popUntil(context, defaultR => false);
+          //Navigator.of(context).push();
+          //Navigator.pushNamed(context, '/');
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (context) => WalletScreen(
+          //             drawerName: testAccount.name,
+          //             drawerPublicAddress: testAccount.publicAddress)));
+
+          //MaterialPageRoute(
+          // builder: (context) => WalletScreen(
+          //     drawerName: testAccount.name,
+          //     drawerPublicAddress: testAccount.publicAddress))
         },
         child: Icon(
           Icons.arrow_back_ios,
