@@ -48,7 +48,7 @@ class WalletView extends StatelessWidget {
                 Text("Your Balance"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       '50.00',
