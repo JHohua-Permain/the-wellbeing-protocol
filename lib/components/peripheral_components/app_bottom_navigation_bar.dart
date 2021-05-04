@@ -7,17 +7,24 @@ class AppBottomNavigationBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(border: Border(top: BorderSide(width: 2))),
       child: BottomNavigationBar(
+        selectedItemColor: Color(0xFF292929),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.label),
+            icon: ImageIcon(
+              AssetImage('assets/images/Rect.png'),
+            ),
             label: 'Wallet',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.label),
+            icon: ImageIcon(
+              AssetImage('assets/images/Rect.png'),
+            ),
             label: 'Shop',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.label),
+            icon: ImageIcon(
+              AssetImage('assets/images/Rect.png'),
+            ),
             label: 'Community Fund',
           ),
         ],
