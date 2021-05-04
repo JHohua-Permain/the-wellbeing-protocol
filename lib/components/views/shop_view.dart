@@ -9,28 +9,28 @@ class ShopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.white,
-        //   title: Text('Select a shop',
-        //       style: TextStyle(
-        //           color: Colors.black,
-        //           fontSize: 25,
-        //           fontWeight: FontWeight.bold)),
-        //   centerTitle: true,
-        //   leading: InkWell(
-        //     onTap: () => Navigator.of(context).pop(),
-        //     child: Icon(
-        //       Icons.arrow_back_ios,
-        //       color: Colors.black,
-        //     ),
-        //   ),
-        //   actions: [
-        //     Icon(
-        //       Icons.info,
-        //       color: Colors.black,
-        //     ),
-        //   ],
-        // ),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text('Select a shop',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold)),
+          centerTitle: true,
+          leading: InkWell(
+            onTap: () => Navigator.of(context).pop(),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ),
+          ),
+          actions: [
+            Icon(
+              Icons.info,
+              color: Colors.black,
+            ),
+          ],
+        ),
         body: Container(
             decoration: BoxDecoration(
                 border: Border(top: BorderSide(color: Colors.black))),
