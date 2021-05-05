@@ -19,15 +19,30 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
         currentIndex: globalCurrentIndex.value,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.label),
+            icon: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: ImageIcon(
+                AssetImage('assets/images/square.png'),
+              ),
+            ),
             label: 'Wallet',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.label),
+            icon: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: ImageIcon(
+                AssetImage('assets/images/square.png'),
+              ),
+            ),
             label: 'Shop',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.label),
+            icon: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: ImageIcon(
+                AssetImage('assets/images/square.png'),
+              ),
+            ),
             label: 'Community Fund',
           ),
         ],
