@@ -17,8 +17,11 @@ class TemplateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          CommonAppBar(title: appBarTitle, toInfoScreen: appBarToInfoScreen),
+      appBar: CommonAppBar(
+        title: appBarTitle,
+        toInfoScreen: appBarToInfoScreen,
+        showleading: appBarTitle == "Account" ? true : false,
+      ),
       bottomNavigationBar: (showBottomBar ?? false) //null Check operator
           ? AppBottomNavigationBar(
               fromAnyOtherPage: (showBottomBar ?? false),
