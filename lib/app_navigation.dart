@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_wellbeing_protocol/components/views/send_to_view.dart';
 import './components/components.dart';
 import './_mocks.dart';
 
@@ -31,6 +32,14 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         builder: (context) => TemplateScreen(
           appBarTitle: "Transaction History",
           body: TransactionHistoryView(),
+        ),
+      );
+    case '/sendtoview':
+      return MaterialPageRoute(
+        builder: (context) => TemplateScreen(
+          appBarTitle: "Send to",
+          body: SendToView(),
+          showBottomBar: true,
         ),
       );
     default:

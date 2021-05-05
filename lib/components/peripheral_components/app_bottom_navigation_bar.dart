@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:the_wellbeing_protocol/components/components.dart';
 
 ValueNotifier<int> globalCurrentIndex = ValueNotifier<int>(0);
 
