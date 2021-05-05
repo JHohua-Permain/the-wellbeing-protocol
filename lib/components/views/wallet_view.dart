@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class WalletView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //return Center(child: Text("Hello Wallet!"));
     return SafeArea(
       child: Column(
         children: [
@@ -69,7 +68,6 @@ class WalletView extends StatelessWidget {
                     Spacer(),
                     InkWell(
                       child: Image.asset('assets/images/QRCode.png'),
-                      //TODO
                       onTap: () {
                         throw UnimplementedError();
                       },
@@ -121,10 +119,13 @@ class WalletView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Icon(
-                              Icons.navigate_next,
-                              size: 36,
+                            IconButton(
+                              icon: Icon(Icons.navigate_next),
+                              iconSize: 36,
                               color: Colors.black,
+                              onPressed: () {
+                                Navigator.of(context).pushNamed('/sendtoview');
+                              },
                             )
                           ],
                         ),
@@ -167,10 +168,11 @@ class WalletView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Icon(
-                              Icons.navigate_next,
-                              size: 36,
+                            IconButton(
+                              icon: Icon(Icons.navigate_next),
+                              iconSize: 36,
                               color: Colors.black,
+                              onPressed: () {},
                             )
                           ],
                         ),
