@@ -18,6 +18,7 @@ class _QRCreatePageState extends State<QRCreatePage> {
   @override
   Widget build(BuildContext context) {
     return Center(
+      // ignore: deprecated_member_use
       child: RaisedButton(
         child: Text(
           'Press Me',
