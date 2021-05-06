@@ -9,8 +9,6 @@ class ShopView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            // decoration: BoxDecoration(
-            //     border: Border(top: BorderSide(color: Colors.black))),
             child: ListView.builder(
                 padding: EdgeInsets.only(top: 20),
                 itemCount: 1,
