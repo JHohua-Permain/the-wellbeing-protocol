@@ -14,7 +14,7 @@ class AppDrawer extends StatelessWidget {
           SizedBox(height: 100),
           ListTile(
             onTap: () {
-              Navigator.pop(context);
+              // Navigator.pop(context);
               Navigator.of(context).pushNamed('/account');
             },
             title: Text(

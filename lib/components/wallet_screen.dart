@@ -16,7 +16,7 @@ class WalletScreen extends StatelessWidget {
     TemplateScreen(
       appBarTitle: "Community View",
       body: CommunityFundView(),
-      showBackArrow: true,
+      showBackArrow: false,
       showBottomBar: false,
     ),
   ];
