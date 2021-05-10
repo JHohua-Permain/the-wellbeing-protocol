@@ -31,7 +31,8 @@ dependencies:
   contacts_service: ^0.6.1
   permission_handler: ^7.0.0
   phone_number: ^0.9.0+1
-  flutter_slidable: ^0.6.0  
+  flutter_slidable: ^0.6.0 
+  numeric_keyboard: ^1.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
