@@ -13,7 +13,13 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title, style: TextStyle(color: Colors.black)),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: Colors.black,
+        ),
+        textScaleFactor: 0.8,
+      ),
       shape: Border(bottom: BorderSide(width: 2)),
       leading: showleading == true
           ? InkWell(
