@@ -2,6 +2,9 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../template_screen.dart';
+import 'send_to_contact.dart';
+
 class SendToView extends StatefulWidget {
   @override
   _SendToView createState() => _SendToView();
@@ -145,6 +148,7 @@ class _SendToView extends State<SendToView> {
                     itemCount: isSearching == true
                         ? contactsFiltered.length
                         : contacts.length,
+                    //(context, index) =>InkWell(onTap: () {},
                     itemBuilder: (context, index) {
                       //Contact contact = contacts[index];
                       Contact contact = isSearching == true
@@ -186,6 +190,21 @@ class _SendToView extends State<SendToView> {
                                       backgroundColor: Colors.grey,
                                     ),
                                   ),
+                            onTap: () {
+                              // Navigator.pushedName default ''/',
+                              return Navigator.of(context)
+                                  .push(MaterialPageRoute(
+                                builder: (context) => TemplateScreen(
+                                  appBarTitle:
+                                      "Send to ${contact.displayName.split(' ').first}",
+                                  showBackArrow: true,
+                                  body: SendToContact(
+                                    contactPassed: contact,
+                                  ),
+                                  showBottomBar: false,
+                                ),
+                              ));
+                            },
                           ),
                         ],
                       );
