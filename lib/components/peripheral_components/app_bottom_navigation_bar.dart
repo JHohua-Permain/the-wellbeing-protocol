@@ -4,7 +4,11 @@ ValueNotifier<int> globalCurrentIndex = ValueNotifier<int>(0);
 
 class AppBottomNavigationBar extends StatefulWidget {
   final bool fromAnyOtherPage;
-  AppBottomNavigationBar({this.fromAnyOtherPage});
+  final bool redirectToView;
+  AppBottomNavigationBar({
+    this.fromAnyOtherPage,
+    this.redirectToView,
+  });
 
   @override
   _AppBottomNavigationBarState createState() => _AppBottomNavigationBarState();
@@ -47,7 +51,9 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
           ),
         ],
         onTap: (index) {
-          if ((widget.fromAnyOtherPage ?? false)) {
+          if ((widget.redirectToView ?? false)) {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          } else if ((widget.fromAnyOtherPage ?? false)) {
             //if null or false
             Navigator.pop(context);
             //Navigator.pushNamed(context, globalCurrentIndex.value.toString());

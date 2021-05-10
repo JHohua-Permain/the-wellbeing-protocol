@@ -18,7 +18,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case '/community/fund':
       return MaterialPageRoute(
         builder: (context) => TemplateScreen(
-          showBackArrow: true,
+          showBackArrow: false,
           appBarTitle: "Community Fund",
           body: CommunityFundView(),
         ),

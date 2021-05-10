@@ -95,6 +95,7 @@ class ReviewTransfer extends StatelessWidget {
                     builder: (context) => TemplateScreen(
                       appBarTitle: "Success",
                       body: Sucess(),
+                      redirectToView: true,
                       showBackArrow: false,
                       showBottomBar: true,
                     ),
