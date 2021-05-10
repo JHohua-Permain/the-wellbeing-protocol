@@ -9,12 +9,14 @@ class TemplateScreen extends StatelessWidget {
   final VoidCallback appBarToInfoScreen;
   final Widget body;
   final bool showBottomBar;
+  final bool redirectToView;
 
   TemplateScreen(
       {this.appBarTitle,
       this.showBackArrow,
       this.appBarToInfoScreen,
       this.body,
+      this.redirectToView,
       this.showBottomBar});
   static var receiver;
 
@@ -29,6 +31,7 @@ class TemplateScreen extends StatelessWidget {
       bottomNavigationBar: (showBottomBar ?? false) //null Check operator
           ? AppBottomNavigationBar(
               fromAnyOtherPage: (showBottomBar ?? false),
+              redirectToView: redirectToView,
             )
           : null,
       body: body,
