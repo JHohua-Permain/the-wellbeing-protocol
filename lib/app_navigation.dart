@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/components/views/send_to_view.dart';
-import 'package:the_wellbeing_protocol/components/views/sucess.dart';
 import './components/components.dart';
 import './_mocks.dart';
 import 'components/views/send_to_contact.dart';

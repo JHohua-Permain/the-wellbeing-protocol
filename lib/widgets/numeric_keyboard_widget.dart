@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
-import 'package:the_wellbeing_protocol/components/template_screen.dart';
-import 'package:the_wellbeing_protocol/components/views/review_transfer.dart';
+import 'package:the_wellbeing_protocol/widgets/amount_widget.dart';
 
+// ignore: must_be_immutable
 class NumericKeyboardWidget extends StatefulWidget {
   Function onTap;
 
@@ -29,36 +29,38 @@ class _NumericKeyboardWidgetState extends State<NumericKeyboardWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  amountText,
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, bottom: 4),
-                  child: Text(
-                    'CAN',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                Amount(amount: amountText),
+                // Text(
+                //   amountText ?? "",
+                //   style: TextStyle(
+                //     fontSize: 30,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 10, bottom: 4),
+                //   child: Text(
+                //     'CAN',
+                //     style: TextStyle(
+                //       fontSize: 16,
+                //       fontWeight: FontWeight.bold,
+                //     ),
+                //   ),
+                //),
               ],
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 40,
+              vertical: 10,
             ),
             child: Divider(
               thickness: 2.0,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: NumericKeyboard(
               onKeyboardTap: _onKeyboardTap,
               textColor: Colors.black,
