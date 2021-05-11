@@ -1,21 +1,12 @@
-// import 'package:flutter/material.dart';
-
-// class Sucess extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(child: Text("Hello Sucess"));
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Sucess extends StatefulWidget {
+class Success extends StatefulWidget {
   @override
-  _SucessState createState() => _SucessState();
+  _SuccessState createState() => _SuccessState();
 }
 
-class _SucessState extends State<Sucess> {
+class _SuccessState extends State<Success> {
   Future<ByteData> _wait3SecAndLoadImage() async {
     await Future.delayed(const Duration(seconds: 3));
     return rootBundle.load('assets/images/success.png');
