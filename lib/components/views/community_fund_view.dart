@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CommunityFund extends StatelessWidget {
+class CommunityFundView extends StatelessWidget {
   // final String confirmAmount;
   // final Contact contact;
   // ReviewTransfer({this.confirmAmount, this.contact});

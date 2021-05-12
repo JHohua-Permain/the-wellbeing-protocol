@@ -175,8 +175,6 @@ class _ShopDetail extends State<ShopDetail> {
                   ],
                 )
               ])),
-
-          //---------main body----//
         ]));
   }
 }
