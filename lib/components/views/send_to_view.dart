@@ -1,6 +1,8 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:the_wellbeing_protocol/widgets/circle_avator_widget.dart';
+import 'package:the_wellbeing_protocol/widgets/item_list_builder_widget.dart';
 
 import '../template_screen.dart';
 import 'send_to_contact.dart';
@@ -142,80 +144,44 @@ class _SendToView extends State<SendToView> {
             ),
           ),
           listItemsExist == true
-              ? Expanded(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    itemCount: isSearching == true
-                        ? contactsFiltered.length
-                        : contacts.length,
-                    //(context, index) =>InkWell(onTap: () {},
-                    itemBuilder: (context, index) {
-                      //Contact contact = contacts[index];
-                      Contact contact = isSearching == true
-                          ? contactsFiltered[index]
-                          : contacts[index];
-                      // if (!isSearching) {
-                      //   if (startLetter !=
-                      //       contact.displayName.substring(0, 1).toUpperCase()) {
-                      //     startLetter =
-                      //         contact.displayName.substring(0, 1).toUpperCase();
-                      //   }
-                      // }
-                      return Column(
-                        children: [
-                          // isSearching
-                          //     ? SizedBox()
-                          //     : Padding(
-                          //         padding: const EdgeInsets.all(8.0),
-                          //         child: Text(startLetter),
-                          //       ),
-                          ListTile(
-                            title: Text(contact.displayName),
-                            trailing: Text(contact.phones.length > 0
-                                ? contact.phones.elementAt(0).value
-                                : ''),
-                            leading: (contact.avatar != null &&
-                                    contact.avatar.length > 0)
-                                ? CircleAvatar(
-                                    backgroundImage:
-                                        MemoryImage(contact.avatar),
-                                  )
-                                : Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: CircleAvatar(
-                                      child:
-                                          Image.asset('assets/images/anom.png'),
-                                      backgroundColor: Colors.grey,
-                                    ),
-                                  ),
-                            onTap: () {
-                              // Navigator.pushedName default ''/',
-                              return Navigator.of(context)
-                                  .push(MaterialPageRoute(
-                                builder: (context) => TemplateScreen(
-                                  appBarTitle:
-                                      "Send to ${contact.displayName.split(' ').first}",
-                                  showBackArrow: true,
-                                  body: SendToContact(
-                                    contactPassed: contact,
-                                  ),
-                                  showBottomBar: false,
-                                ),
-                              ));
-                            },
+              ? ItemListBuilder(
+                  numberOfItems: isSearching == true
+                      ? contactsFiltered.length
+                      : contacts.length,
+                  //seperatorIndex: index ,
+                  itemBuilder: (context, index) {
+                    //Contact contact = contacts[index];
+                    Contact contact = isSearching == true
+                        ? contactsFiltered[index]
+                        : contacts[index];
+                    return Column(
+                      children: [
+                        ListTile(
+                          title: Text(contact.displayName),
+                          trailing: Text(contact.phones.length > 0
+                              ? contact.phones.elementAt(0).value
+                              : ''),
+                          leading: CircleAvatorWidget(
+                            phoneContact: contact,
                           ),
-                        ],
-                      );
-                    },
-                    separatorBuilder: (context, int index) {
-                      return Divider(
-                        height: 10,
-                        thickness: 1,
-                      );
-                    },
-                  ),
+                          onTap: () {
+                            // Navigator.pushedName default ''/',
+                            return Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => TemplateScreen(
+                                appBarTitle:
+                                    "Send to ${contact.displayName.split(' ').first}",
+                                showBackArrow: true,
+                                body: SendToContact(
+                                  contactPassed: contact,
+                                ),
+                                showBottomBar: false,
+                              ),
+                            ));
+                          },
+                        ),
+                      ],
+                    );
+                  },
                 )
               : Container(
                   padding: EdgeInsets.all(20),
