@@ -16,7 +16,7 @@ class _MyAppState extends State<MyApp> {
       title: APP_NAME,
       theme: ThemeData(
         appBarTheme: appBarTheme,
-        bottomNavigationBarTheme: bottomNavigationBarThemeData,
+        bottomNavigationBarTheme: bottomNavigationBarTheme,
       ),
       onGenerateRoute: onGenerateRoute,
     );
