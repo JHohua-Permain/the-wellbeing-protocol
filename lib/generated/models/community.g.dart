@@ -8,11 +8,15 @@ part of 'community.dart';
 
 _$_Community _$_$_CommunityFromJson(Map<String, dynamic> json) {
   return _$_Community(
-    address: json['address'] as String,
-    primaryToken: Token.fromJson(json['primaryToken'] as Map<String, dynamic>),
+    communityAddress: json['communityAddress'] as String,
+    homeToken: Token.fromJson(json['homeToken'] as Map<String, dynamic>),
     communityFund: json['communityFund'] as String? ?? '0',
     members: (json['members'] as List<dynamic>?)
             ?.map((e) => CommunityEntity.fromJson(e as Map<String, dynamic>))
+            .toList() ??
+        [],
+    shops: (json['shops'] as List<dynamic>?)
+            ?.map((e) => CommunityShop.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
@@ -20,8 +24,9 @@ _$_Community _$_$_CommunityFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_CommunityToJson(_$_Community instance) =>
     <String, dynamic>{
-      'address': instance.address,
-      'primaryToken': instance.primaryToken,
+      'communityAddress': instance.communityAddress,
+      'homeToken': instance.homeToken,
       'communityFund': instance.communityFund,
       'members': instance.members,
+      'shops': instance.shops,
     };

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 // import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
+@deprecated
 class QRCreatePage extends StatefulWidget {
   @override
   _QRCreatePageState createState() => _QRCreatePageState();

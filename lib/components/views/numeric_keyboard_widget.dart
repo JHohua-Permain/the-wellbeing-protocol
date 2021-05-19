@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:the_wellbeing_protocol/widgets/currency_widget.dart';
 
+@deprecated
 // ignore: must_be_immutable
 class NumericKeyboardWidget extends StatefulWidget {
   Function onTap;

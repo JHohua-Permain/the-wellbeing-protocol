@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:the_wellbeing_protocol/components/components.dart';
 import 'package:the_wellbeing_protocol/components/views/review_contributer_transfer.dart';
+import 'package:the_wellbeing_protocol/screens/community/community_fund_screen.dart';
 import 'package:the_wellbeing_protocol/widgets/common_button.dart';
 import 'package:the_wellbeing_protocol/components/views/numeric_keyboard_widget.dart';
 
+import '../../widgets/template_screen.dart';
+
+@deprecated
 class SendToCommunityFund extends StatefulWidget {
   final Contributer contributerPassed;
 
@@ -49,21 +52,20 @@ class _SendToCommunityFundState extends State<SendToCommunityFund> {
           }),
           CommonButton(
               label: 'Continue',
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TemplateScreen(
-                    appBarTitle: "Review Transfer",
-                    showBackArrow: true,
-                    body: ReviewContributerTransfer(
-                      confirmAmount: amountText,
-                      contributer: widget.contributerPassed,
-                    ),
-                    showBottomBar: false,
-                  ),
-                ));
-              }),
+              onPressed: () {}),
         ],
       ),
     );
+  }
+}
+
+class Contributer extends StatelessWidget {
+  final String name;
+  final String amount;
+  const Contributer({required this.amount, required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    throw UnimplementedError();
   }
 }

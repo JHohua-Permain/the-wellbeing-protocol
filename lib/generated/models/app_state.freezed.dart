@@ -20,7 +20,7 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 class _$AppStateTearOff {
   const _$AppStateTearOff();
 
-  _AppState call({required UserState userState, Community? community}) {
+  _AppState call({required UserState userState, required Community community}) {
     return _AppState(
       userState: userState,
       community: community,
@@ -38,7 +38,7 @@ const $AppState = _$AppStateTearOff();
 /// @nodoc
 mixin _$AppState {
   UserState get userState => throw _privateConstructorUsedError;
-  Community? get community => throw _privateConstructorUsedError;
+  Community get community => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,10 +50,10 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
-  $Res call({UserState userState, Community? community});
+  $Res call({UserState userState, Community community});
 
   $UserStateCopyWith<$Res> get userState;
-  $CommunityCopyWith<$Res>? get community;
+  $CommunityCopyWith<$Res> get community;
 }
 
 /// @nodoc
@@ -77,7 +77,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
       community: community == freezed
           ? _value.community
           : community // ignore: cast_nullable_to_non_nullable
-              as Community?,
+              as Community,
     ));
   }
 
@@ -89,12 +89,8 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   }
 
   @override
-  $CommunityCopyWith<$Res>? get community {
-    if (_value.community == null) {
-      return null;
-    }
-
-    return $CommunityCopyWith<$Res>(_value.community!, (value) {
+  $CommunityCopyWith<$Res> get community {
+    return $CommunityCopyWith<$Res>(_value.community, (value) {
       return _then(_value.copyWith(community: value));
     });
   }
@@ -105,12 +101,12 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) then) =
       __$AppStateCopyWithImpl<$Res>;
   @override
-  $Res call({UserState userState, Community? community});
+  $Res call({UserState userState, Community community});
 
   @override
   $UserStateCopyWith<$Res> get userState;
   @override
-  $CommunityCopyWith<$Res>? get community;
+  $CommunityCopyWith<$Res> get community;
 }
 
 /// @nodoc
@@ -135,7 +131,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
       community: community == freezed
           ? _value.community
           : community // ignore: cast_nullable_to_non_nullable
-              as Community?,
+              as Community,
     ));
   }
 }
@@ -143,7 +139,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AppState with DiagnosticableTreeMixin implements _AppState {
-  _$_AppState({required this.userState, this.community});
+  _$_AppState({required this.userState, required this.community});
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
       _$_$_AppStateFromJson(json);
@@ -151,7 +147,7 @@ class _$_AppState with DiagnosticableTreeMixin implements _AppState {
   @override
   final UserState userState;
   @override
-  final Community? community;
+  final Community community;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -197,15 +193,16 @@ class _$_AppState with DiagnosticableTreeMixin implements _AppState {
 }
 
 abstract class _AppState implements AppState {
-  factory _AppState({required UserState userState, Community? community}) =
-      _$_AppState;
+  factory _AppState(
+      {required UserState userState,
+      required Community community}) = _$_AppState;
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
   @override
   UserState get userState => throw _privateConstructorUsedError;
   @override
-  Community? get community => throw _privateConstructorUsedError;
+  Community get community => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@deprecated
 class ItemView extends StatelessWidget {
   final Widget body;
 

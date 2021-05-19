@@ -9,9 +9,7 @@ part of 'app_state.dart';
 _$_AppState _$_$_AppStateFromJson(Map<String, dynamic> json) {
   return _$_AppState(
     userState: UserState.fromJson(json['userState'] as Map<String, dynamic>),
-    community: json['community'] == null
-        ? null
-        : Community.fromJson(json['community'] as Map<String, dynamic>),
+    community: Community.fromJson(json['community'] as Map<String, dynamic>),
   );
 }
 

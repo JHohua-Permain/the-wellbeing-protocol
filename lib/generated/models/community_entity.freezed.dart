@@ -16,8 +16,8 @@ CommunityEntity _$CommunityEntityFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
     case 'member':
       return CommunityMember.fromJson(json);
-    case 'store':
-      return CommunityStore.fromJson(json);
+    case 'shop':
+      return CommunityShop.fromJson(json);
     case 'userContact':
       return UserContact.fromJson(json);
 
@@ -34,7 +34,7 @@ class _$CommunityEntityTearOff {
       {required String displayName,
       required String walletAddress,
       String? primaryContactNumber,
-      String communityFundContribution = '0',
+      int communityFundContribution = 0,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar}) {
     return CommunityMember(
@@ -46,14 +46,14 @@ class _$CommunityEntityTearOff {
     );
   }
 
-  CommunityStore store(
+  CommunityShop shop(
       {required String displayName,
       required String walletAddress,
       String? primaryContactNumber,
-      String communityFundContribution = '0',
+      int communityFundContribution = 0,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar}) {
-    return CommunityStore(
+    return CommunityShop(
       displayName: displayName,
       walletAddress: walletAddress,
       primaryContactNumber: primaryContactNumber,
@@ -66,12 +66,14 @@ class _$CommunityEntityTearOff {
       {required String displayName,
       required String walletAddress,
       String? primaryContactNumber,
+      int communityFundContribution = 0,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar}) {
     return UserContact(
       displayName: displayName,
       walletAddress: walletAddress,
       primaryContactNumber: primaryContactNumber,
+      communityFundContribution: communityFundContribution,
       avatar: avatar,
     );
   }
@@ -89,6 +91,7 @@ mixin _$CommunityEntity {
   String get displayName => throw _privateConstructorUsedError;
   String get walletAddress => throw _privateConstructorUsedError;
   String? get primaryContactNumber => throw _privateConstructorUsedError;
+  int get communityFundContribution => throw _privateConstructorUsedError;
   @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
   Uint8List? get avatar => throw _privateConstructorUsedError;
 
@@ -98,7 +101,7 @@ mixin _$CommunityEntity {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
         member,
@@ -106,14 +109,15 @@ mixin _$CommunityEntity {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
-        store,
+        shop,
     required TResult Function(
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
         userContact,
@@ -125,7 +129,7 @@ mixin _$CommunityEntity {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
         member,
@@ -133,14 +137,15 @@ mixin _$CommunityEntity {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
-        store,
+        shop,
     TResult Function(
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
         userContact,
@@ -150,14 +155,14 @@ mixin _$CommunityEntity {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CommunityMember value) member,
-    required TResult Function(CommunityStore value) store,
+    required TResult Function(CommunityShop value) shop,
     required TResult Function(UserContact value) userContact,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CommunityMember value)? member,
-    TResult Function(CommunityStore value)? store,
+    TResult Function(CommunityShop value)? shop,
     TResult Function(UserContact value)? userContact,
     required TResult orElse(),
   }) =>
@@ -177,6 +182,7 @@ abstract class $CommunityEntityCopyWith<$Res> {
       {String displayName,
       String walletAddress,
       String? primaryContactNumber,
+      int communityFundContribution,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar});
 }
@@ -195,6 +201,7 @@ class _$CommunityEntityCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? walletAddress = freezed,
     Object? primaryContactNumber = freezed,
+    Object? communityFundContribution = freezed,
     Object? avatar = freezed,
   }) {
     return _then(_value.copyWith(
@@ -210,6 +217,10 @@ class _$CommunityEntityCopyWithImpl<$Res>
           ? _value.primaryContactNumber
           : primaryContactNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      communityFundContribution: communityFundContribution == freezed
+          ? _value.communityFundContribution
+          : communityFundContribution // ignore: cast_nullable_to_non_nullable
+              as int,
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -229,7 +240,7 @@ abstract class $CommunityMemberCopyWith<$Res>
       {String displayName,
       String walletAddress,
       String? primaryContactNumber,
-      String communityFundContribution,
+      int communityFundContribution,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar});
 }
@@ -269,7 +280,7 @@ class _$CommunityMemberCopyWithImpl<$Res>
       communityFundContribution: communityFundContribution == freezed
           ? _value.communityFundContribution
           : communityFundContribution // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -287,7 +298,7 @@ class _$CommunityMember
       {required this.displayName,
       required this.walletAddress,
       this.primaryContactNumber,
-      this.communityFundContribution = '0',
+      this.communityFundContribution = 0,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) this.avatar});
 
   factory _$CommunityMember.fromJson(Map<String, dynamic> json) =>
@@ -299,9 +310,9 @@ class _$CommunityMember
   final String walletAddress;
   @override
   final String? primaryContactNumber;
-  @JsonKey(defaultValue: '0')
+  @JsonKey(defaultValue: 0)
   @override
-  final String communityFundContribution;
+  final int communityFundContribution;
   @override
   @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
   final Uint8List? avatar;
@@ -367,7 +378,7 @@ class _$CommunityMember
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
         member,
@@ -375,14 +386,15 @@ class _$CommunityMember
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
-        store,
+        shop,
     required TResult Function(
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
         userContact,
@@ -398,7 +410,7 @@ class _$CommunityMember
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
         member,
@@ -406,14 +418,15 @@ class _$CommunityMember
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
-        store,
+        shop,
     TResult Function(
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
         userContact,
@@ -430,7 +443,7 @@ class _$CommunityMember
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CommunityMember value) member,
-    required TResult Function(CommunityStore value) store,
+    required TResult Function(CommunityShop value) shop,
     required TResult Function(UserContact value) userContact,
   }) {
     return member(this);
@@ -440,7 +453,7 @@ class _$CommunityMember
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CommunityMember value)? member,
-    TResult Function(CommunityStore value)? store,
+    TResult Function(CommunityShop value)? shop,
     TResult Function(UserContact value)? userContact,
     required TResult orElse(),
   }) {
@@ -461,7 +474,7 @@ abstract class CommunityMember implements CommunityEntity {
       {required String displayName,
       required String walletAddress,
       String? primaryContactNumber,
-      String communityFundContribution,
+      int communityFundContribution,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar}) = _$CommunityMember;
 
@@ -474,7 +487,8 @@ abstract class CommunityMember implements CommunityEntity {
   String get walletAddress => throw _privateConstructorUsedError;
   @override
   String? get primaryContactNumber => throw _privateConstructorUsedError;
-  String get communityFundContribution => throw _privateConstructorUsedError;
+  @override
+  int get communityFundContribution => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
   Uint8List? get avatar => throw _privateConstructorUsedError;
@@ -485,31 +499,31 @@ abstract class CommunityMember implements CommunityEntity {
 }
 
 /// @nodoc
-abstract class $CommunityStoreCopyWith<$Res>
+abstract class $CommunityShopCopyWith<$Res>
     implements $CommunityEntityCopyWith<$Res> {
-  factory $CommunityStoreCopyWith(
-          CommunityStore value, $Res Function(CommunityStore) then) =
-      _$CommunityStoreCopyWithImpl<$Res>;
+  factory $CommunityShopCopyWith(
+          CommunityShop value, $Res Function(CommunityShop) then) =
+      _$CommunityShopCopyWithImpl<$Res>;
   @override
   $Res call(
       {String displayName,
       String walletAddress,
       String? primaryContactNumber,
-      String communityFundContribution,
+      int communityFundContribution,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar});
 }
 
 /// @nodoc
-class _$CommunityStoreCopyWithImpl<$Res>
+class _$CommunityShopCopyWithImpl<$Res>
     extends _$CommunityEntityCopyWithImpl<$Res>
-    implements $CommunityStoreCopyWith<$Res> {
-  _$CommunityStoreCopyWithImpl(
-      CommunityStore _value, $Res Function(CommunityStore) _then)
-      : super(_value, (v) => _then(v as CommunityStore));
+    implements $CommunityShopCopyWith<$Res> {
+  _$CommunityShopCopyWithImpl(
+      CommunityShop _value, $Res Function(CommunityShop) _then)
+      : super(_value, (v) => _then(v as CommunityShop));
 
   @override
-  CommunityStore get _value => super._value as CommunityStore;
+  CommunityShop get _value => super._value as CommunityShop;
 
   @override
   $Res call({
@@ -519,7 +533,7 @@ class _$CommunityStoreCopyWithImpl<$Res>
     Object? communityFundContribution = freezed,
     Object? avatar = freezed,
   }) {
-    return _then(CommunityStore(
+    return _then(CommunityShop(
       displayName: displayName == freezed
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -535,7 +549,7 @@ class _$CommunityStoreCopyWithImpl<$Res>
       communityFundContribution: communityFundContribution == freezed
           ? _value.communityFundContribution
           : communityFundContribution // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -546,16 +560,16 @@ class _$CommunityStoreCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CommunityStore with DiagnosticableTreeMixin implements CommunityStore {
-  _$CommunityStore(
+class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
+  _$CommunityShop(
       {required this.displayName,
       required this.walletAddress,
       this.primaryContactNumber,
-      this.communityFundContribution = '0',
+      this.communityFundContribution = 0,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) this.avatar});
 
-  factory _$CommunityStore.fromJson(Map<String, dynamic> json) =>
-      _$_$CommunityStoreFromJson(json);
+  factory _$CommunityShop.fromJson(Map<String, dynamic> json) =>
+      _$_$CommunityShopFromJson(json);
 
   @override
   final String displayName;
@@ -563,23 +577,23 @@ class _$CommunityStore with DiagnosticableTreeMixin implements CommunityStore {
   final String walletAddress;
   @override
   final String? primaryContactNumber;
-  @JsonKey(defaultValue: '0')
+  @JsonKey(defaultValue: 0)
   @override
-  final String communityFundContribution;
+  final int communityFundContribution;
   @override
   @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
   final Uint8List? avatar;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CommunityEntity.store(displayName: $displayName, walletAddress: $walletAddress, primaryContactNumber: $primaryContactNumber, communityFundContribution: $communityFundContribution, avatar: $avatar)';
+    return 'CommunityEntity.shop(displayName: $displayName, walletAddress: $walletAddress, primaryContactNumber: $primaryContactNumber, communityFundContribution: $communityFundContribution, avatar: $avatar)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'CommunityEntity.store'))
+      ..add(DiagnosticsProperty('type', 'CommunityEntity.shop'))
       ..add(DiagnosticsProperty('displayName', displayName))
       ..add(DiagnosticsProperty('walletAddress', walletAddress))
       ..add(DiagnosticsProperty('primaryContactNumber', primaryContactNumber))
@@ -591,7 +605,7 @@ class _$CommunityStore with DiagnosticableTreeMixin implements CommunityStore {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CommunityStore &&
+        (other is CommunityShop &&
             (identical(other.displayName, displayName) ||
                 const DeepCollectionEquality()
                     .equals(other.displayName, displayName)) &&
@@ -621,8 +635,8 @@ class _$CommunityStore with DiagnosticableTreeMixin implements CommunityStore {
 
   @JsonKey(ignore: true)
   @override
-  $CommunityStoreCopyWith<CommunityStore> get copyWith =>
-      _$CommunityStoreCopyWithImpl<CommunityStore>(this, _$identity);
+  $CommunityShopCopyWith<CommunityShop> get copyWith =>
+      _$CommunityShopCopyWithImpl<CommunityShop>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -631,7 +645,7 @@ class _$CommunityStore with DiagnosticableTreeMixin implements CommunityStore {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
         member,
@@ -639,19 +653,20 @@ class _$CommunityStore with DiagnosticableTreeMixin implements CommunityStore {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
-        store,
+        shop,
     required TResult Function(
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
         userContact,
   }) {
-    return store(displayName, walletAddress, primaryContactNumber,
+    return shop(displayName, walletAddress, primaryContactNumber,
         communityFundContribution, avatar);
   }
 
@@ -662,7 +677,7 @@ class _$CommunityStore with DiagnosticableTreeMixin implements CommunityStore {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
         member,
@@ -670,21 +685,22 @@ class _$CommunityStore with DiagnosticableTreeMixin implements CommunityStore {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
-        store,
+        shop,
     TResult Function(
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
         userContact,
     required TResult orElse(),
   }) {
-    if (store != null) {
-      return store(displayName, walletAddress, primaryContactNumber,
+    if (shop != null) {
+      return shop(displayName, walletAddress, primaryContactNumber,
           communityFundContribution, avatar);
     }
     return orElse();
@@ -694,43 +710,43 @@ class _$CommunityStore with DiagnosticableTreeMixin implements CommunityStore {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CommunityMember value) member,
-    required TResult Function(CommunityStore value) store,
+    required TResult Function(CommunityShop value) shop,
     required TResult Function(UserContact value) userContact,
   }) {
-    return store(this);
+    return shop(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CommunityMember value)? member,
-    TResult Function(CommunityStore value)? store,
+    TResult Function(CommunityShop value)? shop,
     TResult Function(UserContact value)? userContact,
     required TResult orElse(),
   }) {
-    if (store != null) {
-      return store(this);
+    if (shop != null) {
+      return shop(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CommunityStoreToJson(this)..['runtimeType'] = 'store';
+    return _$_$CommunityShopToJson(this)..['runtimeType'] = 'shop';
   }
 }
 
-abstract class CommunityStore implements CommunityEntity {
-  factory CommunityStore(
+abstract class CommunityShop implements CommunityEntity {
+  factory CommunityShop(
       {required String displayName,
       required String walletAddress,
       String? primaryContactNumber,
-      String communityFundContribution,
+      int communityFundContribution,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
-          Uint8List? avatar}) = _$CommunityStore;
+          Uint8List? avatar}) = _$CommunityShop;
 
-  factory CommunityStore.fromJson(Map<String, dynamic> json) =
-      _$CommunityStore.fromJson;
+  factory CommunityShop.fromJson(Map<String, dynamic> json) =
+      _$CommunityShop.fromJson;
 
   @override
   String get displayName => throw _privateConstructorUsedError;
@@ -738,13 +754,14 @@ abstract class CommunityStore implements CommunityEntity {
   String get walletAddress => throw _privateConstructorUsedError;
   @override
   String? get primaryContactNumber => throw _privateConstructorUsedError;
-  String get communityFundContribution => throw _privateConstructorUsedError;
+  @override
+  int get communityFundContribution => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
   Uint8List? get avatar => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $CommunityStoreCopyWith<CommunityStore> get copyWith =>
+  $CommunityShopCopyWith<CommunityShop> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -759,6 +776,7 @@ abstract class $UserContactCopyWith<$Res>
       {String displayName,
       String walletAddress,
       String? primaryContactNumber,
+      int communityFundContribution,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar});
 }
@@ -779,6 +797,7 @@ class _$UserContactCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? walletAddress = freezed,
     Object? primaryContactNumber = freezed,
+    Object? communityFundContribution = freezed,
     Object? avatar = freezed,
   }) {
     return _then(UserContact(
@@ -794,6 +813,10 @@ class _$UserContactCopyWithImpl<$Res>
           ? _value.primaryContactNumber
           : primaryContactNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      communityFundContribution: communityFundContribution == freezed
+          ? _value.communityFundContribution
+          : communityFundContribution // ignore: cast_nullable_to_non_nullable
+              as int,
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -809,6 +832,7 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
       {required this.displayName,
       required this.walletAddress,
       this.primaryContactNumber,
+      this.communityFundContribution = 0,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) this.avatar});
 
   factory _$UserContact.fromJson(Map<String, dynamic> json) =>
@@ -820,13 +844,16 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
   final String walletAddress;
   @override
   final String? primaryContactNumber;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int communityFundContribution;
   @override
   @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
   final Uint8List? avatar;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CommunityEntity.userContact(displayName: $displayName, walletAddress: $walletAddress, primaryContactNumber: $primaryContactNumber, avatar: $avatar)';
+    return 'CommunityEntity.userContact(displayName: $displayName, walletAddress: $walletAddress, primaryContactNumber: $primaryContactNumber, communityFundContribution: $communityFundContribution, avatar: $avatar)';
   }
 
   @override
@@ -837,6 +864,8 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
       ..add(DiagnosticsProperty('displayName', displayName))
       ..add(DiagnosticsProperty('walletAddress', walletAddress))
       ..add(DiagnosticsProperty('primaryContactNumber', primaryContactNumber))
+      ..add(DiagnosticsProperty(
+          'communityFundContribution', communityFundContribution))
       ..add(DiagnosticsProperty('avatar', avatar));
   }
 
@@ -853,6 +882,11 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
             (identical(other.primaryContactNumber, primaryContactNumber) ||
                 const DeepCollectionEquality().equals(
                     other.primaryContactNumber, primaryContactNumber)) &&
+            (identical(other.communityFundContribution,
+                    communityFundContribution) ||
+                const DeepCollectionEquality().equals(
+                    other.communityFundContribution,
+                    communityFundContribution)) &&
             (identical(other.avatar, avatar) ||
                 const DeepCollectionEquality().equals(other.avatar, avatar)));
   }
@@ -863,6 +897,7 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
       const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(walletAddress) ^
       const DeepCollectionEquality().hash(primaryContactNumber) ^
+      const DeepCollectionEquality().hash(communityFundContribution) ^
       const DeepCollectionEquality().hash(avatar);
 
   @JsonKey(ignore: true)
@@ -877,7 +912,7 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
         member,
@@ -885,20 +920,21 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
-        store,
+        shop,
     required TResult Function(
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
         userContact,
   }) {
-    return userContact(
-        displayName, walletAddress, primaryContactNumber, avatar);
+    return userContact(displayName, walletAddress, primaryContactNumber,
+        communityFundContribution, avatar);
   }
 
   @override
@@ -908,7 +944,7 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
         member,
@@ -916,22 +952,23 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
-            String communityFundContribution,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
-        store,
+        shop,
     TResult Function(
             String displayName,
             String walletAddress,
             String? primaryContactNumber,
+            int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
         userContact,
     required TResult orElse(),
   }) {
     if (userContact != null) {
-      return userContact(
-          displayName, walletAddress, primaryContactNumber, avatar);
+      return userContact(displayName, walletAddress, primaryContactNumber,
+          communityFundContribution, avatar);
     }
     return orElse();
   }
@@ -940,7 +977,7 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CommunityMember value) member,
-    required TResult Function(CommunityStore value) store,
+    required TResult Function(CommunityShop value) shop,
     required TResult Function(UserContact value) userContact,
   }) {
     return userContact(this);
@@ -950,7 +987,7 @@ class _$UserContact with DiagnosticableTreeMixin implements UserContact {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CommunityMember value)? member,
-    TResult Function(CommunityStore value)? store,
+    TResult Function(CommunityShop value)? shop,
     TResult Function(UserContact value)? userContact,
     required TResult orElse(),
   }) {
@@ -971,6 +1008,7 @@ abstract class UserContact implements CommunityEntity {
       {required String displayName,
       required String walletAddress,
       String? primaryContactNumber,
+      int communityFundContribution,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar}) = _$UserContact;
 
@@ -983,6 +1021,8 @@ abstract class UserContact implements CommunityEntity {
   String get walletAddress => throw _privateConstructorUsedError;
   @override
   String? get primaryContactNumber => throw _privateConstructorUsedError;
+  @override
+  int get communityFundContribution => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
   Uint8List? get avatar => throw _privateConstructorUsedError;

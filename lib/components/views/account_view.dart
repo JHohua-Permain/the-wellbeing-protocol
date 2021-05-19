@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@deprecated
 class AccountView extends StatelessWidget {
   final TextEditingController nameController;
   final TextEditingController publicAddressController;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@deprecated
 class ShopDetail extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

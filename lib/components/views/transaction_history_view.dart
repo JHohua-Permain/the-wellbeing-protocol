@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@deprecated
 class TransactionHistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

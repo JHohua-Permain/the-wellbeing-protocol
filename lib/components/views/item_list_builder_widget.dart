@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@deprecated
 class ItemListBuilder extends StatelessWidget {
   final int numberOfItems;
   final Widget Function(BuildContext, int) itemBuilder;

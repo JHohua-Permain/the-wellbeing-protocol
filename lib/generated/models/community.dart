@@ -11,12 +11,18 @@ part 'community.g.dart';
 @freezed
 class Community with _$Community {
   factory Community({
-    required String address,
-    required Token primaryToken,
+    required String communityAddress,
+    required Token homeToken,
     @Default('0') String communityFund,
     @Default([]) List<CommunityEntity> members,
+    @Default([]) List<CommunityShop> shops,
   }) = _Community;
 
   factory Community.fromJson(Map<String, dynamic> json) =>
       _$CommunityFromJson(json);
+
+  factory Community.initial() => Community(
+        communityAddress: '',
+        homeToken: Token.initial(),
+      );
 }

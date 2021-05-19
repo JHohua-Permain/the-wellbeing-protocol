@@ -20,4 +20,11 @@ class Token with _$Token {
   }) = _Token;
 
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
+
+  factory Token.initial() => Token(
+        address: '',
+        name: '',
+        symbol: '',
+        decimals: '',
+      );
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 //useful: https://pub.dev/packages/clipboard
 
+@deprecated
 class WalletView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

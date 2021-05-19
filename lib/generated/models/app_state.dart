@@ -12,7 +12,7 @@ part 'app_state.g.dart';
 class AppState with _$AppState {
   factory AppState({
     required UserState userState,
-    Community? community,
+    required Community community,
   }) = _AppState;
 
   factory AppState.fromJson(Map<String, dynamic> json) =>
@@ -20,5 +20,6 @@ class AppState with _$AppState {
 
   factory AppState.initial() => AppState(
         userState: UserState.initial(),
+        community: Community.initial(),
       );
 }
