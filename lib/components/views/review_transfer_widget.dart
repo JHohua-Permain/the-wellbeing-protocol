@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/widgets/currency_widget.dart';
 import 'package:the_wellbeing_protocol/widgets/common_button.dart';
 
+@deprecated
 class ReviewTransferWidget extends StatelessWidget {
   final String confirmAmount;
   final Row itemRow;

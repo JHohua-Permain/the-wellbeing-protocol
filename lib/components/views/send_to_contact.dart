@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/components/views/review_contact%20_transfer.dart';
 import 'package:the_wellbeing_protocol/widgets/common_button.dart';
 import 'package:the_wellbeing_protocol/components/views/numeric_keyboard_widget.dart';
-import '../template_screen.dart';
+import '../../widgets/template_screen.dart';
 
+@deprecated
 // ignore: must_be_immutable
 class SendToContact extends StatefulWidget {
   final Contact contactPassed;
@@ -59,19 +60,7 @@ class _SendToContactState extends State<SendToContact> {
           }),
           CommonButton(
               label: 'Continue',
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TemplateScreen(
-                    appBarTitle: "Review Transfer",
-                    showBackArrow: true,
-                    body: ReviewContactTransfer(
-                      confirmAmount: amountText,
-                      contact: widget.contactPassed,
-                    ),
-                    showBottomBar: false,
-                  ),
-                ));
-              }),
+              onPressed: () {}),
         ],
       ),
     );

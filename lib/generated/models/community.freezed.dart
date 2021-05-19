@@ -21,15 +21,17 @@ class _$CommunityTearOff {
   const _$CommunityTearOff();
 
   _Community call(
-      {required String address,
-      required Token primaryToken,
+      {required String communityAddress,
+      required Token homeToken,
       String communityFund = '0',
-      List<CommunityEntity> members = const []}) {
+      List<CommunityEntity> members = const [],
+      List<CommunityShop> shops = const []}) {
     return _Community(
-      address: address,
-      primaryToken: primaryToken,
+      communityAddress: communityAddress,
+      homeToken: homeToken,
       communityFund: communityFund,
       members: members,
+      shops: shops,
     );
   }
 
@@ -43,10 +45,11 @@ const $Community = _$CommunityTearOff();
 
 /// @nodoc
 mixin _$Community {
-  String get address => throw _privateConstructorUsedError;
-  Token get primaryToken => throw _privateConstructorUsedError;
+  String get communityAddress => throw _privateConstructorUsedError;
+  Token get homeToken => throw _privateConstructorUsedError;
   String get communityFund => throw _privateConstructorUsedError;
   List<CommunityEntity> get members => throw _privateConstructorUsedError;
+  List<CommunityShop> get shops => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,12 +62,13 @@ abstract class $CommunityCopyWith<$Res> {
   factory $CommunityCopyWith(Community value, $Res Function(Community) then) =
       _$CommunityCopyWithImpl<$Res>;
   $Res call(
-      {String address,
-      Token primaryToken,
+      {String communityAddress,
+      Token homeToken,
       String communityFund,
-      List<CommunityEntity> members});
+      List<CommunityEntity> members,
+      List<CommunityShop> shops});
 
-  $TokenCopyWith<$Res> get primaryToken;
+  $TokenCopyWith<$Res> get homeToken;
 }
 
 /// @nodoc
@@ -77,19 +81,20 @@ class _$CommunityCopyWithImpl<$Res> implements $CommunityCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? address = freezed,
-    Object? primaryToken = freezed,
+    Object? communityAddress = freezed,
+    Object? homeToken = freezed,
     Object? communityFund = freezed,
     Object? members = freezed,
+    Object? shops = freezed,
   }) {
     return _then(_value.copyWith(
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      communityAddress: communityAddress == freezed
+          ? _value.communityAddress
+          : communityAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      primaryToken: primaryToken == freezed
-          ? _value.primaryToken
-          : primaryToken // ignore: cast_nullable_to_non_nullable
+      homeToken: homeToken == freezed
+          ? _value.homeToken
+          : homeToken // ignore: cast_nullable_to_non_nullable
               as Token,
       communityFund: communityFund == freezed
           ? _value.communityFund
@@ -99,13 +104,17 @@ class _$CommunityCopyWithImpl<$Res> implements $CommunityCopyWith<$Res> {
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
               as List<CommunityEntity>,
+      shops: shops == freezed
+          ? _value.shops
+          : shops // ignore: cast_nullable_to_non_nullable
+              as List<CommunityShop>,
     ));
   }
 
   @override
-  $TokenCopyWith<$Res> get primaryToken {
-    return $TokenCopyWith<$Res>(_value.primaryToken, (value) {
-      return _then(_value.copyWith(primaryToken: value));
+  $TokenCopyWith<$Res> get homeToken {
+    return $TokenCopyWith<$Res>(_value.homeToken, (value) {
+      return _then(_value.copyWith(homeToken: value));
     });
   }
 }
@@ -117,13 +126,14 @@ abstract class _$CommunityCopyWith<$Res> implements $CommunityCopyWith<$Res> {
       __$CommunityCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String address,
-      Token primaryToken,
+      {String communityAddress,
+      Token homeToken,
       String communityFund,
-      List<CommunityEntity> members});
+      List<CommunityEntity> members,
+      List<CommunityShop> shops});
 
   @override
-  $TokenCopyWith<$Res> get primaryToken;
+  $TokenCopyWith<$Res> get homeToken;
 }
 
 /// @nodoc
@@ -137,19 +147,20 @@ class __$CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? address = freezed,
-    Object? primaryToken = freezed,
+    Object? communityAddress = freezed,
+    Object? homeToken = freezed,
     Object? communityFund = freezed,
     Object? members = freezed,
+    Object? shops = freezed,
   }) {
     return _then(_Community(
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      communityAddress: communityAddress == freezed
+          ? _value.communityAddress
+          : communityAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      primaryToken: primaryToken == freezed
-          ? _value.primaryToken
-          : primaryToken // ignore: cast_nullable_to_non_nullable
+      homeToken: homeToken == freezed
+          ? _value.homeToken
+          : homeToken // ignore: cast_nullable_to_non_nullable
               as Token,
       communityFund: communityFund == freezed
           ? _value.communityFund
@@ -159,6 +170,10 @@ class __$CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
               as List<CommunityEntity>,
+      shops: shops == freezed
+          ? _value.shops
+          : shops // ignore: cast_nullable_to_non_nullable
+              as List<CommunityShop>,
     ));
   }
 }
@@ -167,28 +182,32 @@ class __$CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Community with DiagnosticableTreeMixin implements _Community {
   _$_Community(
-      {required this.address,
-      required this.primaryToken,
+      {required this.communityAddress,
+      required this.homeToken,
       this.communityFund = '0',
-      this.members = const []});
+      this.members = const [],
+      this.shops = const []});
 
   factory _$_Community.fromJson(Map<String, dynamic> json) =>
       _$_$_CommunityFromJson(json);
 
   @override
-  final String address;
+  final String communityAddress;
   @override
-  final Token primaryToken;
+  final Token homeToken;
   @JsonKey(defaultValue: '0')
   @override
   final String communityFund;
   @JsonKey(defaultValue: const [])
   @override
   final List<CommunityEntity> members;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<CommunityShop> shops;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Community(address: $address, primaryToken: $primaryToken, communityFund: $communityFund, members: $members)';
+    return 'Community(communityAddress: $communityAddress, homeToken: $homeToken, communityFund: $communityFund, members: $members, shops: $shops)';
   }
 
   @override
@@ -196,36 +215,41 @@ class _$_Community with DiagnosticableTreeMixin implements _Community {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Community'))
-      ..add(DiagnosticsProperty('address', address))
-      ..add(DiagnosticsProperty('primaryToken', primaryToken))
+      ..add(DiagnosticsProperty('communityAddress', communityAddress))
+      ..add(DiagnosticsProperty('homeToken', homeToken))
       ..add(DiagnosticsProperty('communityFund', communityFund))
-      ..add(DiagnosticsProperty('members', members));
+      ..add(DiagnosticsProperty('members', members))
+      ..add(DiagnosticsProperty('shops', shops));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Community &&
-            (identical(other.address, address) ||
+            (identical(other.communityAddress, communityAddress) ||
                 const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.primaryToken, primaryToken) ||
+                    .equals(other.communityAddress, communityAddress)) &&
+            (identical(other.homeToken, homeToken) ||
                 const DeepCollectionEquality()
-                    .equals(other.primaryToken, primaryToken)) &&
+                    .equals(other.homeToken, homeToken)) &&
             (identical(other.communityFund, communityFund) ||
                 const DeepCollectionEquality()
                     .equals(other.communityFund, communityFund)) &&
             (identical(other.members, members) ||
-                const DeepCollectionEquality().equals(other.members, members)));
+                const DeepCollectionEquality()
+                    .equals(other.members, members)) &&
+            (identical(other.shops, shops) ||
+                const DeepCollectionEquality().equals(other.shops, shops)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(primaryToken) ^
+      const DeepCollectionEquality().hash(communityAddress) ^
+      const DeepCollectionEquality().hash(homeToken) ^
       const DeepCollectionEquality().hash(communityFund) ^
-      const DeepCollectionEquality().hash(members);
+      const DeepCollectionEquality().hash(members) ^
+      const DeepCollectionEquality().hash(shops);
 
   @JsonKey(ignore: true)
   @override
@@ -240,22 +264,25 @@ class _$_Community with DiagnosticableTreeMixin implements _Community {
 
 abstract class _Community implements Community {
   factory _Community(
-      {required String address,
-      required Token primaryToken,
+      {required String communityAddress,
+      required Token homeToken,
       String communityFund,
-      List<CommunityEntity> members}) = _$_Community;
+      List<CommunityEntity> members,
+      List<CommunityShop> shops}) = _$_Community;
 
   factory _Community.fromJson(Map<String, dynamic> json) =
       _$_Community.fromJson;
 
   @override
-  String get address => throw _privateConstructorUsedError;
+  String get communityAddress => throw _privateConstructorUsedError;
   @override
-  Token get primaryToken => throw _privateConstructorUsedError;
+  Token get homeToken => throw _privateConstructorUsedError;
   @override
   String get communityFund => throw _privateConstructorUsedError;
   @override
   List<CommunityEntity> get members => throw _privateConstructorUsedError;
+  @override
+  List<CommunityShop> get shops => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CommunityCopyWith<_Community> get copyWith =>

@@ -2,9 +2,10 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/components/views/review_transfer_widget.dart';
 
-import '../template_screen.dart';
+import '../../widgets/template_screen.dart';
 import 'success.dart';
 
+@deprecated
 class ReviewContactTransfer extends StatelessWidget {
   final String confirmAmount;
   final Contact contact;
@@ -50,17 +51,7 @@ class ReviewContactTransfer extends StatelessWidget {
       confirmAmount: confirmAmount,
       itemRow: contactRow(),
       passedButtonName: 'Send',
-      buttonFunction: () {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => TemplateScreen(
-            appBarTitle: "Success",
-            body: Success(),
-            redirectToView: true,
-            showBackArrow: false,
-            showBottomBar: true,
-          ),
-        ));
-      },
+      buttonFunction: () {},
     );
   }
 }

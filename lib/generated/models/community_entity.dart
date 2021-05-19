@@ -27,22 +27,23 @@ class CommunityEntity with _$CommunityEntity {
     required String displayName,
     required String walletAddress,
     String? primaryContactNumber,
-    @Default('0') String communityFundContribution,
+    @Default(0) int communityFundContribution,
     @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) Uint8List? avatar,
   }) = CommunityMember;
 
-  factory CommunityEntity.store({
+  factory CommunityEntity.shop({
     required String displayName,
     required String walletAddress,
     String? primaryContactNumber,
-    @Default('0') String communityFundContribution,
+    @Default(0) int communityFundContribution,
     @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) Uint8List? avatar,
-  }) = CommunityStore;
+  }) = CommunityShop;
 
   factory CommunityEntity.userContact({
     required String displayName,
     required String walletAddress,
     String? primaryContactNumber,
+    @Default(0) int communityFundContribution,
     @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) Uint8List? avatar,
   }) = UserContact;
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:the_wellbeing_protocol/components/components.dart';
 import 'package:the_wellbeing_protocol/components/views/success.dart';
 import 'package:the_wellbeing_protocol/components/views/review_transfer_widget.dart';
-import 'community_fund_view.dart';
+import '../../screens/community/community_fund_screen.dart';
+import '../../widgets/template_screen.dart';
 
+@deprecated
 class ReviewContributerTransfer extends StatelessWidget {
   final String confirmAmount;
   final Contributer contributer;
@@ -43,21 +44,18 @@ class ReviewContributerTransfer extends StatelessWidget {
       confirmAmount: confirmAmount,
       itemRow: contributerRow(),
       passedButtonName: 'Send',
-      buttonFunction: () {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => TemplateScreen(
-            appBarTitle: "Success",
-            body: Success(),
-            redirectToView: true,
-            showBackArrow: false,
-            showBottomBar: true,
-          ),
-
-        )
-
-        );
-
-      },
+      buttonFunction: () {},
     );
+  }
+}
+
+class Contributer extends StatelessWidget {
+  final String name;
+  final String amount;
+  const Contributer({required this.amount, required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    throw UnimplementedError();
   }
 }

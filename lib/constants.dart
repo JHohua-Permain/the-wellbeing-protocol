@@ -16,6 +16,7 @@ const GRAPH_BASE_URL = 'https://graph.fuse.io/subgraphs/name/fuseio';
 
 //Fuse economy and community addresses.
 
+const DEFAULT_TOKEN_ADDRESS = JEZ_TOKEN_ADDRESS;
 const DEFAULT_COMMUNITY_ADDRESS = JEREMY_ECONOMY_COMMUNITY_ADDRESS;
 
 //Jeremy's Economy addresses
