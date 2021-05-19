@@ -6,8 +6,8 @@ class AppBottomNavigationBar extends StatefulWidget {
   final bool fromAnyOtherPage;
   final bool redirectToView;
   AppBottomNavigationBar({
-    this.fromAnyOtherPage,
-    this.redirectToView,
+    this.fromAnyOtherPage = false,
+    this.redirectToView = false,
   });
 
   @override
@@ -51,9 +51,9 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
           ),
         ],
         onTap: (index) {
-          if ((widget.redirectToView ?? false)) {
+          if ((widget.redirectToView)) {
             Navigator.of(context).popUntil((route) => route.isFirst);
-          } else if ((widget.fromAnyOtherPage ?? false)) {
+          } else if ((widget.fromAnyOtherPage)) {
             //if null or false
             Navigator.pop(context);
             //Navigator.pushNamed(context, globalCurrentIndex.value.toString());

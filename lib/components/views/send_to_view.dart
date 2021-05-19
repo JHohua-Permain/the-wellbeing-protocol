@@ -40,7 +40,7 @@ class _SendToView extends State<SendToView> {
         (await ContactsService.getContacts(withThumbnails: true)).toList();
     setState(() {
       contacts = _contacts;
-      startLetter = contacts.first.displayName.substring(0, 1).toUpperCase();
+      startLetter = contacts.first.displayName?.substring(0, 1).toUpperCase() ?? '';
     });
   }
 
@@ -51,8 +51,8 @@ class _SendToView extends State<SendToView> {
       _contacts.retainWhere((contact) {
         String searchTerm = searchController.text.toLowerCase();
         String searchTermFlatten = flattenPhoneNumber(searchTerm);
-        String contactName = contact.displayName.toLowerCase();
-        bool nameMatches = contactName.contains(searchTerm);
+        String? contactName = contact.displayName?.toLowerCase();
+        bool nameMatches = contactName?.contains(searchTerm) ?? false;
         if (nameMatches == true) {
           return true;
         }
@@ -61,12 +61,13 @@ class _SendToView extends State<SendToView> {
           return false;
         }
 
-        var phone = contact.phones.firstWhere((phn) {
-          String phnFlattened = flattenPhoneNumber(phn.value);
-          return phnFlattened.contains(searchTermFlatten);
-        }, orElse: () => null);
-
-        return phone != null;
+        return false;
+        // var phone = contact.phones.firstWhere((phn) {
+        //   String phnFlattened = flattenPhoneNumber(phn.value);
+        //   return phnFlattened.contains(searchTermFlatten);
+        // }, orElse: () => null);
+        //
+        // return phone != null;
       });
     }
     setState(() {
@@ -157,19 +158,17 @@ class _SendToView extends State<SendToView> {
                     return Column(
                       children: [
                         ListTile(
-                          title: Text(contact.displayName),
-                          trailing: Text(contact.phones.length > 0
-                              ? contact.phones.elementAt(0).value
-                              : ''),
+                          title: Text(contact.displayName ?? ''),
+                          trailing: Text(contact.phones?.elementAt(0).value ?? ''),
                           leading: CircleAvatorWidget(
                             phoneContact: contact,
                           ),
                           onTap: () {
                             // Navigator.pushedName default ''/',
-                            return Navigator.of(context).push(MaterialPageRoute(
+                            Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => TemplateScreen(
                                 appBarTitle:
-                                    "Send to ${contact.displayName.split(' ').first}",
+                                    "Send to ${contact.displayName?.split(' ').first ?? ''}",
                                 showBackArrow: true,
                                 body: SendToContact(
                                   contactPassed: contact,

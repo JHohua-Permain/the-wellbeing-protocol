@@ -8,8 +8,8 @@ class ShopDetail extends StatefulWidget {
 }
 
 class _ShopDetail extends State<ShopDetail> {
-  String itemValue;
-  String shopVlaue;
+  String itemValue = '';
+  String shopVlaue = '';
   List listItem = ["1", "2", "3"];
   List listShop = ["ABC", "DEF", "GEH"];
 
@@ -78,7 +78,7 @@ class _ShopDetail extends State<ShopDetail> {
                           value: itemValue,
                           onChanged: (newValue) {
                             setState(() {
-                              itemValue = newValue;
+                              itemValue = newValue.toString();
                             });
                           },
                           items: listItem.map((itemValue) {
@@ -113,7 +113,7 @@ class _ShopDetail extends State<ShopDetail> {
                           value: shopVlaue,
                           onChanged: (newValue) {
                             setState(() {
-                              shopVlaue = newValue;
+                              shopVlaue = newValue.toString();
                             });
                           },
                           items: listShop.map((shopVlaue) {

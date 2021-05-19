@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class ItemListBuilder extends StatelessWidget {
   final int numberOfItems;
-  final Function itemBuilder;
+  final Widget Function(BuildContext, int) itemBuilder;
   const ItemListBuilder({
-    this.numberOfItems,
-    this.itemBuilder,
+    required this.numberOfItems,
+    required this.itemBuilder,
   });
   @override
   Widget build(BuildContext context) {

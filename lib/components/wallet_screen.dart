@@ -6,8 +6,8 @@ import './views/wallet_view.dart';
 
 // ignore: must_be_immutable
 class WalletScreen extends StatelessWidget {
-  final String drawerName;
-  final String drawerPublicAddress;
+  final String? drawerName;
+  final String? drawerPublicAddress;
 
   WalletScreen({this.drawerName, this.drawerPublicAddress});
   List _children = [
@@ -22,14 +22,17 @@ class WalletScreen extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    var displayName = drawerName ?? '';
+    var walletAddress = drawerPublicAddress ?? '';
+
     return Scaffold(
       bottomNavigationBar: AppBottomNavigationBar(),
-      drawer: AppDrawer(name: drawerName, publicAddress: drawerPublicAddress),
+      drawer: AppDrawer(name: displayName, publicAddress: walletAddress),
       drawerEdgeDragWidth: 0,
       drawerEnableOpenDragGesture: true,
       body: ValueListenableBuilder(
         valueListenable: globalCurrentIndex,
-        builder: (BuildContext context, dynamic value, Widget child) {
+        builder: (BuildContext context, int value, Widget? child) {
           return _children[value];
         },
       ),

@@ -6,31 +6,33 @@ import './peripheral_components/app_bottom_navigation_bar.dart';
 class TemplateScreen extends StatelessWidget {
   final String appBarTitle;
   final bool showBackArrow;
-  final VoidCallback appBarToInfoScreen;
+  final VoidCallback? appBarToInfoScreen;
   final Widget body;
   final bool showBottomBar;
   final bool redirectToView;
 
   TemplateScreen(
-      {this.appBarTitle,
-      this.showBackArrow,
+      {required this.appBarTitle,
+      this.showBackArrow = false,
       this.appBarToInfoScreen,
-      this.body,
-      this.redirectToView,
-      this.showBottomBar});
+      required this.body,
+      this.redirectToView = false,
+      this.showBottomBar = false});
   static var receiver;
 
   @override
   Widget build(BuildContext context) {
+    VoidCallback toInfoScreen = appBarToInfoScreen ?? () {};
+
     return Scaffold(
       appBar: CommonAppBar(
         title: appBarTitle,
-        toInfoScreen: appBarToInfoScreen,
-        showleading: showBackArrow ?? false,
+        toInfoScreen: toInfoScreen,
+        showleading: showBackArrow,
       ),
-      bottomNavigationBar: (showBottomBar ?? false) //null Check operator
+      bottomNavigationBar: (showBottomBar) //null Check operator
           ? AppBottomNavigationBar(
-              fromAnyOtherPage: (showBottomBar ?? false),
+              fromAnyOtherPage: (showBottomBar),
               redirectToView: redirectToView,
             )
           : null,

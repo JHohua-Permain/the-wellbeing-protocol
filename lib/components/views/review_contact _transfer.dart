@@ -9,16 +9,16 @@ class ReviewContactTransfer extends StatelessWidget {
   final String confirmAmount;
   final Contact contact;
 
-  const ReviewContactTransfer({this.confirmAmount, this.contact});
+  const ReviewContactTransfer({required this.confirmAmount, required this.contact});
 
   Row contactRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        (contact.avatar != null && contact.avatar.length > 0)
+        (contact.avatar != null && contact.avatar!.length > 0)
             ? CircleAvatar(
-                backgroundImage: MemoryImage(contact.avatar),
+                backgroundImage: MemoryImage(contact.avatar!),
               )
             : Container(
                 decoration: BoxDecoration(
@@ -35,10 +35,8 @@ class ReviewContactTransfer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(contact.displayName),
-              Text(contact.phones.length > 0
-                  ? contact.phones.elementAt(0).value
-                  : ''),
+              Text(contact.displayName ?? ''),
+              Text(contact.phones?.elementAt(0).value ?? ''),
             ],
           ),
         )

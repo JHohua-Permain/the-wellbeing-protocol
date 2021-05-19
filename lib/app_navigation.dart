@@ -48,15 +48,15 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           showBottomBar: true,
         ),
       );
-    case '/sendtocontact':
-      return MaterialPageRoute(
-        builder: (context) => TemplateScreen(
-          showBackArrow: true,
-          appBarTitle: "Send to",
-          body: SendToContact(),
-          showBottomBar: true,
-        ),
-      );
+    // case '/sendtocontact':
+    //   return MaterialPageRoute(
+    //     builder: (context) => TemplateScreen(
+    //       showBackArrow: true,
+    //       appBarTitle: "Send to",
+    //       body: SendToContact(),
+    //       showBottomBar: true,
+    //     ),
+    //   );
 
     default:
       return MaterialPageRoute(

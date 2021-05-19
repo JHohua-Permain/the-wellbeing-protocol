@@ -5,7 +5,7 @@ class AccountView extends StatelessWidget {
   final TextEditingController publicAddressController;
   final TextEditingController phoneNumController;
 
-  AccountView({String name, String publicAddress, String phoneNum})
+  AccountView({String? name, String? publicAddress, String? phoneNum})
       : nameController = TextEditingController(text: name),
         publicAddressController = TextEditingController(text: publicAddress),
         phoneNumController = TextEditingController(text: phoneNum);

@@ -4,7 +4,7 @@ class AppDrawer extends StatelessWidget {
   final String name;
   final String publicAddress;
 
-  AppDrawer({this.name, this.publicAddress});
+  AppDrawer({required this.name, required this.publicAddress});
 
   @override
   Widget build(BuildContext context) {
