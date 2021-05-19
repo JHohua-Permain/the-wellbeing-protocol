@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/components/components.dart';
 import 'package:the_wellbeing_protocol/components/views/review_contributer_transfer.dart';
-import 'package:the_wellbeing_protocol/widgets/comon_button.dart';
-import 'package:the_wellbeing_protocol/widgets/numeric_keyboard_widget.dart';
+import 'package:the_wellbeing_protocol/widgets/common_button.dart';
+import 'package:the_wellbeing_protocol/components/views/numeric_keyboard_widget.dart';
 
 class SendToCommunityFund extends StatefulWidget {
   final Contributer contributerPassed;
@@ -48,9 +48,9 @@ class _SendToCommunityFundState extends State<SendToCommunityFund> {
             });
           }),
           CommonButton(
-              buttonName: 'Continue',
-              onButtonPressed: () {
-                return Navigator.of(context).push(MaterialPageRoute(
+              label: 'Continue',
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => TemplateScreen(
                     appBarTitle: "Review Transfer",
                     showBackArrow: true,

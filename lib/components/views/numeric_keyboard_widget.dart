@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
-import 'package:the_wellbeing_protocol/widgets/amount_widget.dart';
+import 'package:the_wellbeing_protocol/widgets/currency_widget.dart';
 
 // ignore: must_be_immutable
 class NumericKeyboardWidget extends StatefulWidget {
@@ -29,7 +29,7 @@ class _NumericKeyboardWidgetState extends State<NumericKeyboardWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Amount(amount: amountText),
+                CurrencyWidget(amount: amountText, tokenSymbol: 'CAN',),
                 // Text(
                 //   amountText ?? "",
                 //   style: TextStyle(

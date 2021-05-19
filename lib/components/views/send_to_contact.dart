@@ -1,8 +1,8 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/components/views/review_contact%20_transfer.dart';
-import 'package:the_wellbeing_protocol/widgets/comon_button.dart';
-import 'package:the_wellbeing_protocol/widgets/numeric_keyboard_widget.dart';
+import 'package:the_wellbeing_protocol/widgets/common_button.dart';
+import 'package:the_wellbeing_protocol/components/views/numeric_keyboard_widget.dart';
 import '../template_screen.dart';
 
 // ignore: must_be_immutable
@@ -58,9 +58,9 @@ class _SendToContactState extends State<SendToContact> {
             });
           }),
           CommonButton(
-              buttonName: 'Continue',
-              onButtonPressed: () {
-                return Navigator.of(context).push(MaterialPageRoute(
+              label: 'Continue',
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => TemplateScreen(
                     appBarTitle: "Review Transfer",
                     showBackArrow: true,
