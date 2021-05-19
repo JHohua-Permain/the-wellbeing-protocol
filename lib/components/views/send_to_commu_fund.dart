@@ -7,7 +7,7 @@ import 'package:the_wellbeing_protocol/widgets/numeric_keyboard_widget.dart';
 class SendToCommunityFund extends StatefulWidget {
   final Contributer contributerPassed;
 
-  const SendToCommunityFund({this.contributerPassed});
+  const SendToCommunityFund({required this.contributerPassed});
 
   @override
   _SendToCommunityFundState createState() => _SendToCommunityFundState();

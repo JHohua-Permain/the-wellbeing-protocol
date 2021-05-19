@@ -9,10 +9,10 @@ class ReviewTransferWidget extends StatelessWidget {
   final Function buttonFunction;
 
   ReviewTransferWidget(
-      {this.confirmAmount,
-      this.itemRow,
-      this.passedButtonName,
-      this.buttonFunction});
+      {required this.confirmAmount,
+        required this.itemRow,
+        required this.passedButtonName,
+        required this.buttonFunction});
 
   @override
   Widget build(BuildContext context) {

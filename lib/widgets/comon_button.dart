@@ -4,8 +4,8 @@ class CommonButton extends StatelessWidget {
   final String buttonName;
   final Function onButtonPressed;
   const CommonButton({
-    this.buttonName,
-    this.onButtonPressed,
+    required this.buttonName,
+    required this.onButtonPressed,
   });
 
   @override

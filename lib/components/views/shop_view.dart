@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ShopView extends StatelessWidget {
-  final Widget body;
+  final Widget? body;
 
   const ShopView({this.body});
 

@@ -5,10 +5,10 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize = Size.fromHeight(kToolbarHeight);
   final String title;
-  final VoidCallback toInfoScreen;
-  bool showleading = true;
+  final VoidCallback? toInfoScreen;
+  bool showleading;
 
-  CommonAppBar({this.title, this.toInfoScreen, this.showleading});
+  CommonAppBar({required this.title, this.toInfoScreen, this.showleading = true});
 
   @override
   Widget build(BuildContext context) {

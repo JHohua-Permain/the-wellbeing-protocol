@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ItemView extends StatelessWidget {
   final Widget body;
 
-  const ItemView({this.body});
+  const ItemView({required this.body});
 
   @override
   Widget build(BuildContext context) {

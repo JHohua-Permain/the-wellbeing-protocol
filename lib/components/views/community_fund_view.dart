@@ -91,7 +91,7 @@ class CommunityFundView extends StatelessWidget {
 class Contributer extends StatelessWidget {
   final String name;
   final String amount;
-  const Contributer({this.amount, this.name});
+  const Contributer({required this.amount, required this.name});
 
   @override
   Widget build(BuildContext context) {

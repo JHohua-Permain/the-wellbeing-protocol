@@ -10,7 +10,7 @@ class SendToContact extends StatefulWidget {
   final Contact contactPassed;
 
   SendToContact({
-    this.contactPassed,
+    required this.contactPassed,
   });
 
   @override
@@ -22,14 +22,12 @@ class _SendToContactState extends State<SendToContact> {
 
   ListTile itemTile() {
     return ListTile(
-      title: Text(widget.contactPassed.displayName),
-      subtitle: new Text(widget.contactPassed.phones.length > 0
-          ? widget.contactPassed.phones.elementAt(0).value
-          : ''),
+      title: Text(widget.contactPassed.displayName ?? ''),
+      subtitle: Text(widget.contactPassed.phones?.elementAt(0).value ?? ''),
       leading: (widget.contactPassed.avatar != null &&
-              widget.contactPassed.avatar.length > 0)
+              widget.contactPassed.avatar!.length > 0)
           ? CircleAvatar(
-              backgroundImage: MemoryImage(widget.contactPassed.avatar),
+              backgroundImage: MemoryImage(widget.contactPassed.avatar!),
             )
           : Container(
               decoration: BoxDecoration(

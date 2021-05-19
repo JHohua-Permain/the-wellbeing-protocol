@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Amount extends StatelessWidget {
   final String amount;
 
-  const Amount({this.amount});
+  const Amount({required this.amount});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class Amount extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            amount ?? "",
+            amount,
             style: TextStyle(
               fontSize: 40,
               fontWeight: FontWeight.bold,

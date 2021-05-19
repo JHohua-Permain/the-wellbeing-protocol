@@ -7,7 +7,7 @@ import 'community_fund_view.dart';
 class ReviewContributerTransfer extends StatelessWidget {
   final String confirmAmount;
   final Contributer contributer;
-  const ReviewContributerTransfer({this.confirmAmount, this.contributer});
+  const ReviewContributerTransfer({required this.confirmAmount, required this.contributer});
 
   Row contributerRow() {
     return Row(
@@ -52,11 +52,11 @@ class ReviewContributerTransfer extends StatelessWidget {
             showBackArrow: false,
             showBottomBar: true,
           ),
-          
+
         )
-        
+
         );
-       
+
       },
     );
   }

@@ -7,7 +7,7 @@ import 'package:the_wellbeing_protocol/widgets/amount_widget.dart';
 class NumericKeyboardWidget extends StatefulWidget {
   Function onTap;
 
-  NumericKeyboardWidget({this.onTap});
+  NumericKeyboardWidget({required this.onTap});
 
   @override
   _NumericKeyboardWidgetState createState() => _NumericKeyboardWidgetState();

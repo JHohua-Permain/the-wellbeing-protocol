@@ -85,7 +85,7 @@ class WalletView extends StatelessWidget {
 }
 
 class Word {
-  const Word({this.title, this.number});
+  const Word({required this.title, required this.number});
   final String number;
   final String title;
 }
@@ -106,7 +106,7 @@ const List<Word> words = const <Word>[
 ];
 
 class SelectText extends StatelessWidget {
-  const SelectText({Key key, this.word}) : super(key: key);
+  const SelectText({Key? key, required this.word}) : super(key: key);
   final Word word;
 
   @override
