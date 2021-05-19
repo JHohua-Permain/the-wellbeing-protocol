@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:the_wellbeing_protocol/widgets/amount_widget.dart';
-import 'package:the_wellbeing_protocol/widgets/comon_button.dart';
+import 'package:the_wellbeing_protocol/widgets/currency_widget.dart';
+import 'package:the_wellbeing_protocol/widgets/common_button.dart';
 
 class ReviewTransferWidget extends StatelessWidget {
   final String confirmAmount;
   final Row itemRow;
   final String passedButtonName;
-  final Function buttonFunction;
+  final VoidCallback buttonFunction;
 
   ReviewTransferWidget(
       {required this.confirmAmount,
@@ -30,7 +30,7 @@ class ReviewTransferWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Amount(amount: confirmAmount),
+                CurrencyWidget(amount: confirmAmount, tokenSymbol: 'CAN'),
                 //     Text(
                 //       confirmAmount ?? "",
                 //       style: TextStyle(
@@ -64,8 +64,8 @@ class ReviewTransferWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: CommonButton(
-              buttonName: passedButtonName,
-              onButtonPressed: buttonFunction,
+              label: passedButtonName,
+              onPressed: buttonFunction,
             ),
           )
         ],

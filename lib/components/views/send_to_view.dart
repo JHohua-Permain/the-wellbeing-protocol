@@ -1,8 +1,8 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:the_wellbeing_protocol/widgets/circle_avator_widget.dart';
-import 'package:the_wellbeing_protocol/widgets/item_list_builder_widget.dart';
+import 'package:the_wellbeing_protocol/widgets/app_circle_avatar.dart';
+import 'package:the_wellbeing_protocol/components/views/item_list_builder_widget.dart';
 
 import '../template_screen.dart';
 import 'send_to_contact.dart';
@@ -160,8 +160,8 @@ class _SendToView extends State<SendToView> {
                         ListTile(
                           title: Text(contact.displayName ?? ''),
                           trailing: Text(contact.phones?.elementAt(0).value ?? ''),
-                          leading: CircleAvatorWidget(
-                            phoneContact: contact,
+                          leading: AppCircleAvatar(
+                            avatar: contact.avatar,
                           ),
                           onTap: () {
                             // Navigator.pushedName default ''/',

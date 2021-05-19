@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_wellbeing_protocol/widgets/amount_widget.dart';
+import 'package:the_wellbeing_protocol/widgets/currency_widget.dart';
 
 class WalletView extends StatelessWidget {
   @override
@@ -50,7 +50,7 @@ class WalletView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Amount(amount: '50.0'),
+                    CurrencyWidget(amount: '50.0', tokenSymbol: 'CAN',),
                     // Text(
                     //   '50.00',
                     //   style: TextStyle(

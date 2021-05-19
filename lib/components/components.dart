@@ -1,5 +1,4 @@
 export './peripheral_components/app_bottom_navigation_bar.dart';
-export './peripheral_components/app_drawer.dart';
 export './peripheral_components/common_app_bar.dart';
 export './peripheral_components/wallet_app_bar.dart';
 export './views/account_view.dart';

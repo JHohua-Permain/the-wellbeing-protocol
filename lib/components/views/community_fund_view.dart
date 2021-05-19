@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/components/template_screen.dart';
 import 'package:the_wellbeing_protocol/components/views/send_to_commu_fund.dart';
-import 'package:the_wellbeing_protocol/widgets/amount_widget.dart';
-import 'package:the_wellbeing_protocol/widgets/comon_button.dart';
-import 'package:the_wellbeing_protocol/widgets/item_list_builder_widget.dart';
+import 'package:the_wellbeing_protocol/widgets/currency_widget.dart';
+import 'package:the_wellbeing_protocol/widgets/common_button.dart';
+import 'package:the_wellbeing_protocol/components/views/item_list_builder_widget.dart';
 
 class CommunityFundView extends StatelessWidget {
   final List<Contributer> contributers = [
@@ -28,17 +28,18 @@ class CommunityFundView extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 40, 0, 20),
             child: Center(child: Text('Total Contributed')),
           ),
-          Amount(
+          CurrencyWidget(
             amount: '255',
+            tokenSymbol: 'CAN',
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
             child: CommonButton(
-                buttonName: 'Contribute',
-                onButtonPressed: () {
+                label: 'Contribute',
+                onPressed: () {
                   Contributer contriNew =
                       new Contributer(amount: '34', name: 'Neha S');
-                  return Navigator.of(context).push(MaterialPageRoute(
+                  Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => TemplateScreen(
                       appBarTitle: "Send to Community Fund",
                       showBackArrow: true,

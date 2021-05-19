@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/components/components.dart';
 import 'package:the_wellbeing_protocol/components/views/success.dart';
-import 'package:the_wellbeing_protocol/widgets/review_transfer_widget.dart';
+import 'package:the_wellbeing_protocol/components/views/review_transfer_widget.dart';
 import 'community_fund_view.dart';
 
 class ReviewContributerTransfer extends StatelessWidget {
@@ -44,7 +44,7 @@ class ReviewContributerTransfer extends StatelessWidget {
       itemRow: contributerRow(),
       passedButtonName: 'Send',
       buttonFunction: () {
-        return Navigator.of(context).push(MaterialPageRoute(
+        Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => TemplateScreen(
             appBarTitle: "Success",
             body: Success(),
