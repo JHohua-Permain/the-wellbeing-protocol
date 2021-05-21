@@ -8,8 +8,10 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../screens/app_hub_screen.dart' as _i3;
-import '../screens/community/community_fund_screen.dart' as _i6;
-import '../screens/shop/select_shop_screen.dart' as _i5;
+import '../screens/community/community_fund_screen.dart' as _i8;
+import '../screens/shop/select_shop_screen.dart' as _i7;
+import '../screens/wallet/account_screen.dart' as _i5;
+import '../screens/wallet/transaction_history_screen.dart' as _i6;
 import '../screens/wallet/wallet_screen.dart' as _i4;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -43,15 +45,25 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i4.WalletScreen();
         }),
+    AccountPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i5.AccountScreen();
+        }),
+    TransactionHistoryPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i6.TransactionHistoryScreen();
+        }),
     SelectShopPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i5.SelectShopScreen();
+          return _i7.SelectShopScreen();
         }),
     CommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i6.CommunityFundScreen();
+          return _i8.CommunityFundScreen();
         })
   };
 
@@ -63,7 +75,10 @@ class AppRouter extends _i1.RootStackRouter {
               children: [
                 _i1.RouteConfig('#redirect',
                     path: '', redirectTo: 'wallet', fullMatch: true),
-                _i1.RouteConfig(WalletPage.name, path: 'wallet')
+                _i1.RouteConfig(WalletPage.name, path: 'wallet'),
+                _i1.RouteConfig(AccountPage.name, path: 'account'),
+                _i1.RouteConfig(TransactionHistoryPage.name,
+                    path: 'transactions')
               ]),
           _i1.RouteConfig(ShopRouter.name,
               path: 'empty-router-page',
@@ -115,6 +130,18 @@ class WalletPage extends _i1.PageRouteInfo {
   const WalletPage() : super(name, path: 'wallet');
 
   static const String name = 'WalletPage';
+}
+
+class AccountPage extends _i1.PageRouteInfo {
+  const AccountPage() : super(name, path: 'account');
+
+  static const String name = 'AccountPage';
+}
+
+class TransactionHistoryPage extends _i1.PageRouteInfo {
+  const TransactionHistoryPage() : super(name, path: 'transactions');
+
+  static const String name = 'TransactionHistoryPage';
 }
 
 class SelectShopPage extends _i1.PageRouteInfo {

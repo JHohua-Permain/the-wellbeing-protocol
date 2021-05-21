@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:the_wellbeing_protocol/screens/app_hub_screen.dart';
 import 'package:the_wellbeing_protocol/screens/community/community_fund_screen.dart';
 import 'package:the_wellbeing_protocol/screens/shop/select_shop_screen.dart';
+import 'package:the_wellbeing_protocol/screens/wallet/account_screen.dart';
+import 'package:the_wellbeing_protocol/screens/wallet/transaction_history_screen.dart';
 import 'package:the_wellbeing_protocol/screens/wallet/wallet_screen.dart';
 
 const MaterialRoute _communityFundRouter = MaterialRoute(
@@ -39,6 +41,16 @@ const MaterialRoute _walletRouter = MaterialRoute(
       path: 'wallet',
       page: WalletScreen,
       initial: true,
+    ),
+    MaterialRoute(
+      name: 'AccountPage',
+      path: 'account',
+      page: AccountScreen,
+    ),
+    MaterialRoute(
+      name: 'TransactionHistoryPage',
+      path: 'transactions',
+      page: TransactionHistoryScreen,
     ),
   ],
 );
