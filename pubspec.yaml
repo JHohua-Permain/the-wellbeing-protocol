@@ -20,6 +20,10 @@ dependencies:
 # flutter.dev
   cupertino_icons: ^1.0.3
 
+# firebase
+  firebase_core: ^1.2.0
+  firebase_auth: ^1.2.0
+
 # models
   freezed_annotation: ^0.14.2
   json_annotation: ^4.0.1
