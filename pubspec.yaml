@@ -23,6 +23,8 @@ dependencies:
 # firebase
   firebase_core: ^1.2.0
   firebase_auth: ^1.2.0
+  firebase_auth_ui: ^1.0.1
+  
 
 # models
   freezed_annotation: ^0.14.2

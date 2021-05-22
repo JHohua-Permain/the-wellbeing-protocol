@@ -5,6 +5,9 @@
       "name": "Flutter",
       "request": "launch",
       "type": "dart",
+      "args": [
+        "--no-sound-null-safety",
+      ],
       "flutterMode": "debug"
     }
   ]

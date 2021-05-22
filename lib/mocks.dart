@@ -6,9 +6,9 @@ import 'package:the_wellbeing_protocol/redux/actions/community_actions.dart';
 import 'package:the_wellbeing_protocol/redux/actions/user_actions.dart';
 
 //Variables needed and used by the app in the absence of a working local storage solution.
-const String name = '';
-const String phoneNum = '';
-const String mnemonic = '';
+const String name = 'Deepa';
+const String phoneNum = '+64211333714';
+const String mnemonic = 'device nature february aunt will fix horror smile match carbon elite armed';
 
 Future<void> dummyAuthentication(Store<AppState> store) async {
   await store.dispatch(restoreWallet(mnemonic));
