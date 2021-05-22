@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "415272623501",
+    "project_id": "wbp-internship",
+    "storage_bucket": "wbp-internship.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415272623501:android:8e5992bd9a4968ab1f31c4",
+        "android_client_info": {
+          "package_name": "me.wellbeing.the_wellbeing_protocol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415272623501-pl599nd6f99ajpq3rgbr4g70koffiom0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB15Yf9LmMI79cSU-7aFHoIqPXcdkkHFlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415272623501-pl599nd6f99ajpq3rgbr4g70koffiom0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
