@@ -112,7 +112,7 @@ packages:
       name: build_resolvers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   build_runner:
     dependency: "direct dev"
     description:
@@ -260,6 +260,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.3"
+  firebase_auth_ui:
+    dependency: "direct main"
+    description:
+      name: firebase_auth_ui
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   firebase_auth_web:
     dependency: transitive
     description:
@@ -568,7 +575,7 @@ packages:
       name: normalize
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1"
+    version: "0.5.2"
   numeric_keyboard:
     dependency: "direct main"
     description:
@@ -617,14 +624,14 @@ packages:
       name: permission_handler
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.1.0"
+    version: "7.2.0"
   permission_handler_platform_interface:
     dependency: transitive
     description:
       name: permission_handler_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.0"
+    version: "3.5.0"
   petitparser:
     dependency: transitive
     description:
@@ -848,7 +855,7 @@ packages:
       name: web3dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   web_socket_channel:
     dependency: transitive
     description:
@@ -862,7 +869,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.0"
+    version: "5.1.1"
   yaml:
     dependency: transitive
     description:
