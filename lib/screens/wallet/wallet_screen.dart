@@ -1,49 +1,39 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
-import 'package:the_wellbeing_protocol/generated/models/app_state.dart';
+import 'package:the_wellbeing_protocol/screens_redux/wallet_view_models.dart';
 import 'package:the_wellbeing_protocol/widgets/app_drawer.dart';
 import 'package:the_wellbeing_protocol/widgets/currency_widget.dart';
 
 class WalletScreen extends StatelessWidget {
+  final WalletViewModel vm;
+
+  WalletScreen(this.vm);
+
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(
-      builder: (context, store) {
-        var displayName = store.state.userState.displayName;
-        var walletAddress = store.state.userState.walletAddress;
-
-        return Scaffold(
-          drawerEdgeDragWidth: 0,
-          drawerEnableOpenDragGesture: true,
-          drawer: AppDrawer(
-            displayName: displayName,
-            walletAddress: walletAddress,
+    return Scaffold(
+      drawerEdgeDragWidth: 0,
+      drawerEnableOpenDragGesture: true,
+      drawer: AppDrawer(
+        displayName: vm.displayName,
+        walletAddress: vm.walletAddress,
+        pushAccountScreen: vm.pushAccountScreen,
+        logoutUser: vm.logoutUser,
+      ),
+      body: Builder(
+        builder: (context) => SafeArea(
+          child: Column(
+            children: [
+              _buildAppBar(context),
+              _buildBody(context),
+            ],
           ),
-          body: Builder(
-            builder: (context) => SafeArea(
-              child: Column(
-                children: [
-                  _buildAppBar(context, store),
-                  _buildBody(context),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
+        ),
+      ),
     );
   }
 
   ///Creates and returns the Wallet Screen's "AppBar".
-  Widget _buildAppBar(BuildContext context, Store<AppState> store) {
-    var walletBalance = store.state.userState.currentTokenBalance ?? '0';
-    var tokenSymbol = store.state.community.homeToken.symbol;
-    VoidCallback openDrawer = () => Scaffold.of(context).openDrawer();
-    VoidCallback pushTransactionHistoryPage =
-        () => AutoRouter.of(context).pushNamed('transactions');
-
+  Widget _buildAppBar(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
       height: MediaQuery.of(context).size.height * 0.23,
@@ -64,13 +54,13 @@ class WalletScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               InkWell(
-                onTap: openDrawer,
+                onTap: () => Scaffold.of(context).openDrawer(),
                 child: Icon(Icons.menu),
               ),
               Spacer(),
               InkWell(
                 child: Text("View Transactions"),
-                onTap: pushTransactionHistoryPage,
+                onTap: vm.pushTransactionHistoryScreen,
               ),
             ],
           ),
@@ -80,7 +70,10 @@ class WalletScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CurrencyWidget(amount: walletBalance, tokenSymbol: tokenSymbol),
+              CurrencyWidget(
+                amount: vm.currentTokenBalance,
+                tokenSymbol: vm.currentTokenSymbol,
+              ),
               Spacer(),
               InkWell(child: Image.asset('assets/images/QRCode.png')),
             ],
@@ -92,13 +85,6 @@ class WalletScreen extends StatelessWidget {
 
   ///Creates and returns the WalletScreen's body.
   Widget _buildBody(BuildContext context) {
-    VoidCallback pushSelectContactPage =
-        () => AutoRouter.of(context).pushNamed('contacts');
-    VoidCallback pushReceivePage =
-        () => AutoRouter.of(context).pushNamed('receive');
-    VoidCallback pushCashOutPage =
-        () => AutoRouter.of(context).pushNamed('cash-out');
-
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -109,19 +95,19 @@ class WalletScreen extends StatelessWidget {
               title: 'Send',
               description: 'Pay someone for a product or service.',
               colourHex: 0xFFFFAD8B,
-              onPressed: pushSelectContactPage,
+              onPressed: vm.pushSelectContactScreen,
             ),
             _buildBodyCard(
               title: 'Receive',
               description: 'Accept Tokens from someone.',
               colourHex: 0xFFFFAD8B,
-              onPressed: pushReceivePage,
+              onPressed: vm.pushReceiveScreen,
             ),
             _buildBodyCard(
               title: 'CashOut',
               description: 'Convert Cannons to NZD.',
               colourHex: 0xE0E0E0,
-              onPressed: pushCashOutPage,
+              onPressed: vm.pushCashOutScreen,
             ),
           ],
         ),

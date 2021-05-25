@@ -1,119 +1,83 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:redux/redux.dart';
-import 'package:redux_thunk/redux_thunk.dart';
-import 'package:the_wellbeing_protocol/generated/models/community_entity.dart';
-import 'package:the_wellbeing_protocol/services.dart';
+import 'package:the_wellbeing_protocol/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/redux/app_actions.dart';
+import 'package:the_wellbeing_protocol/redux/app_redux.dart';
 
-//TODO: Finish implementation.
-ThunkAction getContacts() => (Store store) async {
-      if (await Permission.contacts.request().isGranted) {
-        List<Contact> contacts =
-            (await ContactsService.getContacts(withThumbnails: true)).toList();
-
-        List<UserContact> userContacts = contacts
-            .map((e) => UserContact(
-                  displayName: e.displayName ?? '',
-                  walletAddress: '',
-                ))
-            .toList();
-        store.dispatch(GetContactsSuccess(userContacts));
-      }
-      // store.dispatch(GetContactsFailed());
-    };
-
-ThunkAction getToken(String tokenAddress) => (Store store) async {
-      var tokenDetails = await fuseNetworkService.getTokenDetails(tokenAddress);
-      var tokenDetailsMap = tokenDetails as Map<String, dynamic>;
-      tokenDetailsMap['address'] = tokenAddress;
-      store.dispatch(SetToken(tokenDetailsMap));
-    };
-
-//TODO: Implement.
-ThunkAction getTransactions(
-  String walletAddress,
-  String tokenAddress,
-) =>
-    (Store store) async {
-      // var transactions = await fuseAPIService.getWalletTransactions(
-      //   walletAddress,
-      //   tokenAddress: tokenAddress,
-      // );
-    };
-
-//TODO: Finish implementation.
-ThunkAction getWallet() => (Store store) async {
-      var walletDetails = await fuseAPIService.getWallet();
-
-      //TODO Pass argument as Json.
-      store.dispatch(SetWallet(walletDetails['walletAddress']));
-    };
-
-//TODO:.
-ThunkAction login(
-  String displayName,
-  String phoneNumber,
-  String accountAddress,
-) =>
-    (Store store) async {
-      try {
-        var jwt = await fuseAPIService.requestToken(
-          phoneNumber,
-          accountAddress,
-        );
-        fuseAPIService.setJwtToken(jwt);
-        store.dispatch(LoginSuccess(displayName, phoneNumber));
-      } catch (e) {
-        //TODO: Catch errors produced by invalid login.
-      }
-      ;
-    };
-
-ThunkAction restoreWallet(String mnemonic) => (Store store) async {
-      try {
-        var privateKey = privateKeyRetrieverDelegate(mnemonic);
-        await fuseNetworkService.setCredentials(privateKey);
-        var accountAddress = await fuseNetworkService.getAddress();
-
-        store.dispatch(RestoreWalletSuccess(
-          mnemonic,
-          privateKey,
-          accountAddress,
-        ));
-      } catch (e) {
-        //TODO: Catch errors produced by using a invalid mnemonic.
-      }
-    };
-
-class GetContactsSuccess {
-  final List<UserContact> contacts;
-
-  GetContactsSuccess(this.contacts);
+AppThunkAction createWallet() {
+  return (store, services) async {
+    String communityAddress = services.fuseNetworkService.getDefaultCommunity();
+    JsonMap walletData = await services.fuseAPIService.createWallet(
+      communityAddress: communityAddress,
+    );
+    return store.dispatch(SetWallet(walletData['walletAddress']));
+  };
 }
 
-class LoginSuccess {
+AppThunkAction fetchContacts() {
+  //TODO: Finish implementation.
+  return (store, services) async {
+    if (await Permission.contacts.request().isGranted) {
+      List<Contact> contacts =
+          (await ContactsService.getContacts(withThumbnails: true)).toList();
+
+      List<CommunityEntity> userContacts = contacts
+          .map((e) => CommunityEntity.member(
+                displayName: e.displayName ?? '',
+                walletAddress: '',
+              ))
+          .toList();
+      store.dispatch(SetContacts(userContacts));
+    }
+  };
+}
+
+AppThunkAction fetchTokenBalance(String tokenAddress) {
+  return (store, services) async {
+    //TODO: Re-implement.
+  };
+}
+
+AppThunkAction fetchTransactions(String tokenAddress) {
+  //TODO: Finish implementation.
+  return (store, services) async {
+    // final transactions = await fuseAPIService.getWalletTransactions(
+    //   store.state.user.walletAddress,
+    //   tokenAddress: tokenAddress,
+    // );
+  };
+}
+
+AppThunkAction fetchWallet() {
+  //TODO: Finish implementation.
+  return (store, services) async {
+    final walletData = await services.fuseAPIService.getWallet();
+    store.dispatch(SetWallet(walletData['walletAddress']));
+  };
+}
+
+AppThunkAction processLogout() {
+  //TODO: Do proper implementation, but for now do full logout.
+  return (store, services) async {
+    //TODO: Restart services.
+    store.dispatch(ClearData());
+  };
+}
+
+class SetContacts {
+  final List<CommunityEntity> contacts;
+
+  const SetContacts(this.contacts);
+}
+
+class SetDisplayName {
   final String displayName;
-  final String phoneNumber;
 
-  LoginSuccess(this.displayName, this.phoneNumber);
-}
-
-class RestoreWalletSuccess {
-  final String mnemonic;
-  final String privateKey;
-  final String accountAddress;
-
-  RestoreWalletSuccess(this.mnemonic, this.privateKey, this.accountAddress);
-}
-
-class SetToken {
-  final Map<String, dynamic> tokenData;
-
-  SetToken(this.tokenData);
+  const SetDisplayName(this.displayName);
 }
 
 class SetWallet {
   final String walletAddress;
 
-  SetWallet(this.walletAddress);
+  const SetWallet(this.walletAddress);
 }

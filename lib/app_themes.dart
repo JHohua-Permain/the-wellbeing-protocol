@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// The themes of the application.
-
-const IconThemeData iconTheme = IconThemeData(color: Colors.black);
+// The themes of the application.
 
 const AppBarTheme appBarTheme = AppBarTheme(
   backgroundColor: Colors.white,
@@ -18,3 +16,16 @@ const BottomNavigationBarThemeData bottomNavigationBarTheme =
   type: BottomNavigationBarType.fixed,
   unselectedLabelStyle: TextStyle(fontSize: 13),
 );
+
+const Color defaultPrimaryAppColour = Color(0xFFFFAD8B);
+
+const IconThemeData iconTheme = IconThemeData(color: Colors.black);
+
+///Utility function that creates and returns the app's ThemeData.
+ThemeData createAppTheme() {
+  return ThemeData(
+    primaryColor: defaultPrimaryAppColour,
+    appBarTheme: appBarTheme,
+    bottomNavigationBarTheme: bottomNavigationBarTheme,
+  );
+}

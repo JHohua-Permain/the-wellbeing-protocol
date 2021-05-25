@@ -1,99 +1,53 @@
-import 'package:redux/redux.dart';
-import 'package:redux_thunk/redux_thunk.dart';
-import 'package:the_wellbeing_protocol/generated/models/community_entity.dart';
-import 'package:the_wellbeing_protocol/services.dart';
+import 'package:the_wellbeing_protocol/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/redux/app_redux.dart';
 
-//******************************************************************************
-//Mock/Experimental
-final CommunityShop mockShop = CommunityShop(
-  displayName: 'Fruit & Vegetable Co-op',
-  walletAddress: '',
-);
+AppThunkAction fetchCommunity(String communityAddress) {
+  return (store, services) async {
+    final communityData =
+        await services.fuseAPIService.getCommunityData(communityAddress);
 
-final List<CommunityMember> contributors = [
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: ''),
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: ''),
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: ''),
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: ''),
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: ''),
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: ''),
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: ''),
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: ''),
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: ''),
-  CommunityMember(
-      displayName: 'Deepa',
-      communityFundContribution: 22,
-      walletAddress: '')
-];
-//******************************************************************************
+    final homeTokenAddress = communityData['homeTokenAddress'];
 
-ThunkAction getCommunity(String communityAddress) => (Store store) async {
-      var apiResp = await fuseAPIService.getCommunityData(communityAddress);
-      Map<String, dynamic> communityData = apiResp as Map<String, dynamic>;
+    final homeTokenData =
+        await services.fuseNetworkService.getTokenDetails(homeTokenAddress);
 
-      var homeTokenAddress = communityData['homeTokenAddress'];
-      var web3Resp = await fuseNetworkService.getTokenDetails(homeTokenAddress);
-      var tokenData = web3Resp as Map<String, dynamic>;
-      tokenData['address'] = homeTokenAddress;
+    homeTokenData['address'] = homeTokenAddress;
 
-      store.dispatch(SetCommunity(communityData, tokenData));
-    };
+    store.dispatch(SetCommunity(communityData, homeTokenData));
+  };
+}
 
-//TODO: Implement proper functionality.
-ThunkAction getMembers() => (Store store) async {
-  store.dispatch(SetMembers(contributors));
-};
+AppThunkAction fetchMembers() {
+  //TODO: Finish Implementation.
+  // In the meantime, member fetching and setting handled by middleware.
+  return (store, services) async {
+    store.dispatch(SetMembers([]));
+  };
+}
 
-//TODO: Implement proper functionality.
-ThunkAction getShops() => (Store store) async {
-  List<CommunityShop> shops = [];
-  shops.add(mockShop);
-
-  store.dispatch(SetShops(shops));
-};
+AppThunkAction fetchShops() {
+  //TODO: Finish Implementation.
+  // In the meantime, shop fetching and setting handled by middleware.
+  return (store, services) async {
+    store.dispatch(SetShops([]));
+  };
+}
 
 class SetCommunity {
   final Map<String, dynamic> communityData;
-  final Map<String, dynamic> tokenData;
+  final Map<String, dynamic> homeTokenData;
 
-  SetCommunity(this.communityData, this.tokenData);
+  const SetCommunity(this.communityData, this.homeTokenData);
 }
 
 class SetMembers {
-  List<CommunityEntity> members;
+  final List<CommunityMember> members;
 
-  SetMembers(this.members);
+  const SetMembers(this.members);
 }
 
 class SetShops {
-  List<CommunityShop> shops;
+  final List<CommunityShop> shops;
 
-  SetShops(this.shops);
+  const SetShops(this.shops);
 }

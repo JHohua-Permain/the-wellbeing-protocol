@@ -1,31 +1,58 @@
+import 'package:faker/faker.dart';
 import 'package:redux/redux.dart';
-import 'package:the_wellbeing_protocol/constants.dart' as Constants;
-import 'package:the_wellbeing_protocol/generated/models/app_state.dart';
-import 'package:the_wellbeing_protocol/generated/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/models/app_state.dart';
+import 'package:the_wellbeing_protocol/models/community_entity.dart';
 import 'package:the_wellbeing_protocol/redux/actions/community_actions.dart';
-import 'package:the_wellbeing_protocol/redux/actions/user_actions.dart';
 
-//Variables needed and used by the app in the absence of a working local storage solution.
-const String name = '';
-const String phoneNum = '';
-const String mnemonic = '';
+_AppMocks _mocks = _AppMocks.generate();
 
-Future<void> dummyAuthentication(Store<AppState> store) async {
-  await store.dispatch(restoreWallet(mnemonic));
-  await store.dispatch(
-    login(name, phoneNum, store.state.userState.accountAddress),
-  );
-  await store.dispatch(getWallet());
+dynamic mockInjectorMiddleWare(
+  Store<AppState> store,
+  dynamic action,
+  NextDispatcher next,
+) {
+  if (action is SetMembers && action.members.isEmpty) {
+    return store.dispatch(SetMembers(_mocks.mockMembers));
+  } else if (action is SetShops && action.shops.isEmpty) {
+    return store.dispatch(SetShops(_mocks.mockShops));
+  } else {
+    return next(action);
+  }
 }
 
-Future<void> dummyLoadCommunity(Store<AppState> store) async {
-  await store.dispatch(getCommunity(Constants.DEFAULT_COMMUNITY_ADDRESS));
+class _AppMocks {
+  final List<CommunityMember> mockMembers;
+  final List<CommunityShop> mockShops;
+
+  _AppMocks(this.mockMembers, this.mockShops);
+
+  static _AppMocks generate() {
+    Faker faker = Faker();
+
+    // Mock members.
+    List<CommunityMember> mockMembers = List.generate(
+      10,
+      (index) => CommunityMember(
+        walletAddress: '',
+        displayName: faker.person.name(),
+        communityFundContribution: faker.randomGenerator.integer(10),
+      ),
+    );
+
+    // Mock shops.
+    List<CommunityShop> mockShops = List.generate(
+      10,
+      (index) => CommunityShop(
+        walletAddress: '',
+        displayName: faker.company.name(),
+      ),
+    );
+
+    mockShops.insert(
+      0,
+      CommunityShop(walletAddress: '', displayName: 'Fruit & Vegetable Co-op'),
+    );
+
+    return _AppMocks(mockMembers, mockShops);
+  }
 }
-
-const String pool = '225';
-const String tokenSymbol = 'CAN';
-
-final CommunityMember communityFund = CommunityMember(
-  displayName: 'Community Fund',
-  walletAddress: '',
-);

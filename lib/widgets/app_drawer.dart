@@ -1,26 +1,26 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
   final String displayName;
   final String walletAddress;
+  final VoidCallback pushAccountScreen;
+  final VoidCallback logoutUser;
 
   AppDrawer({
     required this.displayName,
     required this.walletAddress,
+    required this.pushAccountScreen,
+    required this.logoutUser,
   });
 
   @override
   Widget build(BuildContext context) {
-    VoidCallback pushAccount =
-        () => AutoRouter.of(context).pushNamed('account');
-
     return Drawer(
       child: Column(
         children: [
           const SizedBox(height: 100),
           ListTile(
-            onTap: pushAccount,
+            onTap: pushAccountScreen,
             title: Text(
               displayName,
               style: TextStyle(
@@ -68,7 +68,19 @@ class AppDrawer extends StatelessWidget {
                 color: Colors.grey[800],
               ),
             ),
-          )
+          ),
+          Spacer(),
+          ListTile(
+            onTap: logoutUser,
+            leading: const Icon(Icons.logout),
+            title: Text(
+              "Logout",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey[800],
+              ),
+            ),
+          ),
         ],
       ),
     );
