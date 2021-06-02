@@ -15,52 +15,66 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Finish Visuals.
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(32),
-          child: Form(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "Login",
+                  "Please enter your phone number so we can setup your account",
                   style: TextStyle(
-                    color: Colors.lightBlue,
-                    fontSize: 36,
-                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                    fontSize: 22,
+                    // fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(height: 16),
+                //TODO: Insert Button.
+                Padding(
+                  padding: const EdgeInsets.only(top: 25, bottom: 35, left: 75),
+                  child: Text(
+                    "Why do we need this?",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
                 TextFormField(
                   controller: _phoneNumController,
+                  keyboardType: TextInputType.number,
+                  autofocus: true,
+                  // value.isEmpty ? "Please enter mobile number" : null,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                   decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.grey[100],
-                    hintText: "Mobile Number",
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide(color: Colors.grey[200]!)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide(color: Colors.grey[300]!)),
+                    hintText: 'Phone number',
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black, width: 1.0)),
                   ),
                 ),
                 SizedBox(height: 16),
                 Container(
                   width: double.infinity,
                   child: TextButton(
-                    onPressed: () =>
-                        widget.vm.login(_phoneNumController.text.trim()),
+                    onPressed: () {
+                      widget.vm.login(_phoneNumController.text.trim());
+                    },
+                    child: Text(
+                      "Next",
+                      style: TextStyle(color: Colors.black),
+                    ),
                     style: ButtonStyle(
                       padding: MaterialStateProperty.all(EdgeInsets.all(16)),
-                      backgroundColor: MaterialStateProperty.all(Colors.blue),
-                    ),
-                    child: Text(
-                      "LOGIN",
-                      style: TextStyle(color: Colors.white),
+                      backgroundColor: MaterialStateProperty.all(
+                          Theme.of(context).primaryColor),
                     ),
                   ),
                 )
