@@ -13,23 +13,7 @@ AppThunkAction fetchCommunity(String communityAddress) {
 
     homeTokenData['address'] = homeTokenAddress;
 
-    store.dispatch(SetCommunity(communityData, homeTokenData));
-  };
-}
-
-AppThunkAction fetchMembers() {
-  //TODO: Finish Implementation.
-  // In the meantime, member fetching and setting handled by middleware.
-  return (store, services) async {
-    store.dispatch(SetMembers([]));
-  };
-}
-
-AppThunkAction fetchShops() {
-  //TODO: Finish Implementation.
-  // In the meantime, shop fetching and setting handled by middleware.
-  return (store, services) async {
-    store.dispatch(SetShops([]));
+    await store.dispatch(SetCommunity(communityData, homeTokenData));
   };
 }
 

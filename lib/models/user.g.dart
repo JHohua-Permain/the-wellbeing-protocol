@@ -11,7 +11,7 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     primaryContactNum: json['primaryContactNum'] as String?,
     accountAddress: json['accountAddress'] as String? ?? '',
     walletAddress: json['walletAddress'] as String? ?? '',
-    displayName: json['displayName'] as String? ?? '',
+    displayName: json['displayName'] as String? ?? 'Anon',
     communities: (json['communities'] as List<dynamic>?)
             ?.map((e) => Community.fromJson(e as Map<String, dynamic>))
             .toList() ??

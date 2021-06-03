@@ -1,50 +1,22 @@
-import 'package:contacts_service/contacts_service.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:the_wellbeing_protocol/models/community_entity.dart';
-import 'package:the_wellbeing_protocol/redux/app_actions.dart';
 import 'package:the_wellbeing_protocol/redux/app_redux.dart';
 
-AppThunkAction createWallet() {
+AppThunkAction createWallet(String communityAddress) {
   return (store, services) async {
-    String communityAddress = services.fuseNetworkService.getDefaultCommunity();
-    JsonMap walletData = await services.fuseAPIService.createWallet(
+    dynamic walletData = await services.fuseAPIService.createWallet(
       communityAddress: communityAddress,
     );
-    return store.dispatch(SetWallet(walletData['walletAddress']));
-  };
-}
-
-AppThunkAction fetchContacts() {
-  //TODO: Finish implementation.
-  return (store, services) async {
-    if (await Permission.contacts.request().isGranted) {
-      List<Contact> contacts =
-          (await ContactsService.getContacts(withThumbnails: true)).toList();
-
-      List<CommunityEntity> userContacts = contacts
-          .map((e) => CommunityEntity.member(
-                displayName: e.displayName ?? '',
-                walletAddress: '',
-              ))
-          .toList();
-      store.dispatch(SetContacts(userContacts));
-    }
+    store.dispatch(SetWallet(walletData['walletAddress']));
   };
 }
 
 AppThunkAction fetchTokenBalance(String tokenAddress) {
   return (store, services) async {
-    //TODO: Re-implement.
-  };
-}
-
-AppThunkAction fetchTransactions(String tokenAddress) {
-  //TODO: Finish implementation.
-  return (store, services) async {
-    // final transactions = await fuseAPIService.getWalletTransactions(
-    //   store.state.user.walletAddress,
-    //   tokenAddress: tokenAddress,
-    // );
+    final tokenBalanceData = await services.fuseNetworkService.getTokenBalance(
+      tokenAddress,
+      address: store.state.user.accountAddress,
+    );
+    print('Token Balance Data: $tokenBalanceData');
   };
 }
 
@@ -56,12 +28,31 @@ AppThunkAction fetchWallet() {
   };
 }
 
-AppThunkAction processLogout() {
-  //TODO: Do proper implementation, but for now do full logout.
-  return (store, services) async {
-    //TODO: Restart services.
-    store.dispatch(ClearData());
-  };
+class Authenticate {
+  const Authenticate();
+}
+
+class CompleteDataWipe {
+  const CompleteDataWipe();
+}
+
+class CompleteLogin {
+  final String phoneNum;
+  final String? verificationId;
+
+  const CompleteLogin(this.phoneNum, this.verificationId);
+}
+
+class CompleteVerification {
+  final String phoneNum;
+
+  const CompleteVerification(this.phoneNum);
+}
+
+class SetAccountAddress {
+  final String accountAddress;
+
+  const SetAccountAddress(this.accountAddress);
 }
 
 class SetContacts {
@@ -74,6 +65,12 @@ class SetDisplayName {
   final String displayName;
 
   const SetDisplayName(this.displayName);
+}
+
+class SetTokenBalance {
+  final Map<String, dynamic> tokenBalance;
+
+  const SetTokenBalance(this.tokenBalance);
 }
 
 class SetWallet {

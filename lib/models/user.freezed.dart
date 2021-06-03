@@ -24,7 +24,7 @@ class _$UserTearOff {
       {String? primaryContactNum,
       String accountAddress = '',
       String walletAddress = '',
-      String displayName = '',
+      String displayName = 'Anon',
       List<Community> communities = const [],
       Map<String, String> wallet = const {},
       @JsonKey(ignore: true) List<CommunityEntity> contacts = const [],
@@ -234,7 +234,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       {this.primaryContactNum,
       this.accountAddress = '',
       this.walletAddress = '',
-      this.displayName = '',
+      this.displayName = 'Anon',
       this.communities = const [],
       this.wallet = const {},
       @JsonKey(ignore: true) this.contacts = const [],
@@ -253,7 +253,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   @JsonKey(defaultValue: '')
   @override
   final String walletAddress;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: 'Anon')
   @override
   final String displayName;
   @JsonKey(defaultValue: const [])

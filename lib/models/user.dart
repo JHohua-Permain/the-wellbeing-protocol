@@ -16,7 +16,7 @@ class User with _$User {
     String? primaryContactNum,
     @Default('') String accountAddress,
     @Default('') String walletAddress,
-    @Default('') String displayName,
+    @Default('Anon') String displayName,
     @Default([]) List<Community> communities,
     @Default({}) Map<String, String> wallet,
     @Default([]) @JsonKey(ignore: true) List<CommunityEntity> contacts,

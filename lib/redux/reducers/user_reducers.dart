@@ -2,26 +2,41 @@ import 'package:redux/redux.dart';
 import 'package:the_wellbeing_protocol/models/authentication_state.dart';
 import 'package:the_wellbeing_protocol/models/user.dart';
 import 'package:the_wellbeing_protocol/redux/actions/user_actions.dart';
-import 'package:the_wellbeing_protocol/redux/actions_ui/auth_actions.dart';
 
 final Reducer<User> userReducer = combineReducers([
-  TypedReducer<User, CompleteRestore>(completeRestoreReducer),
+  TypedReducer<User, Authenticate>(authenticatedReducer),
+  TypedReducer<User, CompleteLogin>(completeLoginReducer),
   TypedReducer<User, CompleteVerification>(completeVerificationReducer),
+  TypedReducer<User, SetAccountAddress>(setAccountAddressReducer),
   TypedReducer<User, SetContacts>(setContactsReducer),
+  TypedReducer<User, SetDisplayName>(setDisplayNameReducer),
   TypedReducer<User, SetWallet>(setWalletReducer),
-  TypedReducer<User, StartVerification>(startVerificationReducer),
 ]);
 
-User completeRestoreReducer(User state, CompleteRestore action) {
+User authenticatedReducer(User state, Authenticate action) {
   return state.copyWith(
-    accountAddress: action.accountAddress,
+    authenticationState: AuthenticationState.authenticated(),
+  );
+}
+
+User completeLoginReducer(User state, CompleteLogin action) {
+  return state.copyWith(
+    authenticationState: AuthenticationState.awaitingVerification(
+      action.phoneNum,
+      action.verificationId ?? '',
+    ),
   );
 }
 
 User completeVerificationReducer(User state, CompleteVerification action) {
   return state.copyWith(
     primaryContactNum: action.phoneNum,
-    authenticationState: AuthenticationState.authenticated(),
+  );
+}
+
+User setAccountAddressReducer(User state, SetAccountAddress action) {
+  return state.copyWith(
+    accountAddress: action.accountAddress,
   );
 }
 
@@ -31,17 +46,14 @@ User setContactsReducer(User state, SetContacts action) {
   );
 }
 
-User setWalletReducer(User state, SetWallet action) {
+User setDisplayNameReducer(User state, SetDisplayName action) {
   return state.copyWith(
-    walletAddress: action.walletAddress,
+    displayName: action.displayName,
   );
 }
 
-User startVerificationReducer(User state, StartVerification action) {
+User setWalletReducer(User state, SetWallet action) {
   return state.copyWith(
-    authenticationState: AuthenticationState.awaitingVerification(
-      action.phoneNum,
-      action.verificationCode,
-    ),
+    walletAddress: action.walletAddress,
   );
 }
