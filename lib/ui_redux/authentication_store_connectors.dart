@@ -2,10 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:the_wellbeing_protocol/models/app_state.dart';
+import 'package:the_wellbeing_protocol/models/authentication_state.dart';
 import 'package:the_wellbeing_protocol/routing/app_router.gr.dart';
 import 'package:the_wellbeing_protocol/ui/screens/authentication/login_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/authentication/restore_screen.dart';
-import 'package:the_wellbeing_protocol/ui/screens/authentication/verification_dialog.dart';
+import 'package:the_wellbeing_protocol/ui/screens/authentication/verification_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/authentication/welcome_screen.dart';
 import 'package:the_wellbeing_protocol/ui/view_models/authentication_view_models.dart';
 import 'package:the_wellbeing_protocol/ui_redux/authentication_actions.dart';
@@ -31,7 +32,7 @@ class LoginConnector extends StatelessWidget {
             context.router.navigateNamed('/');
           },
           awaitingVerification: (phoneNum, verificationCode) {
-            context.router.replace(VerificationPopup(phoneNum: phoneNum));
+            context.router.replaceNamed('/login/verification');
           },
           orElse: () {
             //TODO: Handle login errors.
@@ -72,19 +73,18 @@ class RestoreConnector extends StatelessWidget {
 }
 
 class VerificationConnector extends StatelessWidget {
-  final String phoneNum;
-
-  VerificationConnector(this.phoneNum);
-
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, VerificationViewModel>(
       distinct: true,
-      builder: (context, vm) => VerificationDialog(vm),
+      builder: (context, vm) => VerificationScreen(vm),
       converter: (store) => VerificationViewModel(
         authenticationState: store.state.user.authenticationState,
         verify: (verificationCode) {
           context.router.push(ProgressPopup());
+          String phoneNum =
+              (store.state.user.authenticationState as AwaitingVerification)
+                  .phoneNumber;
           store.dispatch(StartVerification(phoneNum, verificationCode));
         },
       ),

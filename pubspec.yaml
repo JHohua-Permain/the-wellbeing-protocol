@@ -49,6 +49,7 @@ dependencies:
   numeric_keyboard: ^1.1.0
   permission_handler: ^7.1.0
   phone_number: ^0.10.0
+  pin_input_text_field: ^4.1.0
 
 # Used for QR Code functionality
   barcode_widget: ^2.0.1

@@ -70,6 +70,11 @@ const MaterialRoute _walletRouter = MaterialRoute(
       page: LoginConnector,
     ),
     MaterialRoute(
+      name: 'VerificationPage',
+      path: '/login/verify',
+      page: VerificationConnector,
+    ),
+    MaterialRoute(
       name: 'RestorePage',
       path: '/restore',
       page: RestoreConnector,
@@ -84,11 +89,6 @@ const MaterialRoute _walletRouter = MaterialRoute(
         _shopRouter,
         _communityFundRouter,
       ],
-    ),
-    MaterialRoute(
-      name: 'VerificationPopup',
-      page: VerificationConnector,
-      fullscreenDialog: true,
     ),
     CustomRoute(
       name: 'ProgressPopup',

@@ -35,6 +35,11 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i4.LoginConnector();
         }),
+    VerificationPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i4.VerificationConnector();
+        }),
     RestorePage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -45,13 +50,6 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i5.AppHub();
         }),
-    VerificationPopup.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<VerificationPopupArgs>();
-          return _i4.VerificationConnector(args.phoneNum);
-        },
-        fullscreenDialog: true),
     ProgressPopup.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -106,6 +104,7 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(WelcomePage.name, path: '/'),
         _i1.RouteConfig(LoginPage.name, path: '/login'),
+        _i1.RouteConfig(VerificationPage.name, path: '/login/verify'),
         _i1.RouteConfig(RestorePage.name, path: '/restore'),
         _i1.RouteConfig(AppHubWindow.name, path: '/hub', guards: [
           authGuard
@@ -135,8 +134,6 @@ class AppRouter extends _i1.RootStackRouter {
                 _i1.RouteConfig(CommunityFundPage.name, path: 'community/fund')
               ])
         ]),
-        _i1.RouteConfig(VerificationPopup.name,
-            path: '/verification-connector'),
         _i1.RouteConfig(ProgressPopup.name, path: '/progress-dialog')
       ];
 }
@@ -153,6 +150,12 @@ class LoginPage extends _i1.PageRouteInfo {
   static const String name = 'LoginPage';
 }
 
+class VerificationPage extends _i1.PageRouteInfo {
+  const VerificationPage() : super(name, path: '/login/verify');
+
+  static const String name = 'VerificationPage';
+}
+
 class RestorePage extends _i1.PageRouteInfo {
   const RestorePage() : super(name, path: '/restore');
 
@@ -164,21 +167,6 @@ class AppHubWindow extends _i1.PageRouteInfo {
       : super(name, path: '/hub', initialChildren: children);
 
   static const String name = 'AppHubWindow';
-}
-
-class VerificationPopup extends _i1.PageRouteInfo<VerificationPopupArgs> {
-  VerificationPopup({required String phoneNum})
-      : super(name,
-            path: '/verification-connector',
-            args: VerificationPopupArgs(phoneNum: phoneNum));
-
-  static const String name = 'VerificationPopup';
-}
-
-class VerificationPopupArgs {
-  const VerificationPopupArgs({required this.phoneNum});
-
-  final String phoneNum;
 }
 
 class ProgressPopup extends _i1.PageRouteInfo {
