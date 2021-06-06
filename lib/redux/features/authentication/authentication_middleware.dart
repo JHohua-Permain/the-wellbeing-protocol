@@ -5,8 +5,8 @@ import 'package:the_wellbeing_protocol/models/authentication_method.dart';
 import 'package:the_wellbeing_protocol/redux/actions/community_actions.dart';
 import 'package:the_wellbeing_protocol/redux/actions/user_actions.dart';
 import 'package:the_wellbeing_protocol/services/app_services.dart';
-import 'package:the_wellbeing_protocol/ui_redux/authentication_actions.dart';
-import 'package:the_wellbeing_protocol/ui_redux/wallet_actions.dart';
+import 'package:the_wellbeing_protocol/redux/features/authentication/authentication_actions.dart';
+import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_actions.dart';
 
 class AuthenticationMiddleware implements MiddlewareClass<AppState> {
   final FlutterSecureStorage storage;

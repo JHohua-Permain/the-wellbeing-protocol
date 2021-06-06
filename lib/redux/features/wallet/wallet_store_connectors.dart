@@ -6,7 +6,7 @@ import 'package:the_wellbeing_protocol/ui/screens/wallet/account_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/transaction_history_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/wallet_screen.dart';
 import 'package:the_wellbeing_protocol/ui/view_models/wallet_view_models.dart';
-import 'package:the_wellbeing_protocol/ui_redux/wallet_actions.dart';
+import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_actions.dart';
 
 class AccountConnector extends StatelessWidget {
   @override

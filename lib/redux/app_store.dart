@@ -4,22 +4,13 @@ import 'package:redux_logging/redux_logging.dart';
 import 'package:redux_persist/redux_persist.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:the_wellbeing_protocol/models/app_state.dart';
-import 'package:the_wellbeing_protocol/redux/middleware/authentication_middleware.dart';
-import 'package:the_wellbeing_protocol/redux/middleware/mocks_middleware.dart'
+import 'package:the_wellbeing_protocol/redux/features/authentication/authentication_middleware.dart';
+import 'package:the_wellbeing_protocol/redux/misc/mocks_middleware.dart'
     as Mocks;
+import 'package:the_wellbeing_protocol/redux/persistor/persistor.dart';
 import 'package:the_wellbeing_protocol/redux/reducers/app_state_reducer.dart';
-import 'package:the_wellbeing_protocol/redux/storage/persistor.dart';
 import 'package:the_wellbeing_protocol/services/app_services.dart';
 import 'package:the_wellbeing_protocol/variables.dart' as Variables;
-
-Future<AppState> _loadState(Persistor<AppState> persistor) async {
-  try {
-    AppState? initialState = await persistor.load();
-    return initialState != null ? initialState : AppState.initial();
-  } catch(e) {
-    return AppState.initial();
-  }
-}
 
 Future<Store<AppState>> buildStore(AppServices services) async {
   dynamic mockInjectorMiddleware =
@@ -42,4 +33,13 @@ Future<Store<AppState>> buildStore(AppServices services) async {
       LoggingMiddleware.printer(),
     ],
   );
+}
+
+Future<AppState> _loadState(Persistor<AppState> persistor) async {
+  try {
+    AppState? initialState = await persistor.load();
+    return initialState != null ? initialState : AppState.initial();
+  } catch (e) {
+    return AppState.initial();
+  }
 }

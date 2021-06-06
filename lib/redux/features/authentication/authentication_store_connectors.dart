@@ -9,7 +9,7 @@ import 'package:the_wellbeing_protocol/ui/screens/authentication/restore_screen.
 import 'package:the_wellbeing_protocol/ui/screens/authentication/verification_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/authentication/welcome_screen.dart';
 import 'package:the_wellbeing_protocol/ui/view_models/authentication_view_models.dart';
-import 'package:the_wellbeing_protocol/ui_redux/authentication_actions.dart';
+import 'package:the_wellbeing_protocol/redux/features/authentication/authentication_actions.dart';
 
 // TODO: A lot still needs to be done/fixed.
 

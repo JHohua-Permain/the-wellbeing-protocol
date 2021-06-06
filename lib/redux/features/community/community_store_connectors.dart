@@ -3,7 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:the_wellbeing_protocol/models/app_state.dart';
 import 'package:the_wellbeing_protocol/ui/screens/community/community_fund_screen.dart';
 import 'package:the_wellbeing_protocol/ui/view_models/community_view_models.dart';
-import 'package:the_wellbeing_protocol/ui_redux/community_actions.dart';
+import 'package:the_wellbeing_protocol/redux/features/community/community_actions.dart';
 
 class CommunityFundConnector extends StatelessWidget {
   @override

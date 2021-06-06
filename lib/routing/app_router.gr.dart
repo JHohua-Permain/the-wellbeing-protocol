@@ -8,11 +8,12 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../app_hub.dart' as _i5;
+import '../redux/features/authentication/authentication_store_connectors.dart'
+    as _i4;
+import '../redux/features/community/community_store_connectors.dart' as _i9;
+import '../redux/features/shop/shop_store_connectors.dart' as _i8;
+import '../redux/features/wallet/wallet_store_connectors.dart' as _i7;
 import '../ui/screens/misc/progress_dialog.dart' as _i6;
-import '../ui_redux/authentication_store_connectors.dart' as _i4;
-import '../ui_redux/community_store_connectors.dart' as _i9;
-import '../ui_redux/shop_store_connectors.dart' as _i8;
-import '../ui_redux/wallet_store_connectors.dart' as _i7;
 import 'auth_guard.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
