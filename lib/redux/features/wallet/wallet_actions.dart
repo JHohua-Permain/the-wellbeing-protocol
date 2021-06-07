@@ -1,13 +1,24 @@
 import 'package:the_wellbeing_protocol/models/community_entity.dart';
 
+class BeginClearingData {}
+
+class BeginLoadingMnemonic {}
+
 class CompleteChangingDisplayName {
   final String displayName;
   CompleteChangingDisplayName(this.displayName);
 }
 
+class CompleteClearingData {}
+
 class CompleteFetchingContacts {
   final List<CommunityEntity> contacts;
   CompleteFetchingContacts(this.contacts);
+}
+
+class CompleteLoadingMnemonic {
+  final List<String> mnemonic;
+  CompleteLoadingMnemonic(this.mnemonic);
 }
 
 class Logout {}

@@ -4,12 +4,16 @@ class AppDrawer extends StatelessWidget {
   final String displayName;
   final String walletAddress;
   final VoidCallback pushAccountScreen;
+  final VoidCallback pushBackupWalletScreen;
+  final VoidCallback pushSettingsScreen;
   final VoidCallback logoutUser;
 
   AppDrawer({
     required this.displayName,
     required this.walletAddress,
     required this.pushAccountScreen,
+    required this.pushBackupWalletScreen,
+    required this.pushSettingsScreen,
     required this.logoutUser,
   });
 
@@ -49,6 +53,7 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: pushBackupWalletScreen,
             leading: const Icon(Icons.settings_backup_restore_outlined),
             trailing: const Icon(Icons.info_outline_rounded),
             title: Text(
@@ -60,6 +65,7 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: pushSettingsScreen,
             leading: const Icon(Icons.settings_applications_outlined),
             title: Text(
               "Settings",

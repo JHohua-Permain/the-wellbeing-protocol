@@ -89,6 +89,16 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i7.AccountConnector();
         }),
+    BackupWalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.BackupWalletConnector();
+        }),
+    SettingsPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.SettingsConnector();
+        }),
     TransactionHistoryPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -123,6 +133,8 @@ class AppRouter extends _i1.RootStackRouter {
                     path: '', redirectTo: 'wallet', fullMatch: true),
                 _i1.RouteConfig(WalletPage.name, path: 'wallet'),
                 _i1.RouteConfig(AccountPage.name, path: 'account'),
+                _i1.RouteConfig(BackupWalletPage.name, path: 'backup'),
+                _i1.RouteConfig(SettingsPage.name, path: 'settings'),
                 _i1.RouteConfig(TransactionHistoryPage.name,
                     path: 'transactions')
               ]),
@@ -219,6 +231,18 @@ class AccountPage extends _i1.PageRouteInfo {
   const AccountPage() : super(name, path: 'account');
 
   static const String name = 'AccountPage';
+}
+
+class BackupWalletPage extends _i1.PageRouteInfo {
+  const BackupWalletPage() : super(name, path: 'backup');
+
+  static const String name = 'BackupWalletPage';
+}
+
+class SettingsPage extends _i1.PageRouteInfo {
+  const SettingsPage() : super(name, path: 'settings');
+
+  static const String name = 'SettingsPage';
 }
 
 class TransactionHistoryPage extends _i1.PageRouteInfo {

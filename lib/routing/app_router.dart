@@ -49,6 +49,16 @@ const MaterialRoute _walletRouter = MaterialRoute(
       page: AccountConnector,
     ),
     MaterialRoute(
+      name: 'BackupWalletPage',
+      path: 'backup',
+      page: BackupWalletConnector,
+    ),
+    MaterialRoute(
+      name: 'SettingsPage',
+      path: 'settings',
+      page: SettingsConnector,
+    ),
+    MaterialRoute(
       name: 'TransactionHistoryPage',
       path: 'transactions',
       page: TransactionHistoryConnector,

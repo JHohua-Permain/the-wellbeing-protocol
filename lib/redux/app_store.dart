@@ -7,9 +7,8 @@ import 'package:the_wellbeing_protocol/models/app_state.dart';
 import 'package:the_wellbeing_protocol/redux/app_reducers.dart';
 import 'package:the_wellbeing_protocol/redux/experimental.dart';
 import 'package:the_wellbeing_protocol/redux/features/authentication/authentication_middleware.dart';
-import 'package:the_wellbeing_protocol/redux/misc/data_wipe.dart';
+import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_middleware.dart';
 import 'package:the_wellbeing_protocol/redux/misc/mocks.dart' as Mocks;
-import 'package:the_wellbeing_protocol/redux/misc/temp_middleware.dart';
 import 'package:the_wellbeing_protocol/redux/persistor/persistor.dart';
 import 'package:the_wellbeing_protocol/services/app_services.dart';
 import 'package:the_wellbeing_protocol/variables.dart' as Variables;
@@ -31,10 +30,9 @@ class AppStoreBuilder {
       initialState: initialState,
       middleware: [
         AuthenticationMiddleware(services, storage),
-        DataWipeMiddleware(services, storage),
+        WalletMiddleware(services, storage),
         CommonMiddleware(services),
         ExtraArgumentThunkMiddleware<AppState, AppServices>(services),
-        tempMiddleware,
         mockInjectorMiddleware,
         persistor.createMiddleware(),
         LoggingMiddleware.printer(),

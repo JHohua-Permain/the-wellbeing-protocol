@@ -29,7 +29,8 @@ class _$UserTearOff {
       Map<String, String> wallet = const {},
       @JsonKey(ignore: true) List<CommunityEntity> contacts = const [],
       @JsonKey(ignore: true) AuthenticationState authenticationState =
-          const AuthenticationState.initial()}) {
+          const AuthenticationState.initial(),
+      @JsonKey(ignore: true) List<String>? mnemonic}) {
     return _User(
       accountAddress: accountAddress,
       walletAddress: walletAddress,
@@ -39,6 +40,7 @@ class _$UserTearOff {
       wallet: wallet,
       contacts: contacts,
       authenticationState: authenticationState,
+      mnemonic: mnemonic,
     );
   }
 
@@ -63,6 +65,8 @@ mixin _$User {
   @JsonKey(ignore: true)
   AuthenticationState get authenticationState =>
       throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  List<String>? get mnemonic => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -81,7 +85,8 @@ abstract class $UserCopyWith<$Res> {
       List<Community> communities,
       Map<String, String> wallet,
       @JsonKey(ignore: true) List<CommunityEntity> contacts,
-      @JsonKey(ignore: true) AuthenticationState authenticationState});
+      @JsonKey(ignore: true) AuthenticationState authenticationState,
+      @JsonKey(ignore: true) List<String>? mnemonic});
 
   $AuthenticationStateCopyWith<$Res> get authenticationState;
 }
@@ -104,6 +109,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? wallet = freezed,
     Object? contacts = freezed,
     Object? authenticationState = freezed,
+    Object? mnemonic = freezed,
   }) {
     return _then(_value.copyWith(
       accountAddress: accountAddress == freezed
@@ -138,6 +144,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.authenticationState
           : authenticationState // ignore: cast_nullable_to_non_nullable
               as AuthenticationState,
+      mnemonic: mnemonic == freezed
+          ? _value.mnemonic
+          : mnemonic // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 
@@ -163,7 +173,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       List<Community> communities,
       Map<String, String> wallet,
       @JsonKey(ignore: true) List<CommunityEntity> contacts,
-      @JsonKey(ignore: true) AuthenticationState authenticationState});
+      @JsonKey(ignore: true) AuthenticationState authenticationState,
+      @JsonKey(ignore: true) List<String>? mnemonic});
 
   @override
   $AuthenticationStateCopyWith<$Res> get authenticationState;
@@ -188,6 +199,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? wallet = freezed,
     Object? contacts = freezed,
     Object? authenticationState = freezed,
+    Object? mnemonic = freezed,
   }) {
     return _then(_User(
       accountAddress: accountAddress == freezed
@@ -222,6 +234,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.authenticationState
           : authenticationState // ignore: cast_nullable_to_non_nullable
               as AuthenticationState,
+      mnemonic: mnemonic == freezed
+          ? _value.mnemonic
+          : mnemonic // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -240,7 +256,9 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       @JsonKey(ignore: true)
           this.contacts = const [],
       @JsonKey(ignore: true)
-          this.authenticationState = const AuthenticationState.initial()})
+          this.authenticationState = const AuthenticationState.initial(),
+      @JsonKey(ignore: true)
+          this.mnemonic})
       : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
@@ -267,10 +285,13 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   @override
   @JsonKey(ignore: true)
   final AuthenticationState authenticationState;
+  @override
+  @JsonKey(ignore: true)
+  final List<String>? mnemonic;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(accountAddress: $accountAddress, walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communities: $communities, wallet: $wallet, contacts: $contacts, authenticationState: $authenticationState)';
+    return 'User(accountAddress: $accountAddress, walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communities: $communities, wallet: $wallet, contacts: $contacts, authenticationState: $authenticationState, mnemonic: $mnemonic)';
   }
 
   @override
@@ -285,7 +306,8 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('communities', communities))
       ..add(DiagnosticsProperty('wallet', wallet))
       ..add(DiagnosticsProperty('contacts', contacts))
-      ..add(DiagnosticsProperty('authenticationState', authenticationState));
+      ..add(DiagnosticsProperty('authenticationState', authenticationState))
+      ..add(DiagnosticsProperty('mnemonic', mnemonic));
   }
 
   @override
@@ -314,7 +336,10 @@ class _$_User extends _User with DiagnosticableTreeMixin {
                     .equals(other.contacts, contacts)) &&
             (identical(other.authenticationState, authenticationState) ||
                 const DeepCollectionEquality()
-                    .equals(other.authenticationState, authenticationState)));
+                    .equals(other.authenticationState, authenticationState)) &&
+            (identical(other.mnemonic, mnemonic) ||
+                const DeepCollectionEquality()
+                    .equals(other.mnemonic, mnemonic)));
   }
 
   @override
@@ -327,7 +352,8 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(communities) ^
       const DeepCollectionEquality().hash(wallet) ^
       const DeepCollectionEquality().hash(contacts) ^
-      const DeepCollectionEquality().hash(authenticationState);
+      const DeepCollectionEquality().hash(authenticationState) ^
+      const DeepCollectionEquality().hash(mnemonic);
 
   @JsonKey(ignore: true)
   @override
@@ -342,15 +368,15 @@ class _$_User extends _User with DiagnosticableTreeMixin {
 
 abstract class _User extends User {
   const factory _User(
-          {String? accountAddress,
-          String? walletAddress,
-          String? primaryContactNum,
-          String displayName,
-          List<Community> communities,
-          Map<String, String> wallet,
-          @JsonKey(ignore: true) List<CommunityEntity> contacts,
-          @JsonKey(ignore: true) AuthenticationState authenticationState}) =
-      _$_User;
+      {String? accountAddress,
+      String? walletAddress,
+      String? primaryContactNum,
+      String displayName,
+      List<Community> communities,
+      Map<String, String> wallet,
+      @JsonKey(ignore: true) List<CommunityEntity> contacts,
+      @JsonKey(ignore: true) AuthenticationState authenticationState,
+      @JsonKey(ignore: true) List<String>? mnemonic}) = _$_User;
   const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -374,6 +400,9 @@ abstract class _User extends User {
   @JsonKey(ignore: true)
   AuthenticationState get authenticationState =>
       throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  List<String>? get mnemonic => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

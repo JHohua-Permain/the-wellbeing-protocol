@@ -23,6 +23,7 @@ class User with _$User {
     @Default(AuthenticationState.initial())
     @JsonKey(ignore: true)
         AuthenticationState authenticationState,
+    @JsonKey(ignore: true) List<String>? mnemonic,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
