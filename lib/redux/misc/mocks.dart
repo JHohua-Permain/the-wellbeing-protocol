@@ -2,17 +2,18 @@ import 'package:faker/faker.dart';
 import 'package:redux/redux.dart';
 import 'package:the_wellbeing_protocol/models/app_state.dart';
 import 'package:the_wellbeing_protocol/models/community_entity.dart';
-import 'package:the_wellbeing_protocol/redux/actions/community_actions.dart';
+import 'package:the_wellbeing_protocol/redux/features/community/community_actions.dart';
+import 'package:the_wellbeing_protocol/redux/features/shop/shop_actions.dart';
 
 dynamic mockInjectorMiddleware(
   Store<AppState> store,
-  action,
+  dynamic action,
   NextDispatcher next,
 ) {
-  if (action is SetMembers && action.members.isEmpty) {
-    return store.dispatch(SetMembers(AppMocks().mockMembers));
-  } else if (action is SetShops && action.shops.isEmpty) {
-    return store.dispatch(SetShops(AppMocks().mockShops));
+  if (action is FetchMembers) {
+    store.dispatch(CompleteFetchingMembers(AppMocks().mockMembers));
+  } else if (action is FetchShops) {
+    store.dispatch(CompleteFetchingShops(AppMocks().mockShops));
   } else {
     return next(action);
   }

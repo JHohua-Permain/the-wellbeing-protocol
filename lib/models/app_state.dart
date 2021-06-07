@@ -14,6 +14,7 @@ class AppState with _$AppState {
   const factory AppState({
     required User user,
     required Community community,
+    @Default(false) @JsonKey(ignore: true) bool isHandling,
   }) = _AppState;
 
   factory AppState.fromJson(Map<String, dynamic> json) =>

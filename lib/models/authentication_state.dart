@@ -7,9 +7,11 @@ part 'authentication_state.freezed.dart';
 @freezed
 class AuthenticationState with _$AuthenticationState {
   const factory AuthenticationState.authenticated() = Authenticated;
+  const factory AuthenticationState.awaitingLogin() = AwaitingLogin;
   const factory AuthenticationState.awaitingVerification(
-    String phoneNumber,
-    String verificationCode,
-  ) = AwaitingVerification;
+    String phoneNumber, [
+    String? verificationId,
+  ]) = AwaitingVerification;
+  const factory AuthenticationState.initial() = Initial;
   const factory AuthenticationState.unauthenticated() = Unauthenticated;
 }

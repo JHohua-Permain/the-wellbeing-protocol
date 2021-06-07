@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:the_wellbeing_protocol/models/app_state.dart';
 import 'package:the_wellbeing_protocol/models/authentication_state.dart';
-import 'package:the_wellbeing_protocol/routing/app_router.gr.dart';
+import 'package:the_wellbeing_protocol/redux/features/authentication/authentication_actions.dart';
 import 'package:the_wellbeing_protocol/ui/screens/authentication/login_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/authentication/restore_screen.dart';
+import 'package:the_wellbeing_protocol/ui/screens/authentication/splash_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/authentication/verification_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/authentication/welcome_screen.dart';
 import 'package:the_wellbeing_protocol/ui/view_models/authentication_view_models.dart';
-import 'package:the_wellbeing_protocol/redux/features/authentication/authentication_actions.dart';
-
-// TODO: A lot still needs to be done/fixed.
 
 class LoginConnector extends StatelessWidget {
   @override
@@ -22,8 +20,7 @@ class LoginConnector extends StatelessWidget {
       converter: (store) => LoginViewModel(
         authenticationState: store.state.user.authenticationState,
         login: (phoneNum) {
-          context.router.push(ProgressPopup());
-          store.dispatch(StartLogin(phoneNum));
+          store.dispatch(BeginLogin(phoneNum));
         },
       ),
       onWillChange: (previousViewModel, newViewModel) {
@@ -31,13 +28,10 @@ class LoginConnector extends StatelessWidget {
           authenticated: () {
             context.router.navigateNamed('/');
           },
-          awaitingVerification: (phoneNum, verificationCode) {
-            context.router.replaceNamed('/login/verification');
+          awaitingVerification: (_, __) {
+            context.router.navigateNamed('/login/verify');
           },
-          orElse: () {
-            //TODO: Handle login errors.
-            return UnimplementedError('Handling login errors');
-          },
+          orElse: () => null,
         );
       },
     );
@@ -51,22 +45,57 @@ class RestoreConnector extends StatelessWidget {
       distinct: true,
       builder: (context, vm) => RestoreScreen(vm),
       converter: (store) => RestoreViewModel(
-        accountAddress: store.state.user.accountAddress,
+        authenticationState: store.state.user.authenticationState,
         restore: (mnemonic) {
-          context.router.push(ProgressPopup());
-          store.dispatch(StartRestore(mnemonic));
+          store.dispatch(BeginRestore(mnemonic));
         },
       ),
       onInit: (store) {
-        if (store.state.user.accountAddress != '') {
-          context.router.pushNamed('/login');
+        if (store.state.user.authenticationState is AwaitingLogin) {
+          context.router.navigateNamed('/login');
         }
       },
       onWillChange: (previousViewModel, newViewModel) {
-        if (newViewModel.accountAddress != '') {
-          context.router.navigateNamed('/login');
-        }
-        //TODO: Handle errors.
+        newViewModel.authenticationState.maybeWhen(
+          awaitingLogin: () {
+            context.router.navigateNamed('/login');
+          },
+          orElse: () => null,
+        );
+      },
+    );
+  }
+}
+
+/// The entry point of the UI.
+class SplashConnector extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, SplashViewModel>(
+      distinct: true,
+      builder: (context, _) => SplashScreen(),
+      converter: (store) => SplashViewModel(
+        authenticationState: store.state.user.authenticationState,
+      ),
+      onInit: (store) {
+        store.state.user.authenticationState.maybeWhen(
+          authenticated: () {
+            context.router.navigateNamed('/hub');
+          },
+          orElse: () {
+            store.dispatch(BeginAuthentication());
+          },
+        );
+      },
+      onWillChange: (previousViewModel, newViewModel) {
+        newViewModel.authenticationState.maybeWhen(
+          authenticated: () {
+            context.router.navigateNamed('/hub');
+          },
+          orElse: () {
+            context.router.navigateNamed('/welcome');
+          },
+        );
       },
     );
   }
@@ -80,12 +109,19 @@ class VerificationConnector extends StatelessWidget {
       builder: (context, vm) => VerificationScreen(vm),
       converter: (store) => VerificationViewModel(
         authenticationState: store.state.user.authenticationState,
+        phoneNum: () {
+          // TODO: Cleaner way of doing this.
+          final authState = store.state.user.authenticationState;
+          if (authState is AwaitingVerification) {
+            return authState.phoneNumber;
+          }
+          return '';
+        }(),
         verify: (verificationCode) {
-          context.router.push(ProgressPopup());
-          String phoneNum =
-              (store.state.user.authenticationState as AwaitingVerification)
-                  .phoneNumber;
-          store.dispatch(StartVerification(phoneNum, verificationCode));
+          store.dispatch(BeginVerification(
+            store.state.user.authenticationState,
+            verificationCode,
+          ));
         },
       ),
       onWillChange: (previousViewModel, newViewModel) {
@@ -93,46 +129,23 @@ class VerificationConnector extends StatelessWidget {
           authenticated: () {
             context.router.navigateNamed('/');
           },
-          orElse: () {
-            //TODO: Handle failed verification and errors.
-            return UnimplementedError('Handle failed verification and errors');
-          },
+          orElse: () => null,
         );
       },
     );
   }
 }
 
-/// The entry point of the UI.
 class WelcomeConnector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, WelcomeViewModel>(
-      distinct: true,
+      rebuildOnChange: false,
       builder: (context, vm) => WelcomeScreen(vm),
       converter: (store) => WelcomeViewModel(
-        authenticationState: store.state.user.authenticationState,
-        pushLoginScreen: () => context.router.navigate(LoginPage()),
-        pushRestoreScreen: () => context.router.navigate(RestorePage()),
+        pushLoginScreen: () => context.router.navigateNamed('/login'),
+        pushRestoreScreen: () => context.router.navigateNamed('/restore'),
       ),
-      onInit: (store) {
-        store.state.user.authenticationState.maybeWhen(
-          authenticated: () {
-            context.router.pushNamed('/hub');
-          },
-          orElse: () {
-            store.dispatch(StartReAuthentication());
-          },
-        );
-      },
-      onWillChange: (previousViewModel, newViewModel) {
-        newViewModel.authenticationState.maybeWhen(
-          authenticated: () {
-            context.router.pushNamed('/hub');
-          },
-          orElse: () {},
-        );
-      },
     );
   }
 }

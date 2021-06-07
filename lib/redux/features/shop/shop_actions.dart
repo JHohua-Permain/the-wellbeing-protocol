@@ -1,10 +1,8 @@
-import 'package:the_wellbeing_protocol/redux/actions/community_actions.dart';
-import 'package:the_wellbeing_protocol/redux/app_redux.dart';
+import 'package:the_wellbeing_protocol/models/community_entity.dart';
 
-AppThunkAction fetchShops() {
-  //TODO: Finish Implementation.
-  // In the meantime, shop fetching and setting handled by middleware.
-  return (store, services) async {
-    store.dispatch(SetShops([]));
-  };
+class CompleteFetchingShops {
+  final List<CommunityShop> shops;
+  CompleteFetchingShops(this.shops);
 }
+
+class FetchShops {}

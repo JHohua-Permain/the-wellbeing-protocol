@@ -16,24 +16,37 @@ class LoginViewModel extends Equatable {
 }
 
 class RestoreViewModel extends Equatable {
-  final String accountAddress;
+  final AuthenticationState authenticationState;
   final ValueSetter<String> restore;
 
   const RestoreViewModel({
-    required this.accountAddress,
+    required this.authenticationState,
     required this.restore,
   });
 
   @override
-  List<Object?> get props => [accountAddress];
+  List<Object?> get props => [authenticationState];
+}
+
+class SplashViewModel extends Equatable {
+  final AuthenticationState authenticationState;
+
+  const SplashViewModel({
+    required this.authenticationState,
+  });
+
+  @override
+  List<Object?> get props => [authenticationState];
 }
 
 class VerificationViewModel extends Equatable {
   final AuthenticationState authenticationState;
+  final String phoneNum;
   final ValueSetter<String> verify;
 
   const VerificationViewModel({
     required this.authenticationState,
+    required this.phoneNum,
     required this.verify,
   });
 
@@ -41,17 +54,12 @@ class VerificationViewModel extends Equatable {
   List<Object?> get props => [authenticationState];
 }
 
-class WelcomeViewModel extends Equatable {
-  final AuthenticationState authenticationState;
+class WelcomeViewModel {
   final VoidCallback pushLoginScreen;
   final VoidCallback pushRestoreScreen;
 
   const WelcomeViewModel({
-    required this.authenticationState,
     required this.pushLoginScreen,
     required this.pushRestoreScreen,
   });
-
-  @override
-  List<Object?> get props => [authenticationState];
 }

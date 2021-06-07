@@ -26,6 +26,11 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
+    SplashPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i4.SplashConnector();
+        }),
     WelcomePage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -103,7 +108,8 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(WelcomePage.name, path: '/'),
+        _i1.RouteConfig(SplashPage.name, path: '/'),
+        _i1.RouteConfig(WelcomePage.name, path: '/welcome'),
         _i1.RouteConfig(LoginPage.name, path: '/login'),
         _i1.RouteConfig(VerificationPage.name, path: '/login/verify'),
         _i1.RouteConfig(RestorePage.name, path: '/restore'),
@@ -139,8 +145,14 @@ class AppRouter extends _i1.RootStackRouter {
       ];
 }
 
+class SplashPage extends _i1.PageRouteInfo {
+  const SplashPage() : super(name, path: '/');
+
+  static const String name = 'SplashPage';
+}
+
 class WelcomePage extends _i1.PageRouteInfo {
-  const WelcomePage() : super(name, path: '/');
+  const WelcomePage() : super(name, path: '/welcome');
 
   static const String name = 'WelcomePage';
 }

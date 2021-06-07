@@ -13,37 +13,38 @@ class VerificationScreen extends StatefulWidget {
 
 class _VerificationScreenState extends State<VerificationScreen> {
   final TextEditingController _codeController = TextEditingController();
-  bool _retype = false;
-  bool _showError = false;
+  // bool _retype = false;
+  // bool _showError = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              // SizedBox(
-              //   height: 150,
-              // ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                // SizedBox(
+                //   height: 150,
+                // ),
 
-              Text(
-                'We just sent a message to\n +64223605325', //TODO
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Text(
-                  'Please enter 6-digit code from\n that message here',
+                Text(
+                  'We just sent a message to\n ${widget.vm.phoneNum}',
                   textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
                 ),
-              ),
-              SizedBox(height: 50),
-              Theme(
+                Padding(
+                  padding: const EdgeInsets.only(top: 25),
+                  child: Text(
+                    'Please enter 6-digit code from\n that message here',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 50),
+                Theme(
                   data: ThemeData(
                       hintColor: Theme.of(context).scaffoldBackgroundColor),
                   child: Padding(
@@ -64,42 +65,44 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                 Colors.black, Colors.black)),
                         controller: _codeController,
                         autoFocus: true,
-                        onChanged: _onChanged,
+                        // onChanged: _onChanged,
                       ),
-                    ),
-                  )),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 35, left: 30, right: 30, bottom: 15),
-                child: Container(
-                  width: double.infinity,
-                  child: TextButton(
-                    onPressed: () =>
-                        widget.vm.verify(_codeController.text.trim()),
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(EdgeInsets.all(16)),
-                      backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).primaryColor,
-                      ),
-                    ),
-                    child: Text(
-                      "Next",
-                      style: TextStyle(color: Colors.black, fontSize: 25),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Text(
-                  'Didn\'t get the message? - Resend Code',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 10),
+                SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 35, left: 30, right: 30, bottom: 15),
+                  child: Container(
+                    width: double.infinity,
+                    child: TextButton(
+                      onPressed: () =>
+                          widget.vm.verify(_codeController.text.trim()),
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets.all(16)),
+                        backgroundColor: MaterialStateProperty.all(
+                          Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      child: Text(
+                        "Next",
+                        style: TextStyle(color: Colors.black, fontSize: 25),
+                      ),
+                    ),
+                  ),
                 ),
-                //TODO: Put button.
-              )
-            ]),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(
+                    'Didn\'t get the message? - Resend Code',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 10),
+                  ),
+                  //TODO: Put button.
+                )
+              ]),
+        ),
       ),
     );
   }
@@ -110,29 +113,28 @@ class _VerificationScreenState extends State<VerificationScreen> {
     super.dispose();
   }
 
-  void _onChanged(String pin) {
-    if (pin.length == 6 && !_retype) {
-      _codeController.text = '';
-      setState(() {
-        _retype = true;
-      });
-      // } else if (pin.length == 6 && retype) {
-      //   if (pin == lastPincode) {
-      //     widget.onSuccess();
-      //   }
-    } else {
-      if (!_showError) {
-        SnackBar(
-          content: Text(''),
-          action: SnackBarAction(label: 'Wrong Code', onPressed: () {}),
-        );
-      }
-
-      // Future.delayed(Duration(milliseconds: 2500), () {
-      //   setState(() {
-      //     showError = false;
-      //   });
-      // });
-    }
-  }
+  // void _onChanged(String pin) {
+  //   if (pin.length == 6 && !_retype) {
+  //     _codeController.text = '';
+  //     setState(() {
+  //       _retype = true;
+  //     });
+  //   } else if (pin.length == 6 && retype) {
+  //     if (pin == lastPincode) {
+  //       widget.onSuccess();
+  //     }
+  //   } else {
+  //     if (!_showError) {
+  //       SnackBar(
+  //         content: Text(''),
+  //         action: SnackBarAction(label: 'Wrong Code', onPressed: () {}),
+  //       );
+  //     }
+  //     Future.delayed(Duration(milliseconds: 2500), () {
+  //       setState(() {
+  //         showError = false;
+  //       });
+  //     });
+  //   }
+  // }
 }

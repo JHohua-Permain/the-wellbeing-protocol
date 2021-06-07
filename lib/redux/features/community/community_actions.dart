@@ -1,10 +1,15 @@
-import 'package:the_wellbeing_protocol/redux/actions/community_actions.dart';
-import 'package:the_wellbeing_protocol/redux/app_redux.dart';
+import 'package:the_wellbeing_protocol/models/community_entity.dart';
 
-AppThunkAction fetchMembers() {
-  //TODO: Finish Implementation.
-  // In the meantime, member fetching and setting handled by middleware.
-  return (store, services) async {
-    store.dispatch(SetMembers([]));
-  };
+class CompleteFetchingMembers {
+  final List<CommunityMember> members;
+  CompleteFetchingMembers(this.members);
+}
+
+class FetchMembers {}
+
+class SetCommunity {
+  final Map<String, dynamic> communityData;
+  final Map<String, dynamic> homeTokenData;
+
+  SetCommunity(this.communityData, this.homeTokenData);
 }
