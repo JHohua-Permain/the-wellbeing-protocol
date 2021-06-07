@@ -6,8 +6,8 @@ import 'package:the_wellbeing_protocol/redux/common/common_actions.dart';
 import 'package:the_wellbeing_protocol/redux/features/authentication/authentication_reducers.dart';
 import 'package:the_wellbeing_protocol/redux/features/community/community_reducers.dart';
 import 'package:the_wellbeing_protocol/redux/features/shop/shop_reducers.dart';
+import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_actions.dart';
 import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_reducers.dart';
-import 'package:the_wellbeing_protocol/redux/misc/data_wipe.dart';
 
 final Reducer<Community> communityReducer = combineReducers([
   ...newCommunityReducers(),
@@ -20,7 +20,7 @@ final Reducer<User> userReducer = combineReducers([
 ]);
 
 AppState appStateReducer(AppState state, dynamic action) {
-  if (action is CompleteDataWipe) {
+  if (action is CompleteClearingData) {
     return AppState.initial();
   } else {
     return AppState(

@@ -17,6 +17,8 @@ class WalletScreen extends StatelessWidget {
         displayName: vm.displayName,
         walletAddress: vm.walletAddress,
         pushAccountScreen: vm.pushAccountScreen,
+        pushBackupWalletScreen: vm.pushBackupWalletScreen,
+        pushSettingsScreen: vm.pushSettingsScreen,
         logoutUser: vm.logoutUser,
       ),
       body: Builder(
