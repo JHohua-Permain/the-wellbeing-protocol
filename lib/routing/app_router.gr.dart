@@ -99,6 +99,16 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i7.SettingsConnector();
         }),
+    SelectContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.SelectContactConnector();
+        }),
+    CashOutPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.CashOutConnector();
+        }),
     TransactionHistoryPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -135,6 +145,8 @@ class AppRouter extends _i1.RootStackRouter {
                 _i1.RouteConfig(AccountPage.name, path: 'account'),
                 _i1.RouteConfig(BackupWalletPage.name, path: 'backup'),
                 _i1.RouteConfig(SettingsPage.name, path: 'settings'),
+                _i1.RouteConfig(SelectContactPage.name, path: 'contacts'),
+                _i1.RouteConfig(CashOutPage.name, path: 'cash-out'),
                 _i1.RouteConfig(TransactionHistoryPage.name,
                     path: 'transactions')
               ]),
@@ -243,6 +255,18 @@ class SettingsPage extends _i1.PageRouteInfo {
   const SettingsPage() : super(name, path: 'settings');
 
   static const String name = 'SettingsPage';
+}
+
+class SelectContactPage extends _i1.PageRouteInfo {
+  const SelectContactPage() : super(name, path: 'contacts');
+
+  static const String name = 'SelectContactPage';
+}
+
+class CashOutPage extends _i1.PageRouteInfo {
+  const CashOutPage() : super(name, path: 'cash-out');
+
+  static const String name = 'CashOutPage';
 }
 
 class TransactionHistoryPage extends _i1.PageRouteInfo {

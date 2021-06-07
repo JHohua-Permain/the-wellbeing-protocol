@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
+import 'package:the_wellbeing_protocol/models/community_entity.dart';
 
 class AccountViewModel extends Equatable {
   final String displayName;
@@ -25,6 +26,15 @@ class BackupWalletViewModel extends Equatable {
 
   @override
   List<Object?> get props => [mnemonic];
+}
+
+class SelectContactViewModel extends Equatable {
+  final List<CommunityEntity> contacts;
+
+  const SelectContactViewModel({required this.contacts});
+
+  @override
+  List<Object?> get props => [contacts];
 }
 
 class SettingsViewModel {

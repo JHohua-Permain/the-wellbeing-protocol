@@ -24,6 +24,7 @@ AppThunkAction fetchContacts() {
       List<CommunityEntity> userContacts = contacts
           .map((contact) => CommunityEntity.member(
                 displayName: contact.displayName ?? '',
+                primaryContactNum: contact.phones?.elementAt(0).value ?? '',
                 walletAddress: '',
               ))
           .toList();

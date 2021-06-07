@@ -59,6 +59,16 @@ const MaterialRoute _walletRouter = MaterialRoute(
       page: SettingsConnector,
     ),
     MaterialRoute(
+      name: 'SelectContactPage',
+      path: 'contacts',
+      page: SelectContactConnector,
+    ),
+    MaterialRoute(
+      name: 'CashOutPage',
+      path: 'cash-out',
+      page: CashOutConnector,
+    ),
+    MaterialRoute(
       name: 'TransactionHistoryPage',
       path: 'transactions',
       page: TransactionHistoryConnector,

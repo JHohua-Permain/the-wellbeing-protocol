@@ -6,6 +6,8 @@ import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_actions.dart
 import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_thunk_actions.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/account_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/backup_wallet_screen.dart';
+import 'package:the_wellbeing_protocol/ui/screens/wallet/cash_out_screen.dart';
+import 'package:the_wellbeing_protocol/ui/screens/wallet/select_contact_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/settings_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/transaction_history_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/wallet_screen.dart';
@@ -40,6 +42,32 @@ class BackupWalletConnector extends StatelessWidget {
       ),
       onInit: (store) {
         store.dispatch(BeginLoadingMnemonic());
+      },
+    );
+  }
+}
+
+class CashOutConnector extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StoreBuilder<AppState>(
+      rebuildOnChange: false,
+      builder: (context, store) => CashOutScreen(),
+    );
+  }
+}
+
+class SelectContactConnector extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, SelectContactViewModel>(
+      distinct: true,
+      builder: (context, vm) => SelectContactScreen(vm),
+      converter: (store) => SelectContactViewModel(
+        contacts: store.state.user.contacts,
+      ),
+      onInit: (store) {
+        store.dispatch(fetchContacts());
       },
     );
   }
