@@ -13,14 +13,14 @@ part 'user.g.dart';
 class User with _$User {
   @JsonSerializable(explicitToJson: true)
   const factory User({
+    String? accountAddress,
+    String? walletAddress,
     String? primaryContactNum,
-    @Default('') String accountAddress,
-    @Default('') String walletAddress,
     @Default('Anon') String displayName,
     @Default([]) List<Community> communities,
     @Default({}) Map<String, String> wallet,
     @Default([]) @JsonKey(ignore: true) List<CommunityEntity> contacts,
-    @Default(AuthenticationState.unauthenticated())
+    @Default(AuthenticationState.initial())
     @JsonKey(ignore: true)
         AuthenticationState authenticationState,
   }) = _User;

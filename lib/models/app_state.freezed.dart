@@ -20,10 +20,14 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 class _$AppStateTearOff {
   const _$AppStateTearOff();
 
-  _AppState call({required User user, required Community community}) {
+  _AppState call(
+      {required User user,
+      required Community community,
+      @JsonKey(ignore: true) bool isHandling = false}) {
     return _AppState(
       user: user,
       community: community,
+      isHandling: isHandling,
     );
   }
 
@@ -39,6 +43,8 @@ const $AppState = _$AppStateTearOff();
 mixin _$AppState {
   User get user => throw _privateConstructorUsedError;
   Community get community => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  bool get isHandling => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +56,8 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
-  $Res call({User user, Community community});
+  $Res call(
+      {User user, Community community, @JsonKey(ignore: true) bool isHandling});
 
   $UserCopyWith<$Res> get user;
   $CommunityCopyWith<$Res> get community;
@@ -68,6 +75,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   $Res call({
     Object? user = freezed,
     Object? community = freezed,
+    Object? isHandling = freezed,
   }) {
     return _then(_value.copyWith(
       user: user == freezed
@@ -78,6 +86,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           ? _value.community
           : community // ignore: cast_nullable_to_non_nullable
               as Community,
+      isHandling: isHandling == freezed
+          ? _value.isHandling
+          : isHandling // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -101,7 +113,8 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) then) =
       __$AppStateCopyWithImpl<$Res>;
   @override
-  $Res call({User user, Community community});
+  $Res call(
+      {User user, Community community, @JsonKey(ignore: true) bool isHandling});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -122,6 +135,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
   $Res call({
     Object? user = freezed,
     Object? community = freezed,
+    Object? isHandling = freezed,
   }) {
     return _then(_AppState(
       user: user == freezed
@@ -132,6 +146,10 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.community
           : community // ignore: cast_nullable_to_non_nullable
               as Community,
+      isHandling: isHandling == freezed
+          ? _value.isHandling
+          : isHandling // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -140,7 +158,11 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_AppState extends _AppState with DiagnosticableTreeMixin {
-  const _$_AppState({required this.user, required this.community}) : super._();
+  const _$_AppState(
+      {required this.user,
+      required this.community,
+      @JsonKey(ignore: true) this.isHandling = false})
+      : super._();
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
       _$_$_AppStateFromJson(json);
@@ -149,10 +171,13 @@ class _$_AppState extends _AppState with DiagnosticableTreeMixin {
   final User user;
   @override
   final Community community;
+  @override
+  @JsonKey(ignore: true)
+  final bool isHandling;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AppState(user: $user, community: $community)';
+    return 'AppState(user: $user, community: $community, isHandling: $isHandling)';
   }
 
   @override
@@ -161,7 +186,8 @@ class _$_AppState extends _AppState with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'AppState'))
       ..add(DiagnosticsProperty('user', user))
-      ..add(DiagnosticsProperty('community', community));
+      ..add(DiagnosticsProperty('community', community))
+      ..add(DiagnosticsProperty('isHandling', isHandling));
   }
 
   @override
@@ -172,14 +198,18 @@ class _$_AppState extends _AppState with DiagnosticableTreeMixin {
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.community, community) ||
                 const DeepCollectionEquality()
-                    .equals(other.community, community)));
+                    .equals(other.community, community)) &&
+            (identical(other.isHandling, isHandling) ||
+                const DeepCollectionEquality()
+                    .equals(other.isHandling, isHandling)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(community);
+      const DeepCollectionEquality().hash(community) ^
+      const DeepCollectionEquality().hash(isHandling);
 
   @JsonKey(ignore: true)
   @override
@@ -193,8 +223,10 @@ class _$_AppState extends _AppState with DiagnosticableTreeMixin {
 }
 
 abstract class _AppState extends AppState {
-  const factory _AppState({required User user, required Community community}) =
-      _$_AppState;
+  const factory _AppState(
+      {required User user,
+      required Community community,
+      @JsonKey(ignore: true) bool isHandling}) = _$_AppState;
   const _AppState._() : super._();
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
@@ -203,6 +235,9 @@ abstract class _AppState extends AppState {
   User get user => throw _privateConstructorUsedError;
   @override
   Community get community => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  bool get isHandling => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>

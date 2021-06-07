@@ -21,19 +21,19 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {String? primaryContactNum,
-      String accountAddress = '',
-      String walletAddress = '',
+      {String? accountAddress,
+      String? walletAddress,
+      String? primaryContactNum,
       String displayName = 'Anon',
       List<Community> communities = const [],
       Map<String, String> wallet = const {},
       @JsonKey(ignore: true) List<CommunityEntity> contacts = const [],
       @JsonKey(ignore: true) AuthenticationState authenticationState =
-          const AuthenticationState.unauthenticated()}) {
+          const AuthenticationState.initial()}) {
     return _User(
-      primaryContactNum: primaryContactNum,
       accountAddress: accountAddress,
       walletAddress: walletAddress,
+      primaryContactNum: primaryContactNum,
       displayName: displayName,
       communities: communities,
       wallet: wallet,
@@ -52,9 +52,9 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
+  String? get accountAddress => throw _privateConstructorUsedError;
+  String? get walletAddress => throw _privateConstructorUsedError;
   String? get primaryContactNum => throw _privateConstructorUsedError;
-  String get accountAddress => throw _privateConstructorUsedError;
-  String get walletAddress => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   List<Community> get communities => throw _privateConstructorUsedError;
   Map<String, String> get wallet => throw _privateConstructorUsedError;
@@ -74,9 +74,9 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {String? primaryContactNum,
-      String accountAddress,
-      String walletAddress,
+      {String? accountAddress,
+      String? walletAddress,
+      String? primaryContactNum,
       String displayName,
       List<Community> communities,
       Map<String, String> wallet,
@@ -96,9 +96,9 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? primaryContactNum = freezed,
     Object? accountAddress = freezed,
     Object? walletAddress = freezed,
+    Object? primaryContactNum = freezed,
     Object? displayName = freezed,
     Object? communities = freezed,
     Object? wallet = freezed,
@@ -106,18 +106,18 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? authenticationState = freezed,
   }) {
     return _then(_value.copyWith(
+      accountAddress: accountAddress == freezed
+          ? _value.accountAddress
+          : accountAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      walletAddress: walletAddress == freezed
+          ? _value.walletAddress
+          : walletAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
       primaryContactNum: primaryContactNum == freezed
           ? _value.primaryContactNum
           : primaryContactNum // ignore: cast_nullable_to_non_nullable
               as String?,
-      accountAddress: accountAddress == freezed
-          ? _value.accountAddress
-          : accountAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-      walletAddress: walletAddress == freezed
-          ? _value.walletAddress
-          : walletAddress // ignore: cast_nullable_to_non_nullable
-              as String,
       displayName: displayName == freezed
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -156,9 +156,9 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? primaryContactNum,
-      String accountAddress,
-      String walletAddress,
+      {String? accountAddress,
+      String? walletAddress,
+      String? primaryContactNum,
       String displayName,
       List<Community> communities,
       Map<String, String> wallet,
@@ -180,9 +180,9 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? primaryContactNum = freezed,
     Object? accountAddress = freezed,
     Object? walletAddress = freezed,
+    Object? primaryContactNum = freezed,
     Object? displayName = freezed,
     Object? communities = freezed,
     Object? wallet = freezed,
@@ -190,18 +190,18 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? authenticationState = freezed,
   }) {
     return _then(_User(
+      accountAddress: accountAddress == freezed
+          ? _value.accountAddress
+          : accountAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      walletAddress: walletAddress == freezed
+          ? _value.walletAddress
+          : walletAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
       primaryContactNum: primaryContactNum == freezed
           ? _value.primaryContactNum
           : primaryContactNum // ignore: cast_nullable_to_non_nullable
               as String?,
-      accountAddress: accountAddress == freezed
-          ? _value.accountAddress
-          : accountAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-      walletAddress: walletAddress == freezed
-          ? _value.walletAddress
-          : walletAddress // ignore: cast_nullable_to_non_nullable
-              as String,
       displayName: displayName == freezed
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -231,28 +231,27 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_User extends _User with DiagnosticableTreeMixin {
   const _$_User(
-      {this.primaryContactNum,
-      this.accountAddress = '',
-      this.walletAddress = '',
+      {this.accountAddress,
+      this.walletAddress,
+      this.primaryContactNum,
       this.displayName = 'Anon',
       this.communities = const [],
       this.wallet = const {},
-      @JsonKey(ignore: true) this.contacts = const [],
-      @JsonKey(ignore: true) this.authenticationState =
-          const AuthenticationState.unauthenticated()})
+      @JsonKey(ignore: true)
+          this.contacts = const [],
+      @JsonKey(ignore: true)
+          this.authenticationState = const AuthenticationState.initial()})
       : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
 
   @override
+  final String? accountAddress;
+  @override
+  final String? walletAddress;
+  @override
   final String? primaryContactNum;
-  @JsonKey(defaultValue: '')
-  @override
-  final String accountAddress;
-  @JsonKey(defaultValue: '')
-  @override
-  final String walletAddress;
   @JsonKey(defaultValue: 'Anon')
   @override
   final String displayName;
@@ -271,7 +270,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(primaryContactNum: $primaryContactNum, accountAddress: $accountAddress, walletAddress: $walletAddress, displayName: $displayName, communities: $communities, wallet: $wallet, contacts: $contacts, authenticationState: $authenticationState)';
+    return 'User(accountAddress: $accountAddress, walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communities: $communities, wallet: $wallet, contacts: $contacts, authenticationState: $authenticationState)';
   }
 
   @override
@@ -279,9 +278,9 @@ class _$_User extends _User with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'User'))
-      ..add(DiagnosticsProperty('primaryContactNum', primaryContactNum))
       ..add(DiagnosticsProperty('accountAddress', accountAddress))
       ..add(DiagnosticsProperty('walletAddress', walletAddress))
+      ..add(DiagnosticsProperty('primaryContactNum', primaryContactNum))
       ..add(DiagnosticsProperty('displayName', displayName))
       ..add(DiagnosticsProperty('communities', communities))
       ..add(DiagnosticsProperty('wallet', wallet))
@@ -293,15 +292,15 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _User &&
-            (identical(other.primaryContactNum, primaryContactNum) ||
-                const DeepCollectionEquality()
-                    .equals(other.primaryContactNum, primaryContactNum)) &&
             (identical(other.accountAddress, accountAddress) ||
                 const DeepCollectionEquality()
                     .equals(other.accountAddress, accountAddress)) &&
             (identical(other.walletAddress, walletAddress) ||
                 const DeepCollectionEquality()
                     .equals(other.walletAddress, walletAddress)) &&
+            (identical(other.primaryContactNum, primaryContactNum) ||
+                const DeepCollectionEquality()
+                    .equals(other.primaryContactNum, primaryContactNum)) &&
             (identical(other.displayName, displayName) ||
                 const DeepCollectionEquality()
                     .equals(other.displayName, displayName)) &&
@@ -321,9 +320,9 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(primaryContactNum) ^
       const DeepCollectionEquality().hash(accountAddress) ^
       const DeepCollectionEquality().hash(walletAddress) ^
+      const DeepCollectionEquality().hash(primaryContactNum) ^
       const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(communities) ^
       const DeepCollectionEquality().hash(wallet) ^
@@ -343,9 +342,9 @@ class _$_User extends _User with DiagnosticableTreeMixin {
 
 abstract class _User extends User {
   const factory _User(
-          {String? primaryContactNum,
-          String accountAddress,
-          String walletAddress,
+          {String? accountAddress,
+          String? walletAddress,
+          String? primaryContactNum,
           String displayName,
           List<Community> communities,
           Map<String, String> wallet,
@@ -357,11 +356,11 @@ abstract class _User extends User {
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
+  String? get accountAddress => throw _privateConstructorUsedError;
+  @override
+  String? get walletAddress => throw _privateConstructorUsedError;
+  @override
   String? get primaryContactNum => throw _privateConstructorUsedError;
-  @override
-  String get accountAddress => throw _privateConstructorUsedError;
-  @override
-  String get walletAddress => throw _privateConstructorUsedError;
   @override
   String get displayName => throw _privateConstructorUsedError;
   @override

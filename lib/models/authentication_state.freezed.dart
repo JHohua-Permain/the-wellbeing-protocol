@@ -20,12 +20,20 @@ class _$AuthenticationStateTearOff {
     return const Authenticated();
   }
 
-  AwaitingVerification awaitingVerification(
-      String phoneNumber, String verificationCode) {
+  AwaitingLogin awaitingLogin() {
+    return const AwaitingLogin();
+  }
+
+  AwaitingVerification awaitingVerification(String phoneNumber,
+      [String? verificationId]) {
     return AwaitingVerification(
       phoneNumber,
-      verificationCode,
+      verificationId,
     );
+  }
+
+  Initial initial() {
+    return const Initial();
   }
 
   Unauthenticated unauthenticated() {
@@ -41,16 +49,20 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
-    required TResult Function(String phoneNumber, String verificationCode)
+    required TResult Function() awaitingLogin,
+    required TResult Function(String phoneNumber, String? verificationId)
         awaitingVerification,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
-    TResult Function(String phoneNumber, String verificationCode)?
+    TResult Function()? awaitingLogin,
+    TResult Function(String phoneNumber, String? verificationId)?
         awaitingVerification,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) =>
@@ -58,14 +70,18 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
     required TResult Function(AwaitingVerification value) awaitingVerification,
+    required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     TResult Function(AwaitingVerification value)? awaitingVerification,
+    TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) =>
@@ -137,8 +153,10 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
-    required TResult Function(String phoneNumber, String verificationCode)
+    required TResult Function() awaitingLogin,
+    required TResult Function(String phoneNumber, String? verificationId)
         awaitingVerification,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
   }) {
     return authenticated();
@@ -148,8 +166,10 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
-    TResult Function(String phoneNumber, String verificationCode)?
+    TResult Function()? awaitingLogin,
+    TResult Function(String phoneNumber, String? verificationId)?
         awaitingVerification,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -163,7 +183,9 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
     required TResult Function(AwaitingVerification value) awaitingVerification,
+    required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return authenticated(this);
@@ -173,7 +195,9 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     TResult Function(AwaitingVerification value)? awaitingVerification,
+    TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
@@ -189,11 +213,118 @@ abstract class Authenticated implements AuthenticationState {
 }
 
 /// @nodoc
+abstract class $AwaitingLoginCopyWith<$Res> {
+  factory $AwaitingLoginCopyWith(
+          AwaitingLogin value, $Res Function(AwaitingLogin) then) =
+      _$AwaitingLoginCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AwaitingLoginCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res>
+    implements $AwaitingLoginCopyWith<$Res> {
+  _$AwaitingLoginCopyWithImpl(
+      AwaitingLogin _value, $Res Function(AwaitingLogin) _then)
+      : super(_value, (v) => _then(v as AwaitingLogin));
+
+  @override
+  AwaitingLogin get _value => super._value as AwaitingLogin;
+}
+
+/// @nodoc
+
+class _$AwaitingLogin with DiagnosticableTreeMixin implements AwaitingLogin {
+  const _$AwaitingLogin();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthenticationState.awaitingLogin()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthenticationState.awaitingLogin'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is AwaitingLogin);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authenticated,
+    required TResult Function() awaitingLogin,
+    required TResult Function(String phoneNumber, String? verificationId)
+        awaitingVerification,
+    required TResult Function() initial,
+    required TResult Function() unauthenticated,
+  }) {
+    return awaitingLogin();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authenticated,
+    TResult Function()? awaitingLogin,
+    TResult Function(String phoneNumber, String? verificationId)?
+        awaitingVerification,
+    TResult Function()? initial,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (awaitingLogin != null) {
+      return awaitingLogin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
+    required TResult Function(AwaitingVerification value) awaitingVerification,
+    required TResult Function(Initial value) initial,
+    required TResult Function(Unauthenticated value) unauthenticated,
+  }) {
+    return awaitingLogin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
+    TResult Function(AwaitingVerification value)? awaitingVerification,
+    TResult Function(Initial value)? initial,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (awaitingLogin != null) {
+      return awaitingLogin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AwaitingLogin implements AuthenticationState {
+  const factory AwaitingLogin() = _$AwaitingLogin;
+}
+
+/// @nodoc
 abstract class $AwaitingVerificationCopyWith<$Res> {
   factory $AwaitingVerificationCopyWith(AwaitingVerification value,
           $Res Function(AwaitingVerification) then) =
       _$AwaitingVerificationCopyWithImpl<$Res>;
-  $Res call({String phoneNumber, String verificationCode});
+  $Res call({String phoneNumber, String? verificationId});
 }
 
 /// @nodoc
@@ -210,17 +341,17 @@ class _$AwaitingVerificationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phoneNumber = freezed,
-    Object? verificationCode = freezed,
+    Object? verificationId = freezed,
   }) {
     return _then(AwaitingVerification(
       phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      verificationCode == freezed
-          ? _value.verificationCode
-          : verificationCode // ignore: cast_nullable_to_non_nullable
-              as String,
+      verificationId == freezed
+          ? _value.verificationId
+          : verificationId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -230,16 +361,16 @@ class _$AwaitingVerificationCopyWithImpl<$Res>
 class _$AwaitingVerification
     with DiagnosticableTreeMixin
     implements AwaitingVerification {
-  const _$AwaitingVerification(this.phoneNumber, this.verificationCode);
+  const _$AwaitingVerification(this.phoneNumber, [this.verificationId]);
 
   @override
   final String phoneNumber;
   @override
-  final String verificationCode;
+  final String? verificationId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuthenticationState.awaitingVerification(phoneNumber: $phoneNumber, verificationCode: $verificationCode)';
+    return 'AuthenticationState.awaitingVerification(phoneNumber: $phoneNumber, verificationId: $verificationId)';
   }
 
   @override
@@ -249,7 +380,7 @@ class _$AwaitingVerification
       ..add(DiagnosticsProperty(
           'type', 'AuthenticationState.awaitingVerification'))
       ..add(DiagnosticsProperty('phoneNumber', phoneNumber))
-      ..add(DiagnosticsProperty('verificationCode', verificationCode));
+      ..add(DiagnosticsProperty('verificationId', verificationId));
   }
 
   @override
@@ -259,16 +390,16 @@ class _$AwaitingVerification
             (identical(other.phoneNumber, phoneNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.phoneNumber, phoneNumber)) &&
-            (identical(other.verificationCode, verificationCode) ||
+            (identical(other.verificationId, verificationId) ||
                 const DeepCollectionEquality()
-                    .equals(other.verificationCode, verificationCode)));
+                    .equals(other.verificationId, verificationId)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(verificationCode);
+      const DeepCollectionEquality().hash(verificationId);
 
   @JsonKey(ignore: true)
   @override
@@ -280,24 +411,28 @@ class _$AwaitingVerification
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
-    required TResult Function(String phoneNumber, String verificationCode)
+    required TResult Function() awaitingLogin,
+    required TResult Function(String phoneNumber, String? verificationId)
         awaitingVerification,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
   }) {
-    return awaitingVerification(phoneNumber, verificationCode);
+    return awaitingVerification(phoneNumber, verificationId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
-    TResult Function(String phoneNumber, String verificationCode)?
+    TResult Function()? awaitingLogin,
+    TResult Function(String phoneNumber, String? verificationId)?
         awaitingVerification,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
     if (awaitingVerification != null) {
-      return awaitingVerification(phoneNumber, verificationCode);
+      return awaitingVerification(phoneNumber, verificationId);
     }
     return orElse();
   }
@@ -306,7 +441,9 @@ class _$AwaitingVerification
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
     required TResult Function(AwaitingVerification value) awaitingVerification,
+    required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return awaitingVerification(this);
@@ -316,7 +453,9 @@ class _$AwaitingVerification
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     TResult Function(AwaitingVerification value)? awaitingVerification,
+    TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
@@ -328,14 +467,118 @@ class _$AwaitingVerification
 }
 
 abstract class AwaitingVerification implements AuthenticationState {
-  const factory AwaitingVerification(
-      String phoneNumber, String verificationCode) = _$AwaitingVerification;
+  const factory AwaitingVerification(String phoneNumber,
+      [String? verificationId]) = _$AwaitingVerification;
 
   String get phoneNumber => throw _privateConstructorUsedError;
-  String get verificationCode => throw _privateConstructorUsedError;
+  String? get verificationId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AwaitingVerificationCopyWith<AwaitingVerification> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InitialCopyWith<$Res> {
+  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
+      _$InitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InitialCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res>
+    implements $InitialCopyWith<$Res> {
+  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
+      : super(_value, (v) => _then(v as Initial));
+
+  @override
+  Initial get _value => super._value as Initial;
+}
+
+/// @nodoc
+
+class _$Initial with DiagnosticableTreeMixin implements Initial {
+  const _$Initial();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthenticationState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'AuthenticationState.initial'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Initial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authenticated,
+    required TResult Function() awaitingLogin,
+    required TResult Function(String phoneNumber, String? verificationId)
+        awaitingVerification,
+    required TResult Function() initial,
+    required TResult Function() unauthenticated,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authenticated,
+    TResult Function()? awaitingLogin,
+    TResult Function(String phoneNumber, String? verificationId)?
+        awaitingVerification,
+    TResult Function()? initial,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
+    required TResult Function(AwaitingVerification value) awaitingVerification,
+    required TResult Function(Initial value) initial,
+    required TResult Function(Unauthenticated value) unauthenticated,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
+    TResult Function(AwaitingVerification value)? awaitingVerification,
+    TResult Function(Initial value)? initial,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Initial implements AuthenticationState {
+  const factory Initial() = _$Initial;
 }
 
 /// @nodoc
@@ -388,8 +631,10 @@ class _$Unauthenticated
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
-    required TResult Function(String phoneNumber, String verificationCode)
+    required TResult Function() awaitingLogin,
+    required TResult Function(String phoneNumber, String? verificationId)
         awaitingVerification,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
   }) {
     return unauthenticated();
@@ -399,8 +644,10 @@ class _$Unauthenticated
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
-    TResult Function(String phoneNumber, String verificationCode)?
+    TResult Function()? awaitingLogin,
+    TResult Function(String phoneNumber, String? verificationId)?
         awaitingVerification,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -414,7 +661,9 @@ class _$Unauthenticated
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
     required TResult Function(AwaitingVerification value) awaitingVerification,
+    required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return unauthenticated(this);
@@ -424,7 +673,9 @@ class _$Unauthenticated
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     TResult Function(AwaitingVerification value)? awaitingVerification,
+    TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {

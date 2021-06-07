@@ -14,7 +14,9 @@ class AppServices {
     this.fuseAPIService,
     this.fuseNetworkService,
   );
+}
 
+class AppServicesBuilder {
   static AppServices init() {
     return AppServices(
       Variables.AUTH_METHOD,

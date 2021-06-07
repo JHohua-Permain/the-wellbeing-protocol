@@ -59,10 +59,15 @@ const MaterialRoute _walletRouter = MaterialRoute(
 @MaterialAutoRouter(
   routes: [
     MaterialRoute(
-      name: 'WelcomePage',
+      name: 'SplashPage',
       path: '/',
-      page: WelcomeConnector,
+      page: SplashConnector,
       initial: true,
+    ),
+    MaterialRoute(
+      name: 'WelcomePage',
+      path: '/welcome',
+      page: WelcomeConnector,
     ),
     MaterialRoute(
       name: 'LoginPage',
