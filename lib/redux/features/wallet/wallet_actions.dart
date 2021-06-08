@@ -23,6 +23,11 @@ class CompleteLoadingMnemonic {
 
 class Logout {}
 
+class SetSendToContact {
+  final CommunityEntity contact;
+  SetSendToContact(this.contact);
+}
+
 class SetWallet {
   final String walletAddress;
   SetWallet(this.walletAddress);

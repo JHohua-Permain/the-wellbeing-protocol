@@ -20,6 +20,7 @@ class User with _$User {
     @Default([]) List<Community> communities,
     @Default({}) Map<String, String> wallet,
     @Default([]) @JsonKey(ignore: true) List<CommunityEntity> contacts,
+    @JsonKey(ignore: true) CommunityEntity? sendToContact,
     @Default(AuthenticationState.initial())
     @JsonKey(ignore: true)
         AuthenticationState authenticationState,

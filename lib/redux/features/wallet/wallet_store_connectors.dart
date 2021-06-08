@@ -8,6 +8,7 @@ import 'package:the_wellbeing_protocol/ui/screens/wallet/account_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/backup_wallet_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/cash_out_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/select_contact_screen.dart';
+import 'package:the_wellbeing_protocol/ui/screens/wallet/send_to_contact_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/settings_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/transaction_history_screen.dart';
 import 'package:the_wellbeing_protocol/ui/screens/wallet/wallet_screen.dart';
@@ -64,11 +65,31 @@ class SelectContactConnector extends StatelessWidget {
       distinct: true,
       builder: (context, vm) => SelectContactScreen(vm),
       converter: (store) => SelectContactViewModel(
-        contacts: store.state.user.contacts,
-      ),
+          contacts: store.state.user.contacts,
+          selectContact: (contact) {
+            store.dispatch(SetSendToContact(contact));
+            context.router.navigateNamed('contacts/send');
+          }),
       onInit: (store) {
         store.dispatch(fetchContacts());
       },
+    );
+  }
+}
+
+class SendToContactConnector extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, SendToContactViewModel>(
+      distinct: true,
+      builder: (context, vm) => SendToContactScreen(vm),
+      converter: (store) => SendToContactViewModel(
+        contact: store.state.user.sendToContact!,
+        tokenSymbol: store.state.community.homeToken!.symbol,
+        submitSendAmount: (amount) {
+          // TODO
+        },
+      ),
     );
   }
 }

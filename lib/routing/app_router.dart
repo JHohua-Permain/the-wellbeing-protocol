@@ -17,6 +17,11 @@ const MaterialRoute _communityFundRouter = MaterialRoute(
       page: CommunityFundConnector,
       initial: true,
     ),
+    MaterialRoute(
+      name: 'SendToCommunityFundPage',
+      path: 'community/fund/contribute',
+      page: SendToCommunityFundConnector,
+    ),
   ],
 );
 
@@ -62,6 +67,11 @@ const MaterialRoute _walletRouter = MaterialRoute(
       name: 'SelectContactPage',
       path: 'contacts',
       page: SelectContactConnector,
+    ),
+    MaterialRoute(
+      name: 'SendToContactPage',
+      path: 'contacts/send',
+      page: SendToContactConnector,
     ),
     MaterialRoute(
       name: 'CashOutPage',

@@ -22,3 +22,16 @@ class CommunityFundViewModel extends Equatable {
         contributors,
       ];
 }
+
+class SendToCommunityFundViewModel extends Equatable {
+  final String tokenSymbol;
+  final ValueSetter<String> submitSendAmount;
+
+  const SendToCommunityFundViewModel({
+    required this.tokenSymbol,
+    required this.submitSendAmount,
+  });
+
+  @override
+  List<Object> get props => [tokenSymbol];
+}

@@ -81,9 +81,7 @@ class _SelectContactScreenState extends State<SelectContactScreen> {
               // TODO: Should not be null.
               trailing: Text(contacts[index].primaryContactNum ?? ''),
               leading: AppCircleAvatar(avatar: contacts[index].avatar),
-              onTap: () {
-                // TODO
-              },
+              onTap: () => widget.vm.selectContact(contacts[index]),
             ),
           ],
         ),

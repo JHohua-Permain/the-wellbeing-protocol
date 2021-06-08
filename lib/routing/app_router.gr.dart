@@ -104,6 +104,11 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i7.SelectContactConnector();
         }),
+    SendToContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.SendToContactConnector();
+        }),
     CashOutPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -123,6 +128,11 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return _i9.CommunityFundConnector();
+        }),
+    SendToCommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i9.SendToCommunityFundConnector();
         })
   };
 
@@ -146,6 +156,7 @@ class AppRouter extends _i1.RootStackRouter {
                 _i1.RouteConfig(BackupWalletPage.name, path: 'backup'),
                 _i1.RouteConfig(SettingsPage.name, path: 'settings'),
                 _i1.RouteConfig(SelectContactPage.name, path: 'contacts'),
+                _i1.RouteConfig(SendToContactPage.name, path: 'contacts/send'),
                 _i1.RouteConfig(CashOutPage.name, path: 'cash-out'),
                 _i1.RouteConfig(TransactionHistoryPage.name,
                     path: 'transactions')
@@ -162,7 +173,9 @@ class AppRouter extends _i1.RootStackRouter {
               children: [
                 _i1.RouteConfig('#redirect',
                     path: '', redirectTo: 'community/fund', fullMatch: true),
-                _i1.RouteConfig(CommunityFundPage.name, path: 'community/fund')
+                _i1.RouteConfig(CommunityFundPage.name, path: 'community/fund'),
+                _i1.RouteConfig(SendToCommunityFundPage.name,
+                    path: 'community/fund/contribute')
               ])
         ]),
         _i1.RouteConfig(ProgressPopup.name, path: '/progress-dialog')
@@ -263,6 +276,12 @@ class SelectContactPage extends _i1.PageRouteInfo {
   static const String name = 'SelectContactPage';
 }
 
+class SendToContactPage extends _i1.PageRouteInfo {
+  const SendToContactPage() : super(name, path: 'contacts/send');
+
+  static const String name = 'SendToContactPage';
+}
+
 class CashOutPage extends _i1.PageRouteInfo {
   const CashOutPage() : super(name, path: 'cash-out');
 
@@ -285,4 +304,11 @@ class CommunityFundPage extends _i1.PageRouteInfo {
   const CommunityFundPage() : super(name, path: 'community/fund');
 
   static const String name = 'CommunityFundPage';
+}
+
+class SendToCommunityFundPage extends _i1.PageRouteInfo {
+  const SendToCommunityFundPage()
+      : super(name, path: 'community/fund/contribute');
+
+  static const String name = 'SendToCommunityFundPage';
 }

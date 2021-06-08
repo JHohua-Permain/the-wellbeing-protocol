@@ -28,6 +28,7 @@ class _$UserTearOff {
       List<Community> communities = const [],
       Map<String, String> wallet = const {},
       @JsonKey(ignore: true) List<CommunityEntity> contacts = const [],
+      @JsonKey(ignore: true) CommunityEntity? sendToContact,
       @JsonKey(ignore: true) AuthenticationState authenticationState =
           const AuthenticationState.initial(),
       @JsonKey(ignore: true) List<String>? mnemonic}) {
@@ -39,6 +40,7 @@ class _$UserTearOff {
       communities: communities,
       wallet: wallet,
       contacts: contacts,
+      sendToContact: sendToContact,
       authenticationState: authenticationState,
       mnemonic: mnemonic,
     );
@@ -63,6 +65,8 @@ mixin _$User {
   @JsonKey(ignore: true)
   List<CommunityEntity> get contacts => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
+  CommunityEntity? get sendToContact => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
   AuthenticationState get authenticationState =>
       throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -85,9 +89,11 @@ abstract class $UserCopyWith<$Res> {
       List<Community> communities,
       Map<String, String> wallet,
       @JsonKey(ignore: true) List<CommunityEntity> contacts,
+      @JsonKey(ignore: true) CommunityEntity? sendToContact,
       @JsonKey(ignore: true) AuthenticationState authenticationState,
       @JsonKey(ignore: true) List<String>? mnemonic});
 
+  $CommunityEntityCopyWith<$Res>? get sendToContact;
   $AuthenticationStateCopyWith<$Res> get authenticationState;
 }
 
@@ -108,6 +114,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? communities = freezed,
     Object? wallet = freezed,
     Object? contacts = freezed,
+    Object? sendToContact = freezed,
     Object? authenticationState = freezed,
     Object? mnemonic = freezed,
   }) {
@@ -140,6 +147,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
               as List<CommunityEntity>,
+      sendToContact: sendToContact == freezed
+          ? _value.sendToContact
+          : sendToContact // ignore: cast_nullable_to_non_nullable
+              as CommunityEntity?,
       authenticationState: authenticationState == freezed
           ? _value.authenticationState
           : authenticationState // ignore: cast_nullable_to_non_nullable
@@ -149,6 +160,17 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           : mnemonic // ignore: cast_nullable_to_non_nullable
               as List<String>?,
     ));
+  }
+
+  @override
+  $CommunityEntityCopyWith<$Res>? get sendToContact {
+    if (_value.sendToContact == null) {
+      return null;
+    }
+
+    return $CommunityEntityCopyWith<$Res>(_value.sendToContact!, (value) {
+      return _then(_value.copyWith(sendToContact: value));
+    });
   }
 
   @override
@@ -173,9 +195,12 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       List<Community> communities,
       Map<String, String> wallet,
       @JsonKey(ignore: true) List<CommunityEntity> contacts,
+      @JsonKey(ignore: true) CommunityEntity? sendToContact,
       @JsonKey(ignore: true) AuthenticationState authenticationState,
       @JsonKey(ignore: true) List<String>? mnemonic});
 
+  @override
+  $CommunityEntityCopyWith<$Res>? get sendToContact;
   @override
   $AuthenticationStateCopyWith<$Res> get authenticationState;
 }
@@ -198,6 +223,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? communities = freezed,
     Object? wallet = freezed,
     Object? contacts = freezed,
+    Object? sendToContact = freezed,
     Object? authenticationState = freezed,
     Object? mnemonic = freezed,
   }) {
@@ -230,6 +256,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
               as List<CommunityEntity>,
+      sendToContact: sendToContact == freezed
+          ? _value.sendToContact
+          : sendToContact // ignore: cast_nullable_to_non_nullable
+              as CommunityEntity?,
       authenticationState: authenticationState == freezed
           ? _value.authenticationState
           : authenticationState // ignore: cast_nullable_to_non_nullable
@@ -255,6 +285,8 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       this.wallet = const {},
       @JsonKey(ignore: true)
           this.contacts = const [],
+      @JsonKey(ignore: true)
+          this.sendToContact,
       @JsonKey(ignore: true)
           this.authenticationState = const AuthenticationState.initial(),
       @JsonKey(ignore: true)
@@ -284,6 +316,9 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   final List<CommunityEntity> contacts;
   @override
   @JsonKey(ignore: true)
+  final CommunityEntity? sendToContact;
+  @override
+  @JsonKey(ignore: true)
   final AuthenticationState authenticationState;
   @override
   @JsonKey(ignore: true)
@@ -291,7 +326,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(accountAddress: $accountAddress, walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communities: $communities, wallet: $wallet, contacts: $contacts, authenticationState: $authenticationState, mnemonic: $mnemonic)';
+    return 'User(accountAddress: $accountAddress, walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communities: $communities, wallet: $wallet, contacts: $contacts, sendToContact: $sendToContact, authenticationState: $authenticationState, mnemonic: $mnemonic)';
   }
 
   @override
@@ -306,6 +341,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('communities', communities))
       ..add(DiagnosticsProperty('wallet', wallet))
       ..add(DiagnosticsProperty('contacts', contacts))
+      ..add(DiagnosticsProperty('sendToContact', sendToContact))
       ..add(DiagnosticsProperty('authenticationState', authenticationState))
       ..add(DiagnosticsProperty('mnemonic', mnemonic));
   }
@@ -334,6 +370,9 @@ class _$_User extends _User with DiagnosticableTreeMixin {
             (identical(other.contacts, contacts) ||
                 const DeepCollectionEquality()
                     .equals(other.contacts, contacts)) &&
+            (identical(other.sendToContact, sendToContact) ||
+                const DeepCollectionEquality()
+                    .equals(other.sendToContact, sendToContact)) &&
             (identical(other.authenticationState, authenticationState) ||
                 const DeepCollectionEquality()
                     .equals(other.authenticationState, authenticationState)) &&
@@ -352,6 +391,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(communities) ^
       const DeepCollectionEquality().hash(wallet) ^
       const DeepCollectionEquality().hash(contacts) ^
+      const DeepCollectionEquality().hash(sendToContact) ^
       const DeepCollectionEquality().hash(authenticationState) ^
       const DeepCollectionEquality().hash(mnemonic);
 
@@ -375,6 +415,7 @@ abstract class _User extends User {
       List<Community> communities,
       Map<String, String> wallet,
       @JsonKey(ignore: true) List<CommunityEntity> contacts,
+      @JsonKey(ignore: true) CommunityEntity? sendToContact,
       @JsonKey(ignore: true) AuthenticationState authenticationState,
       @JsonKey(ignore: true) List<String>? mnemonic}) = _$_User;
   const _User._() : super._();
@@ -396,6 +437,9 @@ abstract class _User extends User {
   @override
   @JsonKey(ignore: true)
   List<CommunityEntity> get contacts => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  CommunityEntity? get sendToContact => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   AuthenticationState get authenticationState =>

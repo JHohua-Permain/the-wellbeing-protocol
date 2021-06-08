@@ -30,11 +30,30 @@ class BackupWalletViewModel extends Equatable {
 
 class SelectContactViewModel extends Equatable {
   final List<CommunityEntity> contacts;
+  final ValueSetter<CommunityEntity> selectContact;
 
-  const SelectContactViewModel({required this.contacts});
+  const SelectContactViewModel({
+    required this.contacts,
+    required this.selectContact,
+  });
 
   @override
   List<Object?> get props => [contacts];
+}
+
+class SendToContactViewModel extends Equatable {
+  final CommunityEntity contact;
+  final String tokenSymbol;
+  final ValueSetter<String> submitSendAmount;
+
+  const SendToContactViewModel({
+    required this.contact,
+    required this.tokenSymbol,
+    required this.submitSendAmount,
+  });
+
+  @override
+  List<Object> get props => [contact, tokenSymbol];
 }
 
 class SettingsViewModel {
