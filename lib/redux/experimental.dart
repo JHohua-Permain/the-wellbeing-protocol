@@ -24,10 +24,20 @@ Future<void> handlePreparingUser(
 
   dynamic walletData = await services.fuseAPIService
       .createWallet(communityAddress: communityAddress);
-  // await joinCommunity(services, walletData, communityAddress);
   dynamic communityData =
       await services.fuseAPIService.getCommunityData(communityAddress);
+
+  final walletAddress = walletData['walletAddress'];
+  final homeTokenAddress = communityData['homeTokenAddress'];
+
   dynamic homeTokenData = await fetchHomeTokenData(services, communityData);
+
+  await services.fuseAPIService.joinCommunity(
+    services.fuseNetworkService,
+    walletAddress,
+    communityAddress,
+    tokenAddress: homeTokenAddress,
+  );
 
   store.dispatch(SetWallet(walletData['walletAddress']));
   store.dispatch(SetCommunity(communityData, homeTokenData));
@@ -46,18 +56,6 @@ Future<void> handleUpdatingUser(
 
   store.dispatch(SetWallet(walletData['walletAddress']));
   store.dispatch(SetCommunity(communityData, homeTokenData));
-}
-
-Future<dynamic> joinCommunity(
-  AppServices services,
-  dynamic walletData,
-  String communityAddress,
-) async {
-  return services.fuseAPIService.joinCommunity(
-    services.fuseNetworkService,
-    walletData['walletAddress'],
-    communityAddress,
-  );
 }
 
 class CommonMiddleware implements MiddlewareClass<AppState> {

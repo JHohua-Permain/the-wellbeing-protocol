@@ -27,6 +27,7 @@ class AppServicesBuilder {
         url: Constants.FUSE_NETWORK_RPC_URL,
         networkId: Constants.FUSE_NETWORK_CHAIN_ID,
         defaultCommunityAddress: Variables.DEFAULT_COMMUNITY_ADDRESS,
+        communityManagerAddress: Variables.DEFAULT_COMMUNITY_MANAGER_ADDRESS,
       ),
     );
   }

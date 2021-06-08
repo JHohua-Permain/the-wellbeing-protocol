@@ -8,11 +8,13 @@ class FuseNetworkService extends Web3 {
     required String url,
     required int networkId,
     required String defaultCommunityAddress,
+    required String communityManagerAddress,
   }) : super(
           () async => true,
           url: url,
           networkId: networkId,
           defaultCommunityAddress: defaultCommunityAddress,
+          communityManagerAddress: communityManagerAddress,
         );
 
   String generateMnemonic() {

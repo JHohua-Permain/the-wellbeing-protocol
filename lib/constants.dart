@@ -8,6 +8,9 @@ const COMMUNITY_ADDRESS_BEN = "0x19e8b1CdF762Eef5Eeb149482f6F4ffC2d894910";
 /// Smart Contract address for Jeremy's Economy Community.
 const COMMUNITY_ADDRESS_JEREMY = "0x858bce60ffA86cba96DbE47Dde8A87ed7E9DfBF8";
 
+const COMMUNITY_MANAGER_ADDRESS_JEREMY =
+    '0x0D4926876ba1ada6E9b542e018eBeD517FFc8050';
+
 /// The uri to connect to the Fuse sub-graph.
 const FUSE_GRAPH_BASE_URL = 'https://graph.fuse.io/subgraphs/name/fuseio';
 
