@@ -22,8 +22,9 @@ Future<void> handlePreparingUser(
 ) async {
   String communityAddress = services.fuseNetworkService.getDefaultCommunity();
 
-  dynamic walletData = await services.fuseAPIService
+  await services.fuseAPIService
       .createWallet(communityAddress: communityAddress);
+  dynamic walletData = await services.fuseAPIService.getWallet();
   dynamic communityData =
       await services.fuseAPIService.getCommunityData(communityAddress);
 
