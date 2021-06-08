@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
 import 'package:the_wellbeing_protocol/features/wallet/wallet_view_models.dart';
-import 'package:the_wellbeing_protocol/models/community_entity.dart';
 import 'package:the_wellbeing_protocol/shared/widgets/app_circle_avatar.dart';
 import 'package:the_wellbeing_protocol/shared/widgets/app_scaffold.dart';
 

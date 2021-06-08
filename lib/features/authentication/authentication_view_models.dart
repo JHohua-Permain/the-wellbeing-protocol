@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:the_wellbeing_protocol/models/authentication_state.dart';
+import 'package:the_wellbeing_protocol/core/state/authentication_state.dart';
 
 class LoginViewModel extends Equatable {
   final AuthenticationState authenticationState;

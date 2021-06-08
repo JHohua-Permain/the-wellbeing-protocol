@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:the_wellbeing_protocol/models/authentication_method.dart';
+import 'package:the_wellbeing_protocol/features/authentication/authentication_method.dart';
 import 'package:the_wellbeing_protocol/services/app_services.dart';
 
 Future<String> createFuseAPICredentials(

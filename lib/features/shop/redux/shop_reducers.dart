@@ -1,6 +1,6 @@
 import 'package:redux/redux.dart';
+import 'package:the_wellbeing_protocol/core/models/community.dart';
 import 'package:the_wellbeing_protocol/features/shop/redux/shop_actions.dart';
-import 'package:the_wellbeing_protocol/models/community.dart';
 
 final List<Reducer<Community>> Function() newShopReducers = () => [
       TypedReducer<Community, CompleteFetchingShops>(fetchShopsReducer),

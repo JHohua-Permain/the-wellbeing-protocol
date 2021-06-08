@@ -1,6 +1,6 @@
 import 'package:redux/redux.dart';
+import 'package:the_wellbeing_protocol/core/models/user.dart';
 import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_actions.dart';
-import 'package:the_wellbeing_protocol/models/user.dart';
 
 final List<Reducer<User>> Function() newAuthenticationReducers = () => [
       TypedReducer<User, CompleteAuthentication>(completeAuthenticationReducer),

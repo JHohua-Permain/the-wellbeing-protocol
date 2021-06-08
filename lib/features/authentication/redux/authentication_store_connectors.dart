@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_wellbeing_protocol/core/state/app_state.dart';
+import 'package:the_wellbeing_protocol/core/state/authentication_state.dart';
 import 'package:the_wellbeing_protocol/features/authentication/authentication_view_models.dart';
 import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_actions.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/login_screen.dart';
@@ -8,8 +10,6 @@ import 'package:the_wellbeing_protocol/features/authentication/screens/restore_s
 import 'package:the_wellbeing_protocol/features/authentication/screens/splash_screen.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/verification_screen.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/welcome_screen.dart';
-import 'package:the_wellbeing_protocol/models/app_state.dart';
-import 'package:the_wellbeing_protocol/models/authentication_state.dart';
 
 class LoginConnector extends StatelessWidget {
   @override

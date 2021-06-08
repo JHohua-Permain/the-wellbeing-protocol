@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_wellbeing_protocol/core/state/app_state.dart';
 import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_actions.dart';
 import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_thunk_actions.dart';
 import 'package:the_wellbeing_protocol/features/wallet/screens/account_screen.dart';
@@ -12,7 +13,6 @@ import 'package:the_wellbeing_protocol/features/wallet/screens/settings_screen.d
 import 'package:the_wellbeing_protocol/features/wallet/screens/transaction_history_screen.dart';
 import 'package:the_wellbeing_protocol/features/wallet/screens/wallet_screen.dart';
 import 'package:the_wellbeing_protocol/features/wallet/wallet_view_models.dart';
-import 'package:the_wellbeing_protocol/models/app_state.dart';
 
 class AccountConnector extends StatelessWidget {
   @override

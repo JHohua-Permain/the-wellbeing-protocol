@@ -1,6 +1,6 @@
 import 'package:redux/redux.dart';
+import 'package:the_wellbeing_protocol/core/models/user.dart';
 import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_actions.dart';
-import 'package:the_wellbeing_protocol/models/user.dart';
 
 final List<Reducer<User>> Function() newWalletReducers = () => [
       TypedReducer<User, CompleteChangingDisplayName>(changeDisplayNameReducer),

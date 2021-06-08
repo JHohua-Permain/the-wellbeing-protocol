@@ -1,5 +1,5 @@
 import 'package:the_wellbeing_protocol/constants.dart' as Constants;
-import 'package:the_wellbeing_protocol/models/authentication_method.dart';
+import 'package:the_wellbeing_protocol/features/authentication/authentication_method.dart';
 import 'package:the_wellbeing_protocol/services/fuse_api_service.dart';
 import 'package:the_wellbeing_protocol/services/fuse_network_service.dart';
 import 'package:the_wellbeing_protocol/variables.dart' as Variables;

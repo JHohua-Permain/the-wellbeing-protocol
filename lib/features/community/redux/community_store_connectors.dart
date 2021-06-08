@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_wellbeing_protocol/core/state/app_state.dart';
 import 'package:the_wellbeing_protocol/features/community/community_view_models.dart';
 import 'package:the_wellbeing_protocol/features/community/redux/community_actions.dart';
 import 'package:the_wellbeing_protocol/features/community/screens/community_fund_screen.dart';
 import 'package:the_wellbeing_protocol/features/community/screens/send_to_community_fund_screen.dart';
-import 'package:the_wellbeing_protocol/models/app_state.dart';
 
 class CommunityFundConnector extends StatelessWidget {
   @override

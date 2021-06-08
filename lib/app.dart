@@ -5,7 +5,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:the_wellbeing_protocol/app_themes.dart' as Themes;
 import 'package:the_wellbeing_protocol/constants.dart' as Constants;
-import 'package:the_wellbeing_protocol/models/app_state.dart';
+import 'package:the_wellbeing_protocol/core/state/app_state.dart';
 import 'package:the_wellbeing_protocol/routing/app_router.gr.dart';
 import 'package:the_wellbeing_protocol/routing/auth_guard.dart';
 

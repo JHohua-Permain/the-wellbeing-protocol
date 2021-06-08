@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_wellbeing_protocol/core/state/app_state.dart';
 import 'package:the_wellbeing_protocol/features/shop/redux/shop_actions.dart';
 import 'package:the_wellbeing_protocol/features/shop/screens/select_shop_screen.dart';
 import 'package:the_wellbeing_protocol/features/shop/shop_view_models.dart';
-import 'package:the_wellbeing_protocol/models/app_state.dart';
 
 class SelectShopConnector extends StatelessWidget {
   @override

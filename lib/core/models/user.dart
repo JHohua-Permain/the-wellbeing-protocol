@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:the_wellbeing_protocol/models/authentication_state.dart';
-import 'package:the_wellbeing_protocol/models/community.dart';
-import 'package:the_wellbeing_protocol/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/core/state/authentication_state.dart';
+import 'package:the_wellbeing_protocol/core/models/community.dart';
+import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';

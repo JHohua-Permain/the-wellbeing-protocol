@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:the_wellbeing_protocol/models/community_entity.dart';
-import 'package:the_wellbeing_protocol/models/token.dart';
+import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/core/models/token.dart';
 
 part 'community.freezed.dart';
 part 'community.g.dart';

@@ -1,8 +1,8 @@
 import 'package:redux/redux.dart';
+import 'package:the_wellbeing_protocol/core/state/app_state.dart';
 import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_actions.dart';
 import 'package:the_wellbeing_protocol/features/community/redux/community_actions.dart';
 import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_actions.dart';
-import 'package:the_wellbeing_protocol/models/app_state.dart';
 import 'package:the_wellbeing_protocol/services/app_services.dart';
 
 Future<dynamic> fetchHomeTokenData(

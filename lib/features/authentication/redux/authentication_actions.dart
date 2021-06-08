@@ -1,4 +1,4 @@
-import 'package:the_wellbeing_protocol/models/authentication_state.dart';
+import 'package:the_wellbeing_protocol/core/state/authentication_state.dart';
 import 'package:the_wellbeing_protocol/redux/common/common_actions.dart';
 
 class BeginAuthentication implements BeginningAction {}

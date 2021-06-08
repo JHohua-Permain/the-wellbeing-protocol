@@ -1,7 +1,7 @@
 import 'package:redux/redux.dart';
+import 'package:the_wellbeing_protocol/core/models/community.dart';
+import 'package:the_wellbeing_protocol/core/models/token.dart';
 import 'package:the_wellbeing_protocol/features/community/redux/community_actions.dart';
-import 'package:the_wellbeing_protocol/models/community.dart';
-import 'package:the_wellbeing_protocol/models/token.dart';
 
 final List<Reducer<Community>> Function() newCommunityReducers = () => [
       TypedReducer<Community, CompleteFetchingMembers>(fetchMembersReducer),

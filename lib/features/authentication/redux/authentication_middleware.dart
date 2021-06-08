@@ -1,8 +1,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:redux/redux.dart';
+import 'package:the_wellbeing_protocol/core/state/app_state.dart';
 import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_actions.dart';
 import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_handlers.dart';
-import 'package:the_wellbeing_protocol/models/app_state.dart';
 import 'package:the_wellbeing_protocol/services/app_services.dart';
 
 class AuthenticationMiddleware implements MiddlewareClass<AppState> {

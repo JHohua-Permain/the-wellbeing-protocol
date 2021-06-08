@@ -1,7 +1,7 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
 import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_actions.dart';
-import 'package:the_wellbeing_protocol/models/community_entity.dart';
 import 'package:the_wellbeing_protocol/redux/common/common_utils.dart';
 
 AppThunkAction changeDisplayName(String displayName) {

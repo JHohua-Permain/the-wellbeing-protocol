@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:the_wellbeing_protocol/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
 
 class AccountViewModel extends Equatable {
   final String displayName;
