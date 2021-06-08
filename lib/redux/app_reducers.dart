@@ -1,13 +1,13 @@
 import 'package:redux/redux.dart';
+import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_reducers.dart';
+import 'package:the_wellbeing_protocol/features/community/redux/community_reducers.dart';
+import 'package:the_wellbeing_protocol/features/shop/redux/shop_reducers.dart';
+import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_actions.dart';
+import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_reducers.dart';
 import 'package:the_wellbeing_protocol/models/app_state.dart';
 import 'package:the_wellbeing_protocol/models/community.dart';
 import 'package:the_wellbeing_protocol/models/user.dart';
 import 'package:the_wellbeing_protocol/redux/common/common_actions.dart';
-import 'package:the_wellbeing_protocol/redux/features/authentication/authentication_reducers.dart';
-import 'package:the_wellbeing_protocol/redux/features/community/community_reducers.dart';
-import 'package:the_wellbeing_protocol/redux/features/shop/shop_reducers.dart';
-import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_actions.dart';
-import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_reducers.dart';
 
 final Reducer<Community> communityReducer = combineReducers([
   ...newCommunityReducers(),

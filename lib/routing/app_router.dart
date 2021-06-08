@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:the_wellbeing_protocol/app_hub.dart';
-import 'package:the_wellbeing_protocol/redux/features/authentication/authentication_store_connectors.dart';
-import 'package:the_wellbeing_protocol/redux/features/community/community_store_connectors.dart';
-import 'package:the_wellbeing_protocol/redux/features/shop/shop_store_connectors.dart';
-import 'package:the_wellbeing_protocol/redux/features/wallet/wallet_store_connectors.dart';
+import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_store_connectors.dart';
+import 'package:the_wellbeing_protocol/features/community/redux/community_store_connectors.dart';
+import 'package:the_wellbeing_protocol/features/shop/redux/shop_store_connectors.dart';
+import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_store_connectors.dart';
 import 'package:the_wellbeing_protocol/routing/auth_guard.dart';
-import 'package:the_wellbeing_protocol/ui/screens/misc/progress_dialog.dart';
+import 'package:the_wellbeing_protocol/shared/widgets/progress_dialog.dart';
 
 const MaterialRoute _communityFundRouter = MaterialRoute(
   page: EmptyRouterPage,

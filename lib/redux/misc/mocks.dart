@@ -1,9 +1,9 @@
 import 'package:faker/faker.dart';
 import 'package:redux/redux.dart';
+import 'package:the_wellbeing_protocol/features/community/redux/community_actions.dart';
+import 'package:the_wellbeing_protocol/features/shop/redux/shop_actions.dart';
 import 'package:the_wellbeing_protocol/models/app_state.dart';
 import 'package:the_wellbeing_protocol/models/community_entity.dart';
-import 'package:the_wellbeing_protocol/redux/features/community/community_actions.dart';
-import 'package:the_wellbeing_protocol/redux/features/shop/shop_actions.dart';
 
 dynamic mockInjectorMiddleware(
   Store<AppState> store,
