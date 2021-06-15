@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:redux/redux.dart';
 import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/core/models/shop_item.dart';
 import 'package:the_wellbeing_protocol/core/state/app_state.dart';
 import 'package:the_wellbeing_protocol/features/community/redux/community_actions.dart';
 import 'package:the_wellbeing_protocol/features/shop/redux/shop_actions.dart';
@@ -21,19 +22,18 @@ dynamic mockInjectorMiddleware(
 
 class AppMocks {
   static AppMocks? _appMocks;
-  final List<CommunityMember> mockMembers;
-  final List<CommunityShop> mockShops;
+  late final List<CommunityMember> mockMembers;
+  late final List<CommunityShop> mockShops;
 
   factory AppMocks() {
     if (_appMocks != null) return _appMocks!;
-
-    List<CommunityMember> mockMembers = mockCommunityMembers();
-    List<CommunityShop> mockShops = mockCommunityShops();
-
-    return AppMocks._(mockMembers, mockShops);
+    return _appMocks =  AppMocks._();
   }
 
-  AppMocks._(this.mockMembers, this.mockShops);
+  AppMocks._() {
+    mockMembers = mockCommunityMembers();
+    mockShops = mockCommunityShops();
+  }
 
   static List<CommunityMember> mockCommunityMembers() {
     Faker faker = Faker();
@@ -55,8 +55,32 @@ class AppMocks {
       10,
       (index) => CommunityShop(
         walletAddress: '',
-        displayName: faker.company.name(),
+        displayName: faker.food.restaurant(),
+        items: mockShopItems(),
+        locations: mockShopLocations(),
       ),
+    );
+  }
+
+  static List<ShopItem> mockShopItems() {
+    Faker faker = Faker();
+
+    return List.generate(
+      faker.randomGenerator.integer(10),
+      (index) => ShopItem(
+        name: faker.food.dish(),
+        cost: faker.randomGenerator.integer(10),
+        stock: faker.randomGenerator.integer(10),
+      ),
+    );
+  }
+
+  static List<String> mockShopLocations() {
+    Faker faker = Faker();
+
+    return List.generate(
+      faker.randomGenerator.integer(3),
+      (index) => faker.address.streetAddress(),
     );
   }
 }

@@ -35,6 +35,11 @@ const MaterialRoute _shopRouter = MaterialRoute(
       page: SelectShopConnector,
       initial: true,
     ),
+    MaterialRoute(
+      name: 'ShopPage',
+      path: 'shops/shop',
+      page: ShopConnector,
+    ),
   ],
 );
 
@@ -124,6 +129,11 @@ const MaterialRoute _walletRouter = MaterialRoute(
         _shopRouter,
         _communityFundRouter,
       ],
+    ),
+    MaterialRoute(
+      name: 'ShopItemDetailsPage',
+      path: '/shops/shop/item',
+      page: ShopItemDetailsConnector,
     ),
     CustomRoute(
       name: 'ProgressPopup',
