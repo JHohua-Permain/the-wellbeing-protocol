@@ -46,15 +46,19 @@ class _$CommunityEntityTearOff {
 
   CommunityShop shop(
       {required String walletAddress,
+      required List<String> locations,
       String? primaryContactNum,
       String displayName = '',
+      List<ShopItem> items = const [],
       int communityFundContribution = 0,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar}) {
     return CommunityShop(
       walletAddress: walletAddress,
+      locations: locations,
       primaryContactNum: primaryContactNum,
       displayName: displayName,
+      items: items,
       communityFundContribution: communityFundContribution,
       avatar: avatar,
     );
@@ -89,8 +93,10 @@ mixin _$CommunityEntity {
         member,
     required TResult Function(
             String walletAddress,
+            List<String> locations,
             String? primaryContactNum,
             String displayName,
+            List<ShopItem> items,
             int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
@@ -109,8 +115,10 @@ mixin _$CommunityEntity {
         member,
     TResult Function(
             String walletAddress,
+            List<String> locations,
             String? primaryContactNum,
             String displayName,
+            List<ShopItem> items,
             int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
@@ -349,8 +357,10 @@ class _$CommunityMember
         member,
     required TResult Function(
             String walletAddress,
+            List<String> locations,
             String? primaryContactNum,
             String displayName,
+            List<ShopItem> items,
             int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
@@ -373,8 +383,10 @@ class _$CommunityMember
         member,
     TResult Function(
             String walletAddress,
+            List<String> locations,
             String? primaryContactNum,
             String displayName,
+            List<ShopItem> items,
             int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
@@ -454,8 +466,10 @@ abstract class $CommunityShopCopyWith<$Res>
   @override
   $Res call(
       {String walletAddress,
+      List<String> locations,
       String? primaryContactNum,
       String displayName,
+      List<ShopItem> items,
       int communityFundContribution,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar});
@@ -475,8 +489,10 @@ class _$CommunityShopCopyWithImpl<$Res>
   @override
   $Res call({
     Object? walletAddress = freezed,
+    Object? locations = freezed,
     Object? primaryContactNum = freezed,
     Object? displayName = freezed,
+    Object? items = freezed,
     Object? communityFundContribution = freezed,
     Object? avatar = freezed,
   }) {
@@ -485,6 +501,10 @@ class _$CommunityShopCopyWithImpl<$Res>
           ? _value.walletAddress
           : walletAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      locations: locations == freezed
+          ? _value.locations
+          : locations // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       primaryContactNum: primaryContactNum == freezed
           ? _value.primaryContactNum
           : primaryContactNum // ignore: cast_nullable_to_non_nullable
@@ -493,6 +513,10 @@ class _$CommunityShopCopyWithImpl<$Res>
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String,
+      items: items == freezed
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<ShopItem>,
       communityFundContribution: communityFundContribution == freezed
           ? _value.communityFundContribution
           : communityFundContribution // ignore: cast_nullable_to_non_nullable
@@ -510,8 +534,10 @@ class _$CommunityShopCopyWithImpl<$Res>
 class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
   const _$CommunityShop(
       {required this.walletAddress,
+      required this.locations,
       this.primaryContactNum,
       this.displayName = '',
+      this.items = const [],
       this.communityFundContribution = 0,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) this.avatar});
 
@@ -521,10 +547,15 @@ class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
   @override
   final String walletAddress;
   @override
+  final List<String> locations;
+  @override
   final String? primaryContactNum;
   @JsonKey(defaultValue: '')
   @override
   final String displayName;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<ShopItem> items;
   @JsonKey(defaultValue: 0)
   @override
   final int communityFundContribution;
@@ -534,7 +565,7 @@ class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CommunityEntity.shop(walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communityFundContribution: $communityFundContribution, avatar: $avatar)';
+    return 'CommunityEntity.shop(walletAddress: $walletAddress, locations: $locations, primaryContactNum: $primaryContactNum, displayName: $displayName, items: $items, communityFundContribution: $communityFundContribution, avatar: $avatar)';
   }
 
   @override
@@ -543,8 +574,10 @@ class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
     properties
       ..add(DiagnosticsProperty('type', 'CommunityEntity.shop'))
       ..add(DiagnosticsProperty('walletAddress', walletAddress))
+      ..add(DiagnosticsProperty('locations', locations))
       ..add(DiagnosticsProperty('primaryContactNum', primaryContactNum))
       ..add(DiagnosticsProperty('displayName', displayName))
+      ..add(DiagnosticsProperty('items', items))
       ..add(DiagnosticsProperty(
           'communityFundContribution', communityFundContribution))
       ..add(DiagnosticsProperty('avatar', avatar));
@@ -557,12 +590,17 @@ class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
             (identical(other.walletAddress, walletAddress) ||
                 const DeepCollectionEquality()
                     .equals(other.walletAddress, walletAddress)) &&
+            (identical(other.locations, locations) ||
+                const DeepCollectionEquality()
+                    .equals(other.locations, locations)) &&
             (identical(other.primaryContactNum, primaryContactNum) ||
                 const DeepCollectionEquality()
                     .equals(other.primaryContactNum, primaryContactNum)) &&
             (identical(other.displayName, displayName) ||
                 const DeepCollectionEquality()
                     .equals(other.displayName, displayName)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)) &&
             (identical(other.communityFundContribution,
                     communityFundContribution) ||
                 const DeepCollectionEquality().equals(
@@ -576,8 +614,10 @@ class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(walletAddress) ^
+      const DeepCollectionEquality().hash(locations) ^
       const DeepCollectionEquality().hash(primaryContactNum) ^
       const DeepCollectionEquality().hash(displayName) ^
+      const DeepCollectionEquality().hash(items) ^
       const DeepCollectionEquality().hash(communityFundContribution) ^
       const DeepCollectionEquality().hash(avatar);
 
@@ -599,14 +639,16 @@ class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
         member,
     required TResult Function(
             String walletAddress,
+            List<String> locations,
             String? primaryContactNum,
             String displayName,
+            List<ShopItem> items,
             int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)
         shop,
   }) {
-    return shop(walletAddress, primaryContactNum, displayName,
+    return shop(walletAddress, locations, primaryContactNum, displayName, items,
         communityFundContribution, avatar);
   }
 
@@ -623,8 +665,10 @@ class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
         member,
     TResult Function(
             String walletAddress,
+            List<String> locations,
             String? primaryContactNum,
             String displayName,
+            List<ShopItem> items,
             int communityFundContribution,
             @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
                 Uint8List? avatar)?
@@ -632,8 +676,8 @@ class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
     required TResult orElse(),
   }) {
     if (shop != null) {
-      return shop(walletAddress, primaryContactNum, displayName,
-          communityFundContribution, avatar);
+      return shop(walletAddress, locations, primaryContactNum, displayName,
+          items, communityFundContribution, avatar);
     }
     return orElse();
   }
@@ -669,8 +713,10 @@ class _$CommunityShop with DiagnosticableTreeMixin implements CommunityShop {
 abstract class CommunityShop implements CommunityEntity {
   const factory CommunityShop(
       {required String walletAddress,
+      required List<String> locations,
       String? primaryContactNum,
       String displayName,
+      List<ShopItem> items,
       int communityFundContribution,
       @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson)
           Uint8List? avatar}) = _$CommunityShop;
@@ -680,10 +726,12 @@ abstract class CommunityShop implements CommunityEntity {
 
   @override
   String get walletAddress => throw _privateConstructorUsedError;
+  List<String> get locations => throw _privateConstructorUsedError;
   @override
   String? get primaryContactNum => throw _privateConstructorUsedError;
   @override
   String get displayName => throw _privateConstructorUsedError;
+  List<ShopItem> get items => throw _privateConstructorUsedError;
   @override
   int get communityFundContribution => throw _privateConstructorUsedError;
   @override

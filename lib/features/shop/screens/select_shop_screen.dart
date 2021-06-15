@@ -15,27 +15,27 @@ class SelectShopScreen extends StatelessWidget {
       body: ListView.builder(
         padding: EdgeInsets.only(top: 20),
         itemCount: vm.shops.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.grey[350],
-              radius: 30,
-              child: Icon(
-                Icons.person_rounded,
-                size: 40,
-                color: Colors.grey[600],
-              ),
+        itemBuilder: (context, index) => ListTile(
+          title: Text(vm.shops[index].displayName),
+          leading: CircleAvatar(
+            backgroundColor: Colors.grey[350],
+            radius: 30,
+            child: Icon(
+              Icons.person_rounded,
+              size: 40,
+              color: Colors.grey[600],
             ),
-            trailing: InkWell(
-              onTap: vm.pushShopScreen,
-              child: Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black,
-              ),
+          ),
+          trailing: InkWell(
+            child: Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.black,
             ),
-            title: Text(vm.shops[index].displayName),
-          );
-        },
+          ),
+          onTap: () {
+            vm.selectShop(index);
+          },
+        ),
       ),
     );
   }

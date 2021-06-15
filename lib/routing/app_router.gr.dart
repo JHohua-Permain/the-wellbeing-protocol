@@ -8,12 +8,13 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../app_hub.dart' as _i5;
+import '../core/models/shop_item.dart' as _i10;
 import '../features/authentication/redux/authentication_store_connectors.dart'
     as _i4;
 import '../features/community/redux/community_store_connectors.dart' as _i9;
-import '../features/shop/redux/shop_store_connectors.dart' as _i8;
-import '../features/wallet/redux/wallet_store_connectors.dart' as _i7;
-import '../shared/widgets/progress_dialog.dart' as _i6;
+import '../features/shop/redux/shop_store_connectors.dart' as _i6;
+import '../features/wallet/redux/wallet_store_connectors.dart' as _i8;
+import '../shared/widgets/progress_dialog.dart' as _i7;
 import 'auth_guard.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -56,10 +57,16 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i5.AppHub();
         }),
+    ShopItemDetailsPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<ShopItemDetailsPageArgs>();
+          return _i6.ShopItemDetailsConnector(args.selectedShop, args.shopItem);
+        }),
     ProgressPopup.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i6.ProgressDialog();
+          return _i7.ProgressDialog();
         },
         fullscreenDialog: true,
         opaque: false,
@@ -82,47 +89,53 @@ class AppRouter extends _i1.RootStackRouter {
     WalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.WalletConnector();
+          return _i8.WalletConnector();
         }),
     AccountPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.AccountConnector();
+          return _i8.AccountConnector();
         }),
     BackupWalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.BackupWalletConnector();
+          return _i8.BackupWalletConnector();
         }),
     SettingsPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.SettingsConnector();
+          return _i8.SettingsConnector();
         }),
     SelectContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.SelectContactConnector();
+          return _i8.SelectContactConnector();
         }),
     SendToContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.SendToContactConnector();
+          return _i8.SendToContactConnector();
         }),
     CashOutPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.CashOutConnector();
+          return _i8.CashOutConnector();
         }),
     TransactionHistoryPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.TransactionHistoryConnector();
+          return _i8.TransactionHistoryConnector();
         }),
     SelectShopPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.SelectShopConnector();
+          return _i6.SelectShopConnector();
+        }),
+    ShopPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<ShopPageArgs>();
+          return _i6.ShopConnector(args.selectedShop);
         }),
     CommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -166,7 +179,8 @@ class AppRouter extends _i1.RootStackRouter {
               children: [
                 _i1.RouteConfig('#redirect',
                     path: '', redirectTo: 'shops', fullMatch: true),
-                _i1.RouteConfig(SelectShopPage.name, path: 'shops')
+                _i1.RouteConfig(SelectShopPage.name, path: 'shops'),
+                _i1.RouteConfig(ShopPage.name, path: 'shops/shop')
               ]),
           _i1.RouteConfig(CommunityFundRouter.name,
               path: 'empty-router-page',
@@ -178,6 +192,7 @@ class AppRouter extends _i1.RootStackRouter {
                     path: 'community/fund/contribute')
               ])
         ]),
+        _i1.RouteConfig(ShopItemDetailsPage.name, path: '/shops/shop/item'),
         _i1.RouteConfig(ProgressPopup.name, path: '/progress-dialog')
       ];
 }
@@ -217,6 +232,26 @@ class AppHubWindow extends _i1.PageRouteInfo {
       : super(name, path: '/hub', initialChildren: children);
 
   static const String name = 'AppHubWindow';
+}
+
+class ShopItemDetailsPage extends _i1.PageRouteInfo<ShopItemDetailsPageArgs> {
+  ShopItemDetailsPage(
+      {required dynamic selectedShop, required _i10.ShopItem shopItem})
+      : super(name,
+            path: '/shops/shop/item',
+            args: ShopItemDetailsPageArgs(
+                selectedShop: selectedShop, shopItem: shopItem));
+
+  static const String name = 'ShopItemDetailsPage';
+}
+
+class ShopItemDetailsPageArgs {
+  const ShopItemDetailsPageArgs(
+      {required this.selectedShop, required this.shopItem});
+
+  final dynamic selectedShop;
+
+  final _i10.ShopItem shopItem;
 }
 
 class ProgressPopup extends _i1.PageRouteInfo {
@@ -298,6 +333,20 @@ class SelectShopPage extends _i1.PageRouteInfo {
   const SelectShopPage() : super(name, path: 'shops');
 
   static const String name = 'SelectShopPage';
+}
+
+class ShopPage extends _i1.PageRouteInfo<ShopPageArgs> {
+  ShopPage({required dynamic selectedShop})
+      : super(name,
+            path: 'shops/shop', args: ShopPageArgs(selectedShop: selectedShop));
+
+  static const String name = 'ShopPage';
+}
+
+class ShopPageArgs {
+  const ShopPageArgs({required this.selectedShop});
+
+  final dynamic selectedShop;
 }
 
 class CommunityFundPage extends _i1.PageRouteInfo {

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:the_wellbeing_protocol/core/models/shop_item.dart';
 
 part 'community_entity.freezed.dart';
 part 'community_entity.g.dart';
@@ -31,8 +32,10 @@ class CommunityEntity with _$CommunityEntity {
 
   const factory CommunityEntity.shop({
     required String walletAddress,
+    required List<String> locations,
     String? primaryContactNum,
     @Default('') String displayName,
+    @Default([]) List<ShopItem> items,
     @Default(0) int communityFundContribution,
     @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) Uint8List? avatar,
   }) = CommunityShop;
