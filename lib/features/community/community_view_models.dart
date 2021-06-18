@@ -35,3 +35,18 @@ class SendToCommunityFundViewModel extends Equatable {
   @override
   List<Object> get props => [tokenSymbol];
 }
+
+class SendToCommunityFundReviewViewModel extends Equatable {
+  final String amount;
+  final String tokenSymbol;
+  final VoidCallback confirmTransfer;
+
+  const SendToCommunityFundReviewViewModel({
+    required this.amount,
+    required this.tokenSymbol,
+    required this.confirmTransfer,
+  });
+
+  @override
+  List<Object> get props => [amount, tokenSymbol];
+}

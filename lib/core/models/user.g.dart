@@ -20,6 +20,10 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
           (k, e) => MapEntry(k, e as String),
         ) ??
         {},
+    transfers: (json['transfers'] as List<dynamic>?)
+            ?.map((e) => Transfer.fromJson(e as Map<String, dynamic>))
+            .toList() ??
+        [],
   );
 }
 
@@ -30,4 +34,5 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'displayName': instance.displayName,
       'communities': instance.communities.map((e) => e.toJson()).toList(),
       'wallet': instance.wallet,
+      'transfers': instance.transfers.map((e) => e.toJson()).toList(),
     };

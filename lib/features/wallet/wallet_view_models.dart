@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/core/models/transfer.dart';
 
 class AccountViewModel extends Equatable {
   final String displayName;
@@ -41,6 +42,23 @@ class SelectContactViewModel extends Equatable {
   List<Object?> get props => [contacts];
 }
 
+class SendToContactReviewViewModel extends Equatable {
+  final String amount;
+  final String tokenSymbol;
+  final CommunityEntity contact;
+  final VoidCallback confirmTransfer;
+
+  const SendToContactReviewViewModel({
+    required this.amount,
+    required this.tokenSymbol,
+    required this.contact,
+    required this.confirmTransfer,
+  });
+
+  @override
+  List<Object?> get props => [amount, tokenSymbol, contact];
+}
+
 class SendToContactViewModel extends Equatable {
   final CommunityEntity contact;
   final String tokenSymbol;
@@ -70,6 +88,15 @@ class SettingsViewModel {
     required this.logoutUser,
     required this.clearData,
   });
+}
+
+class TransactionHistoryViewModel extends Equatable {
+  final List<Transfer> transfers;
+
+  const TransactionHistoryViewModel(this.transfers);
+
+  @override
+  List<Object?> get props => [transfers];
 }
 
 class WalletViewModel extends Equatable {

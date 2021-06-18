@@ -1,4 +1,5 @@
 import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/core/models/transfer.dart';
 
 class BeginClearingData {}
 
@@ -26,6 +27,11 @@ class Logout {}
 class SetSendToContact {
   final CommunityEntity contact;
   SetSendToContact(this.contact);
+}
+
+class SetTransfers {
+  List<Transfer> transfers;
+  SetTransfers(this.transfers);
 }
 
 class SetWallet {

@@ -27,6 +27,7 @@ class _$UserTearOff {
       String displayName = 'Anon',
       List<Community> communities = const [],
       Map<String, String> wallet = const {},
+      List<Transfer> transfers = const [],
       @JsonKey(ignore: true) List<CommunityEntity> contacts = const [],
       @JsonKey(ignore: true) CommunityEntity? sendToContact,
       @JsonKey(ignore: true) AuthenticationState authenticationState =
@@ -39,6 +40,7 @@ class _$UserTearOff {
       displayName: displayName,
       communities: communities,
       wallet: wallet,
+      transfers: transfers,
       contacts: contacts,
       sendToContact: sendToContact,
       authenticationState: authenticationState,
@@ -62,6 +64,7 @@ mixin _$User {
   String get displayName => throw _privateConstructorUsedError;
   List<Community> get communities => throw _privateConstructorUsedError;
   Map<String, String> get wallet => throw _privateConstructorUsedError;
+  List<Transfer> get transfers => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   List<CommunityEntity> get contacts => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -88,6 +91,7 @@ abstract class $UserCopyWith<$Res> {
       String displayName,
       List<Community> communities,
       Map<String, String> wallet,
+      List<Transfer> transfers,
       @JsonKey(ignore: true) List<CommunityEntity> contacts,
       @JsonKey(ignore: true) CommunityEntity? sendToContact,
       @JsonKey(ignore: true) AuthenticationState authenticationState,
@@ -113,6 +117,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? displayName = freezed,
     Object? communities = freezed,
     Object? wallet = freezed,
+    Object? transfers = freezed,
     Object? contacts = freezed,
     Object? sendToContact = freezed,
     Object? authenticationState = freezed,
@@ -143,6 +148,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
+      transfers: transfers == freezed
+          ? _value.transfers
+          : transfers // ignore: cast_nullable_to_non_nullable
+              as List<Transfer>,
       contacts: contacts == freezed
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
@@ -194,6 +203,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String displayName,
       List<Community> communities,
       Map<String, String> wallet,
+      List<Transfer> transfers,
       @JsonKey(ignore: true) List<CommunityEntity> contacts,
       @JsonKey(ignore: true) CommunityEntity? sendToContact,
       @JsonKey(ignore: true) AuthenticationState authenticationState,
@@ -222,6 +232,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? communities = freezed,
     Object? wallet = freezed,
+    Object? transfers = freezed,
     Object? contacts = freezed,
     Object? sendToContact = freezed,
     Object? authenticationState = freezed,
@@ -252,6 +263,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
+      transfers: transfers == freezed
+          ? _value.transfers
+          : transfers // ignore: cast_nullable_to_non_nullable
+              as List<Transfer>,
       contacts: contacts == freezed
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
@@ -283,6 +298,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       this.displayName = 'Anon',
       this.communities = const [],
       this.wallet = const {},
+      this.transfers = const [],
       @JsonKey(ignore: true)
           this.contacts = const [],
       @JsonKey(ignore: true)
@@ -311,6 +327,9 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   @JsonKey(defaultValue: const {})
   @override
   final Map<String, String> wallet;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<Transfer> transfers;
   @override
   @JsonKey(ignore: true)
   final List<CommunityEntity> contacts;
@@ -326,7 +345,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(accountAddress: $accountAddress, walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communities: $communities, wallet: $wallet, contacts: $contacts, sendToContact: $sendToContact, authenticationState: $authenticationState, mnemonic: $mnemonic)';
+    return 'User(accountAddress: $accountAddress, walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communities: $communities, wallet: $wallet, transfers: $transfers, contacts: $contacts, sendToContact: $sendToContact, authenticationState: $authenticationState, mnemonic: $mnemonic)';
   }
 
   @override
@@ -340,6 +359,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('displayName', displayName))
       ..add(DiagnosticsProperty('communities', communities))
       ..add(DiagnosticsProperty('wallet', wallet))
+      ..add(DiagnosticsProperty('transfers', transfers))
       ..add(DiagnosticsProperty('contacts', contacts))
       ..add(DiagnosticsProperty('sendToContact', sendToContact))
       ..add(DiagnosticsProperty('authenticationState', authenticationState))
@@ -367,6 +387,9 @@ class _$_User extends _User with DiagnosticableTreeMixin {
                     .equals(other.communities, communities)) &&
             (identical(other.wallet, wallet) ||
                 const DeepCollectionEquality().equals(other.wallet, wallet)) &&
+            (identical(other.transfers, transfers) ||
+                const DeepCollectionEquality()
+                    .equals(other.transfers, transfers)) &&
             (identical(other.contacts, contacts) ||
                 const DeepCollectionEquality()
                     .equals(other.contacts, contacts)) &&
@@ -390,6 +413,7 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(communities) ^
       const DeepCollectionEquality().hash(wallet) ^
+      const DeepCollectionEquality().hash(transfers) ^
       const DeepCollectionEquality().hash(contacts) ^
       const DeepCollectionEquality().hash(sendToContact) ^
       const DeepCollectionEquality().hash(authenticationState) ^
@@ -414,6 +438,7 @@ abstract class _User extends User {
       String displayName,
       List<Community> communities,
       Map<String, String> wallet,
+      List<Transfer> transfers,
       @JsonKey(ignore: true) List<CommunityEntity> contacts,
       @JsonKey(ignore: true) CommunityEntity? sendToContact,
       @JsonKey(ignore: true) AuthenticationState authenticationState,
@@ -434,6 +459,8 @@ abstract class _User extends User {
   List<Community> get communities => throw _privateConstructorUsedError;
   @override
   Map<String, String> get wallet => throw _privateConstructorUsedError;
+  @override
+  List<Transfer> get transfers => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   List<CommunityEntity> get contacts => throw _privateConstructorUsedError;

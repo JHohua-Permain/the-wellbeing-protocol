@@ -17,11 +17,6 @@ const MaterialRoute _communityFundRouter = MaterialRoute(
       page: CommunityFundConnector,
       initial: true,
     ),
-    MaterialRoute(
-      name: 'SendToCommunityFundPage',
-      path: 'community/fund/contribute',
-      page: SendToCommunityFundConnector,
-    ),
   ],
 );
 
@@ -72,11 +67,6 @@ const MaterialRoute _walletRouter = MaterialRoute(
       name: 'SelectContactPage',
       path: 'contacts',
       page: SelectContactConnector,
-    ),
-    MaterialRoute(
-      name: 'SendToContactPage',
-      path: 'contacts/send',
-      page: SendToContactConnector,
     ),
     MaterialRoute(
       name: 'CashOutPage',
@@ -131,9 +121,29 @@ const MaterialRoute _walletRouter = MaterialRoute(
       ],
     ),
     MaterialRoute(
+      name: 'SendToContactPage',
+      path: 'contacts/contact',
+      page: SendToContactConnector,
+    ),
+    MaterialRoute(
+      name: 'SendToContactReviewPage',
+      path: '/contacts/contact/review',
+      page: SendToContactReviewConnector,
+    ),
+    MaterialRoute(
       name: 'ShopItemDetailsPage',
       path: '/shops/shop/item',
       page: ShopItemDetailsConnector,
+    ),
+    MaterialRoute(
+      name: 'SendToCommunityFundPage',
+      path: 'community/fund/contribute',
+      page: SendToCommunityFundConnector,
+    ),
+    MaterialRoute(
+      name: 'SendToCommunityFundReviewPage',
+      path: '/community/fund/contribute/review',
+      page: SendToCommunityFundReviewConnector,
     ),
     CustomRoute(
       name: 'ProgressPopup',

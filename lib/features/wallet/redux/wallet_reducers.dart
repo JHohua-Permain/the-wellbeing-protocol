@@ -8,6 +8,7 @@ final List<Reducer<User>> Function() newWalletReducers = () => [
       TypedReducer<User, CompleteLoadingMnemonic>(loadMnemonicReducer),
       TypedReducer<User, SetSendToContact>(setSendToContactReducer),
       TypedReducer<User, SetWallet>(setWalletReducer),
+      TypedReducer<User, SetTransfers>(setTransfersReducer),
     ];
 
 User changeDisplayNameReducer(User state, CompleteChangingDisplayName action) {
@@ -31,6 +32,12 @@ User loadMnemonicReducer(User state, CompleteLoadingMnemonic action) {
 User setSendToContactReducer(User state, SetSendToContact action) {
   return state.copyWith(
     sendToContact: action.contact,
+  );
+}
+
+User setTransfersReducer(User state, SetTransfers action) {
+  return state.copyWith(
+    transfers: action.transfers,
   );
 }
 

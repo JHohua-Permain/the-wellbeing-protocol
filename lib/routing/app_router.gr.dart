@@ -11,10 +11,10 @@ import '../app_hub.dart' as _i5;
 import '../core/models/shop_item.dart' as _i10;
 import '../features/authentication/redux/authentication_store_connectors.dart'
     as _i4;
-import '../features/community/redux/community_store_connectors.dart' as _i9;
-import '../features/shop/redux/shop_store_connectors.dart' as _i6;
-import '../features/wallet/redux/wallet_store_connectors.dart' as _i8;
-import '../shared/widgets/progress_dialog.dart' as _i7;
+import '../features/community/redux/community_store_connectors.dart' as _i8;
+import '../features/shop/redux/shop_store_connectors.dart' as _i7;
+import '../features/wallet/redux/wallet_store_connectors.dart' as _i6;
+import '../shared/widgets/progress_dialog.dart' as _i9;
 import 'auth_guard.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -57,16 +57,40 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i5.AppHub();
         }),
+    SendToContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<SendToContactPageArgs>();
+          return _i6.SendToContactConnector(args.contact);
+        }),
+    SendToContactReviewPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<SendToContactReviewPageArgs>();
+          return _i6.SendToContactReviewConnector(args.contact, args.amount);
+        }),
     ShopItemDetailsPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ShopItemDetailsPageArgs>();
-          return _i6.ShopItemDetailsConnector(args.selectedShop, args.shopItem);
+          return _i7.ShopItemDetailsConnector(args.selectedShop, args.shopItem);
         }),
+    SendToCommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i8.SendToCommunityFundConnector();
+        }),
+    SendToCommunityFundReviewPage.name: (routeData) =>
+        _i1.MaterialPageX<dynamic>(
+            routeData: routeData,
+            builder: (data) {
+              final args = data.argsAs<SendToCommunityFundReviewPageArgs>();
+              return _i8.SendToCommunityFundReviewConnector(args.amount);
+            }),
     ProgressPopup.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.ProgressDialog();
+          return _i9.ProgressDialog();
         },
         fullscreenDialog: true,
         opaque: false,
@@ -89,63 +113,53 @@ class AppRouter extends _i1.RootStackRouter {
     WalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.WalletConnector();
+          return _i6.WalletConnector();
         }),
     AccountPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.AccountConnector();
+          return _i6.AccountConnector();
         }),
     BackupWalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.BackupWalletConnector();
+          return _i6.BackupWalletConnector();
         }),
     SettingsPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.SettingsConnector();
+          return _i6.SettingsConnector();
         }),
     SelectContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.SelectContactConnector();
-        }),
-    SendToContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i8.SendToContactConnector();
+          return _i6.SelectContactConnector();
         }),
     CashOutPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.CashOutConnector();
+          return _i6.CashOutConnector();
         }),
     TransactionHistoryPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.TransactionHistoryConnector();
+          return _i6.TransactionHistoryConnector();
         }),
     SelectShopPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i6.SelectShopConnector();
+          return _i7.SelectShopConnector();
         }),
     ShopPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ShopPageArgs>();
-          return _i6.ShopConnector(args.selectedShop);
+          return _i7.ShopConnector(args.selectedShop);
         }),
     CommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.CommunityFundConnector();
-        }),
-    SendToCommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i9.SendToCommunityFundConnector();
+          return _i8.CommunityFundConnector();
         })
   };
 
@@ -169,7 +183,6 @@ class AppRouter extends _i1.RootStackRouter {
                 _i1.RouteConfig(BackupWalletPage.name, path: 'backup'),
                 _i1.RouteConfig(SettingsPage.name, path: 'settings'),
                 _i1.RouteConfig(SelectContactPage.name, path: 'contacts'),
-                _i1.RouteConfig(SendToContactPage.name, path: 'contacts/send'),
                 _i1.RouteConfig(CashOutPage.name, path: 'cash-out'),
                 _i1.RouteConfig(TransactionHistoryPage.name,
                     path: 'transactions')
@@ -187,12 +200,17 @@ class AppRouter extends _i1.RootStackRouter {
               children: [
                 _i1.RouteConfig('#redirect',
                     path: '', redirectTo: 'community/fund', fullMatch: true),
-                _i1.RouteConfig(CommunityFundPage.name, path: 'community/fund'),
-                _i1.RouteConfig(SendToCommunityFundPage.name,
-                    path: 'community/fund/contribute')
+                _i1.RouteConfig(CommunityFundPage.name, path: 'community/fund')
               ])
         ]),
+        _i1.RouteConfig(SendToContactPage.name, path: 'contacts/contact'),
+        _i1.RouteConfig(SendToContactReviewPage.name,
+            path: '/contacts/contact/review'),
         _i1.RouteConfig(ShopItemDetailsPage.name, path: '/shops/shop/item'),
+        _i1.RouteConfig(SendToCommunityFundPage.name,
+            path: 'community/fund/contribute'),
+        _i1.RouteConfig(SendToCommunityFundReviewPage.name,
+            path: '/community/fund/contribute/review'),
         _i1.RouteConfig(ProgressPopup.name, path: '/progress-dialog')
       ];
 }
@@ -234,6 +252,42 @@ class AppHubWindow extends _i1.PageRouteInfo {
   static const String name = 'AppHubWindow';
 }
 
+class SendToContactPage extends _i1.PageRouteInfo<SendToContactPageArgs> {
+  SendToContactPage({required Map<String, dynamic> contact})
+      : super(name,
+            path: 'contacts/contact',
+            args: SendToContactPageArgs(contact: contact));
+
+  static const String name = 'SendToContactPage';
+}
+
+class SendToContactPageArgs {
+  const SendToContactPageArgs({required this.contact});
+
+  final Map<String, dynamic> contact;
+}
+
+class SendToContactReviewPage
+    extends _i1.PageRouteInfo<SendToContactReviewPageArgs> {
+  SendToContactReviewPage(
+      {required Map<String, dynamic> contact, required String amount})
+      : super(name,
+            path: '/contacts/contact/review',
+            args:
+                SendToContactReviewPageArgs(contact: contact, amount: amount));
+
+  static const String name = 'SendToContactReviewPage';
+}
+
+class SendToContactReviewPageArgs {
+  const SendToContactReviewPageArgs(
+      {required this.contact, required this.amount});
+
+  final Map<String, dynamic> contact;
+
+  final String amount;
+}
+
 class ShopItemDetailsPage extends _i1.PageRouteInfo<ShopItemDetailsPageArgs> {
   ShopItemDetailsPage(
       {required dynamic selectedShop, required _i10.ShopItem shopItem})
@@ -252,6 +306,29 @@ class ShopItemDetailsPageArgs {
   final dynamic selectedShop;
 
   final _i10.ShopItem shopItem;
+}
+
+class SendToCommunityFundPage extends _i1.PageRouteInfo {
+  const SendToCommunityFundPage()
+      : super(name, path: 'community/fund/contribute');
+
+  static const String name = 'SendToCommunityFundPage';
+}
+
+class SendToCommunityFundReviewPage
+    extends _i1.PageRouteInfo<SendToCommunityFundReviewPageArgs> {
+  SendToCommunityFundReviewPage({required String amount})
+      : super(name,
+            path: '/community/fund/contribute/review',
+            args: SendToCommunityFundReviewPageArgs(amount: amount));
+
+  static const String name = 'SendToCommunityFundReviewPage';
+}
+
+class SendToCommunityFundReviewPageArgs {
+  const SendToCommunityFundReviewPageArgs({required this.amount});
+
+  final String amount;
 }
 
 class ProgressPopup extends _i1.PageRouteInfo {
@@ -311,12 +388,6 @@ class SelectContactPage extends _i1.PageRouteInfo {
   static const String name = 'SelectContactPage';
 }
 
-class SendToContactPage extends _i1.PageRouteInfo {
-  const SendToContactPage() : super(name, path: 'contacts/send');
-
-  static const String name = 'SendToContactPage';
-}
-
 class CashOutPage extends _i1.PageRouteInfo {
   const CashOutPage() : super(name, path: 'cash-out');
 
@@ -353,11 +424,4 @@ class CommunityFundPage extends _i1.PageRouteInfo {
   const CommunityFundPage() : super(name, path: 'community/fund');
 
   static const String name = 'CommunityFundPage';
-}
-
-class SendToCommunityFundPage extends _i1.PageRouteInfo {
-  const SendToCommunityFundPage()
-      : super(name, path: 'community/fund/contribute');
-
-  static const String name = 'SendToCommunityFundPage';
 }

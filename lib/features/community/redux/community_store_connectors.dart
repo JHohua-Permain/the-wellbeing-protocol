@@ -5,7 +5,9 @@ import 'package:the_wellbeing_protocol/core/state/app_state.dart';
 import 'package:the_wellbeing_protocol/features/community/community_view_models.dart';
 import 'package:the_wellbeing_protocol/features/community/redux/community_actions.dart';
 import 'package:the_wellbeing_protocol/features/community/screens/community_fund_screen.dart';
+import 'package:the_wellbeing_protocol/features/community/screens/send_to_community_fund_review_screen.dart';
 import 'package:the_wellbeing_protocol/features/community/screens/send_to_community_fund_screen.dart';
+import 'package:the_wellbeing_protocol/routing/app_router.gr.dart';
 
 class CommunityFundConnector extends StatelessWidget {
   @override
@@ -40,6 +42,28 @@ class SendToCommunityFundConnector extends StatelessWidget {
       converter: (store) => SendToCommunityFundViewModel(
         tokenSymbol: store.state.community.homeToken!.symbol,
         submitSendAmount: (amount) {
+          context.router
+              .navigate(SendToCommunityFundReviewPage(amount: amount));
+        },
+      ),
+    );
+  }
+}
+
+class SendToCommunityFundReviewConnector extends StatelessWidget {
+  final String amount;
+
+  SendToCommunityFundReviewConnector(this.amount);
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, SendToCommunityFundReviewViewModel>(
+      distinct: true,
+      builder: (context, vm) => SendToCommunityFundReviewScreen(vm),
+      converter: (store) => SendToCommunityFundReviewViewModel(
+        amount: amount,
+        tokenSymbol: store.state.community.homeToken!.symbol,
+        confirmTransfer: () {
           // TODO
         },
       ),

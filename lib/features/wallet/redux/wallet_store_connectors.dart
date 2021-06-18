@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
 import 'package:the_wellbeing_protocol/core/state/app_state.dart';
 import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_actions.dart';
 import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_thunk_actions.dart';
@@ -8,11 +9,13 @@ import 'package:the_wellbeing_protocol/features/wallet/screens/account_screen.da
 import 'package:the_wellbeing_protocol/features/wallet/screens/backup_wallet_screen.dart';
 import 'package:the_wellbeing_protocol/features/wallet/screens/cash_out_screen.dart';
 import 'package:the_wellbeing_protocol/features/wallet/screens/select_contact_screen.dart';
+import 'package:the_wellbeing_protocol/features/wallet/screens/send_to_contact_review_screen.dart';
 import 'package:the_wellbeing_protocol/features/wallet/screens/send_to_contact_screen.dart';
 import 'package:the_wellbeing_protocol/features/wallet/screens/settings_screen.dart';
 import 'package:the_wellbeing_protocol/features/wallet/screens/transaction_history_screen.dart';
 import 'package:the_wellbeing_protocol/features/wallet/screens/wallet_screen.dart';
 import 'package:the_wellbeing_protocol/features/wallet/wallet_view_models.dart';
+import 'package:the_wellbeing_protocol/routing/app_router.gr.dart';
 
 class AccountConnector extends StatelessWidget {
   @override
@@ -67,8 +70,8 @@ class SelectContactConnector extends StatelessWidget {
       converter: (store) => SelectContactViewModel(
           contacts: store.state.user.contacts,
           selectContact: (contact) {
-            store.dispatch(SetSendToContact(contact));
-            context.router.navigateNamed('contacts/send');
+            context.router
+                .navigate(SendToContactPage(contact: contact.toJson()));
           }),
       onInit: (store) {
         store.dispatch(fetchContacts());
@@ -78,15 +81,44 @@ class SelectContactConnector extends StatelessWidget {
 }
 
 class SendToContactConnector extends StatelessWidget {
+  final Map<String, dynamic> contact;
+
+  SendToContactConnector(this.contact);
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, SendToContactViewModel>(
       distinct: true,
       builder: (context, vm) => SendToContactScreen(vm),
       converter: (store) => SendToContactViewModel(
-        contact: store.state.user.sendToContact!,
+        contact: CommunityEntity.fromJson(contact),
         tokenSymbol: store.state.community.homeToken!.symbol,
         submitSendAmount: (amount) {
+          context.router.navigate(
+            SendToContactReviewPage(contact: contact, amount: amount),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class SendToContactReviewConnector extends StatelessWidget {
+  final Map<String, dynamic> contact;
+  final String amount;
+
+  SendToContactReviewConnector(this.contact, this.amount);
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, SendToContactReviewViewModel>(
+      distinct: true,
+      builder: (context, vm) => SendToContactReviewScreen(vm),
+      converter: (store) => SendToContactReviewViewModel(
+        contact: CommunityEntity.fromJson(contact),
+        amount: amount,
+        tokenSymbol: store.state.community.homeToken!.symbol,
+        confirmTransfer: () {
           // TODO
         },
       ),
@@ -125,9 +157,15 @@ class SettingsConnector extends StatelessWidget {
 class TransactionHistoryConnector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(
+    return StoreConnector<AppState, TransactionHistoryViewModel>(
       rebuildOnChange: false,
-      builder: (context, vm) => TransactionHistoryScreen(),
+      builder: (context, vm) => TransactionHistoryScreen(vm),
+      converter: (store) => TransactionHistoryViewModel(
+        store.state.user.transfers,
+      ),
+      onInit: (store) {
+        store.dispatch(fetchTransfers());
+      },
     );
   }
 }

@@ -41,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
             //       color: Colors.black,
             //     ),
             //   ),
-            //   onTap: vm.pushLanguageScreen,
+            //   onTap: () {},
             // ),
             ListTile(
               title: Padding(
@@ -60,6 +60,38 @@ class SettingsScreen extends StatelessWidget {
           ],
         ).toList(),
       ),
+    );
+  }
+}
+
+class _SelectLanguageDropDownMenu extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: ListTile.divideTiles(
+        context: context,
+        tiles: [
+          ListTile(
+            title: Text('Language'),
+            trailing: InkWell(
+              onTap: () => Navigator.of(context).pop(),
+              child: Icon(
+                Icons.arrow_drop_up,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          ListTile(
+            title: Text('United State'),
+          ),
+          ListTile(
+            title: Text('Espana'),
+          ),
+          ListTile(
+            title: Text('Brasil'),
+          ),
+        ],
+      ).toList(),
     );
   }
 }

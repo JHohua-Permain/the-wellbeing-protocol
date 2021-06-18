@@ -1,6 +1,7 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/core/models/transfer.dart';
 import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_actions.dart';
 import 'package:the_wellbeing_protocol/redux/common/common_utils.dart';
 
@@ -33,6 +34,44 @@ AppThunkAction fetchContacts() {
       //TODO: Handle response when permissions are denied.
       throw UnimplementedError();
     }
+  };
+}
+
+AppThunkAction fetchTransfers() {
+  return (store, services) async {
+    Map<String, dynamic> json = await services.fuseAPIService
+        .getActionsByWalletAddress(store.state.user.walletAddress);
+
+    List<dynamic> docs = json['docs'];
+    List<Transfer> transfers;
+
+    print(docs);
+    for (dynamic doc in docs) {
+      if (doc.containsKey('data')) {
+        dynamic data = json['data'];
+
+        print(data);
+      }
+    }
+
+    // store.dispatch(SetTransfers(transfers));
+  };
+}
+
+//TODO: Implement as middleware.
+AppThunkAction sendTokens(
+  String amount,
+  String tokenAddress,
+  String receiverAddress,
+) {
+  return (store, services) {
+    services.fuseAPIService.tokenTransfer(
+      services.fuseNetworkService,
+      store.state.user.walletAddress,
+      tokenAddress,
+      receiverAddress,
+      int.parse(amount),
+    );
   };
 }
 
