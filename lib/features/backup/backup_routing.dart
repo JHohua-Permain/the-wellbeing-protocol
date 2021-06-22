@@ -7,4 +7,9 @@ const List<MaterialRoute> backupRoutes = [
     path: '/backup',
     page: BackupWalletConnector,
   ),
+  MaterialRoute(
+    name: 'BackupWalletConfirmPage',
+    path: '/backup/confirm',
+    page: BackupWalletConfirmConnector,
+  ),
 ];

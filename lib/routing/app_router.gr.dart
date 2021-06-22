@@ -106,6 +106,11 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i6.BackupWalletConnector();
         }),
+    BackupWalletConfirmPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i6.BackupWalletConfirmConnector();
+        }),
     AppHubRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -204,6 +209,7 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(TransactionSuccessPage.name,
             path: '/hub/review/status'),
         _i1.RouteConfig(BackupWalletPage.name, path: '/backup'),
+        _i1.RouteConfig(BackupWalletConfirmPage.name, path: '/backup/confirm'),
         _i1.RouteConfig(AppHubRoute.name, path: '/hub', guards: [
           authGuard
         ], children: [
@@ -391,6 +397,12 @@ class BackupWalletPage extends _i1.PageRouteInfo {
   const BackupWalletPage() : super(name, path: '/backup');
 
   static const String name = 'BackupWalletPage';
+}
+
+class BackupWalletConfirmPage extends _i1.PageRouteInfo {
+  const BackupWalletConfirmPage() : super(name, path: '/backup/confirm');
+
+  static const String name = 'BackupWalletConfirmPage';
 }
 
 class AppHubRoute extends _i1.PageRouteInfo {
