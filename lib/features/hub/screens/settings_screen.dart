@@ -22,13 +22,13 @@ class SettingsScreen extends StatelessWidget {
             //   ),
             //   onTap: vm.pushAboutScreen,
             // ),
-            // ListTile(
-            //   title: Padding(
-            //     padding: const EdgeInsets.only(top: 30, bottom: 30),
-            //     child: Text('Protect your wallet'),
-            //   ),
-            //   onTap: vm.pushProtectWalletScreen,
-            // ),
+            ListTile(
+              title: Padding(
+                padding: const EdgeInsets.only(top: 30, bottom: 30),
+                child: Text('Protect your wallet'),
+              ),
+              onTap: vm.pushProtectWalletScreen,
+            ),
             // ListTile(
             //   title: Padding(
             //     padding: const EdgeInsets.only(top: 30, bottom: 30),

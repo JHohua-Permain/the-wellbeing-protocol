@@ -53,6 +53,11 @@ const MaterialRoute walletRouter = MaterialRoute(
       page: SettingsConnector,
     ),
     MaterialRoute(
+      name: 'ProtectPage',
+      path: 'settings/protect',
+      page: ProtectConnector,
+    ),
+    MaterialRoute(
       name: 'SelectContactPage',
       path: 'contacts',
       page: SelectContactConnector,

@@ -9,6 +9,7 @@ import 'package:the_wellbeing_protocol/features/hub/redux/hub_thunk_actions.dart
 import 'package:the_wellbeing_protocol/features/hub/screens/account_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/cash_out_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/community_fund_screen.dart';
+import 'package:the_wellbeing_protocol/features/hub/screens/protect_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/select_contact_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/select_shop_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/settings_screen.dart';
@@ -64,6 +65,16 @@ class CommunityFundConnector extends StatelessWidget {
       onInit: (store) {
         store.dispatch(FetchMembers());
       },
+    );
+  }
+}
+
+class ProtectConnector extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StoreBuilder<AppState>(
+      rebuildOnChange: false,
+      builder: (context, vm) => ProtectScreen(),
     );
   }
 }
@@ -128,7 +139,7 @@ class SettingsConnector extends StatelessWidget {
           context.router.navigateNamed('about');
         },
         pushProtectWalletScreen: () {
-          context.router.navigateNamed('protect');
+          context.router.navigateNamed('settings/protect');
         },
         logoutUser: () {
           store.dispatch(Logout());

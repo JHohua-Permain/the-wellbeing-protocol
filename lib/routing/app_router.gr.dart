@@ -154,6 +154,11 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i9.SettingsConnector();
         }),
+    ProtectPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i9.ProtectConnector();
+        }),
     SelectContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -221,6 +226,7 @@ class AppRouter extends _i1.RootStackRouter {
                 _i1.RouteConfig(WalletPage.name, path: 'wallet'),
                 _i1.RouteConfig(AccountPage.name, path: 'account'),
                 _i1.RouteConfig(SettingsPage.name, path: 'settings'),
+                _i1.RouteConfig(ProtectPage.name, path: 'settings/protect'),
                 _i1.RouteConfig(SelectContactPage.name, path: 'contacts'),
                 _i1.RouteConfig(CashOutPage.name, path: 'cash-out'),
                 _i1.RouteConfig(TransactionHistoryPage.name,
@@ -455,6 +461,12 @@ class SettingsPage extends _i1.PageRouteInfo {
   const SettingsPage() : super(name, path: 'settings');
 
   static const String name = 'SettingsPage';
+}
+
+class ProtectPage extends _i1.PageRouteInfo {
+  const ProtectPage() : super(name, path: 'settings/protect');
+
+  static const String name = 'ProtectPage';
 }
 
 class SelectContactPage extends _i1.PageRouteInfo {
