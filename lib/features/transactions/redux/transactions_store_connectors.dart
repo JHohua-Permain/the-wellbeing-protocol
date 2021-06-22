@@ -8,6 +8,7 @@ import 'package:the_wellbeing_protocol/features/transactions/screens/send_to_con
 import 'package:the_wellbeing_protocol/features/transactions/screens/send_to_contact_screen.dart';
 import 'package:the_wellbeing_protocol/features/transactions/screens/shop_checkout_review_screen.dart';
 import 'package:the_wellbeing_protocol/features/transactions/screens/shop_item_details_screen.dart';
+import 'package:the_wellbeing_protocol/features/transactions/screens/transaction_success_screen.dart';
 import 'package:the_wellbeing_protocol/features/transactions/transaction_view_models.dart';
 import 'package:the_wellbeing_protocol/routing/app_router.gr.dart';
 
@@ -43,7 +44,8 @@ class SendToCommunityFundReviewConnector extends StatelessWidget {
         amount: amount,
         tokenSymbol: store.state.community.homeToken!.symbol,
         confirmTransfer: () {
-          // TODO
+          // TODO.
+          context.router.navigate(TransactionSuccessPage());
         },
       ),
     );
@@ -93,7 +95,8 @@ class SendToContactReviewConnector extends StatelessWidget {
         amount: amount,
         tokenSymbol: store.state.community.homeToken!.symbol,
         confirmTransfer: () {
-          // TODO
+          // TODO.
+          context.router.navigate(TransactionSuccessPage());
         },
       ),
     );
@@ -123,16 +126,16 @@ class ShopCheckoutReviewConnector extends StatelessWidget {
         shop: store.state.community.shops[shopId]!,
         shopItem: store.state.community.shops[shopId]!.items[itemId]!,
         tokenSymbol: store.state.community.homeToken!.symbol,
-        amount: amount,
+        amount: () {
+          return (store.state.community.shops[shopId]!.items[itemId]!.cost *
+                  count)
+              .toString();
+        }(),
         confirmTransfer: () {
-          // TODO
+          // TODO.
+          context.router.navigate(TransactionSuccessPage());
         },
       ),
-      onInit: (store) {
-        amount =
-            (store.state.community.shops[shopId]!.items[itemId]!.cost * count)
-                .toString();
-      },
     );
   }
 }
@@ -162,6 +165,25 @@ class ShopItemDetailsConnector extends StatelessWidget {
             count: count,
             location: location,
           ));
+        },
+      ),
+    );
+  }
+}
+
+class TransactionSuccessConnector extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StoreBuilder<AppState>(
+      rebuildOnChange: false,
+      builder: (context, vm) => TransactionSuccessScreen(
+        popScreen: () {
+          context.router.popUntilRouteWithName('AppHubRoute');
+          TabsRouter? hubRouter =
+              context.router.innerRouterOf<TabsRouter>('AppHubRoute');
+          if (hubRouter != null) {
+            hubRouter.setActiveIndex(0);
+          }
         },
       ),
     );

@@ -32,4 +32,9 @@ const List<MaterialRoute> transactionRoutes = [
     path: '/community/fund/review',
     page: SendToCommunityFundReviewConnector,
   ),
+  MaterialRoute(
+    name: 'TransactionSuccessPage',
+    path: '/hub/review/status',
+    page: TransactionSuccessConnector,
+  ),
 ];

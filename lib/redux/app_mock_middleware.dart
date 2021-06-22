@@ -67,7 +67,7 @@ class AppMocks {
 
   List<String> _mockShopLocations(Faker faker) {
     return List.generate(
-      faker.randomGenerator.integer(3),
+      faker.randomGenerator.integer(3, min: 1),
       (index) => faker.address.streetAddress(),
     );
   }

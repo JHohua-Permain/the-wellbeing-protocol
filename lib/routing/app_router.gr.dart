@@ -96,6 +96,11 @@ class AppRouter extends _i1.RootStackRouter {
               final args = data.argsAs<SendToCommunityFundReviewPageArgs>();
               return _i5.SendToCommunityFundReviewConnector(args.amount);
             }),
+    TransactionSuccessPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i5.TransactionSuccessConnector();
+        }),
     BackupWalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -196,6 +201,8 @@ class AppRouter extends _i1.RootStackRouter {
             path: '/community/fund/contribute'),
         _i1.RouteConfig(SendToCommunityFundReviewPage.name,
             path: '/community/fund/review'),
+        _i1.RouteConfig(TransactionSuccessPage.name,
+            path: '/hub/review/status'),
         _i1.RouteConfig(BackupWalletPage.name, path: '/backup'),
         _i1.RouteConfig(AppHubRoute.name, path: '/hub', guards: [
           authGuard
@@ -372,6 +379,12 @@ class SendToCommunityFundReviewPageArgs {
   const SendToCommunityFundReviewPageArgs({required this.amount});
 
   final String amount;
+}
+
+class TransactionSuccessPage extends _i1.PageRouteInfo {
+  const TransactionSuccessPage() : super(name, path: '/hub/review/status');
+
+  static const String name = 'TransactionSuccessPage';
 }
 
 class BackupWalletPage extends _i1.PageRouteInfo {
