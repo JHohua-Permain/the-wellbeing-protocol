@@ -61,10 +61,11 @@ class AppRouter extends _i1.RootStackRouter {
                   contactId: pathParams.getString('contactId')));
           return _i5.SendToContactConnector(args.contactId);
         }),
-    SendToCommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    SendToContactReviewPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return _i5.SendToCommunityFundConnector();
+        builder: (data) {
+          final args = data.argsAs<SendToContactReviewPageArgs>();
+          return _i5.SendToContactReviewConnector(args.contactId, args.amount);
         }),
     ShopItemDetailsPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -76,6 +77,25 @@ class AppRouter extends _i1.RootStackRouter {
                   itemId: pathParams.getString('itemId')));
           return _i5.ShopItemDetailsConnector(args.shopId, args.itemId);
         }),
+    ShopCheckoutReviewPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<ShopCheckoutReviewPageArgs>();
+          return _i5.ShopCheckoutReviewConnector(
+              args.shopId, args.itemId, args.count, args.location);
+        }),
+    SendToCommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i5.SendToCommunityFundConnector();
+        }),
+    SendToCommunityFundReviewPage.name: (routeData) =>
+        _i1.MaterialPageX<dynamic>(
+            routeData: routeData,
+            builder: (data) {
+              final args = data.argsAs<SendToCommunityFundReviewPageArgs>();
+              return _i5.SendToCommunityFundReviewConnector(args.amount);
+            }),
     BackupWalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -168,10 +188,14 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(LoginPage.name, path: '/login'),
         _i1.RouteConfig(VerificationPage.name, path: '/login/verify'),
         _i1.RouteConfig(SendToContactPage.name, path: '/contacts/:contactId'),
-        _i1.RouteConfig(SendToCommunityFundPage.name,
-            path: '/community/fund/contribute'),
+        _i1.RouteConfig(SendToContactReviewPage.name, path: '/contacts/review'),
         _i1.RouteConfig(ShopItemDetailsPage.name,
             path: '/shops/:shopId/:itemId'),
+        _i1.RouteConfig(ShopCheckoutReviewPage.name, path: '/shops/review'),
+        _i1.RouteConfig(SendToCommunityFundPage.name,
+            path: '/community/fund/contribute'),
+        _i1.RouteConfig(SendToCommunityFundReviewPage.name,
+            path: '/community/fund/review'),
         _i1.RouteConfig(BackupWalletPage.name, path: '/backup'),
         _i1.RouteConfig(AppHubRoute.name, path: '/hub', guards: [
           authGuard
@@ -255,11 +279,24 @@ class SendToContactPageArgs {
   final String contactId;
 }
 
-class SendToCommunityFundPage extends _i1.PageRouteInfo {
-  const SendToCommunityFundPage()
-      : super(name, path: '/community/fund/contribute');
+class SendToContactReviewPage
+    extends _i1.PageRouteInfo<SendToContactReviewPageArgs> {
+  SendToContactReviewPage({required String contactId, required String amount})
+      : super(name,
+            path: '/contacts/review',
+            args: SendToContactReviewPageArgs(
+                contactId: contactId, amount: amount));
 
-  static const String name = 'SendToCommunityFundPage';
+  static const String name = 'SendToContactReviewPage';
+}
+
+class SendToContactReviewPageArgs {
+  const SendToContactReviewPageArgs(
+      {required this.contactId, required this.amount});
+
+  final String contactId;
+
+  final String amount;
 }
 
 class ShopItemDetailsPage extends _i1.PageRouteInfo<ShopItemDetailsPageArgs> {
@@ -278,6 +315,63 @@ class ShopItemDetailsPageArgs {
   final String shopId;
 
   final String itemId;
+}
+
+class ShopCheckoutReviewPage
+    extends _i1.PageRouteInfo<ShopCheckoutReviewPageArgs> {
+  ShopCheckoutReviewPage(
+      {required String shopId,
+      required String itemId,
+      required int count,
+      required String location})
+      : super(name,
+            path: '/shops/review',
+            args: ShopCheckoutReviewPageArgs(
+                shopId: shopId,
+                itemId: itemId,
+                count: count,
+                location: location));
+
+  static const String name = 'ShopCheckoutReviewPage';
+}
+
+class ShopCheckoutReviewPageArgs {
+  const ShopCheckoutReviewPageArgs(
+      {required this.shopId,
+      required this.itemId,
+      required this.count,
+      required this.location});
+
+  final String shopId;
+
+  final String itemId;
+
+  final int count;
+
+  final String location;
+}
+
+class SendToCommunityFundPage extends _i1.PageRouteInfo {
+  const SendToCommunityFundPage()
+      : super(name, path: '/community/fund/contribute');
+
+  static const String name = 'SendToCommunityFundPage';
+}
+
+class SendToCommunityFundReviewPage
+    extends _i1.PageRouteInfo<SendToCommunityFundReviewPageArgs> {
+  SendToCommunityFundReviewPage({required String amount})
+      : super(name,
+            path: '/community/fund/review',
+            args: SendToCommunityFundReviewPageArgs(amount: amount));
+
+  static const String name = 'SendToCommunityFundReviewPage';
+}
+
+class SendToCommunityFundReviewPageArgs {
+  const SendToCommunityFundReviewPageArgs({required this.amount});
+
+  final String amount;
 }
 
 class BackupWalletPage extends _i1.PageRouteInfo {

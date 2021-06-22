@@ -8,13 +8,28 @@ const List<MaterialRoute> transactionRoutes = [
     page: SendToContactConnector,
   ),
   MaterialRoute(
-    name: 'SendToCommunityFundPage',
-    path: '/community/fund/contribute',
-    page: SendToCommunityFundConnector,
+    name: 'SendToContactReviewPage',
+    path: '/contacts/review',
+    page: SendToContactReviewConnector,
   ),
   MaterialRoute(
     name: 'ShopItemDetailsPage',
     path: '/shops/:shopId/:itemId',
     page: ShopItemDetailsConnector,
+  ),
+  MaterialRoute(
+    name: 'ShopCheckoutReviewPage',
+    path: '/shops/review',
+    page: ShopCheckoutReviewConnector,
+  ),
+  MaterialRoute(
+    name: 'SendToCommunityFundPage',
+    path: '/community/fund/contribute',
+    page: SendToCommunityFundConnector,
+  ),
+  MaterialRoute(
+    name: 'SendToCommunityFundReviewPage',
+    path: '/community/fund/review',
+    page: SendToCommunityFundReviewConnector,
   ),
 ];

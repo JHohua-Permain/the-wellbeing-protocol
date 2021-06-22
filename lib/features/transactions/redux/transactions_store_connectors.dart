@@ -2,10 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:the_wellbeing_protocol/core/states/app_state.dart';
+import 'package:the_wellbeing_protocol/features/transactions/screens/send_to_community_fund_review_screen.dart';
 import 'package:the_wellbeing_protocol/features/transactions/screens/send_to_community_fund_screen.dart';
+import 'package:the_wellbeing_protocol/features/transactions/screens/send_to_contact_review_screen.dart';
 import 'package:the_wellbeing_protocol/features/transactions/screens/send_to_contact_screen.dart';
+import 'package:the_wellbeing_protocol/features/transactions/screens/shop_checkout_review_screen.dart';
 import 'package:the_wellbeing_protocol/features/transactions/screens/shop_item_details_screen.dart';
 import 'package:the_wellbeing_protocol/features/transactions/transaction_view_models.dart';
+import 'package:the_wellbeing_protocol/routing/app_router.gr.dart';
 
 class SendToCommunityFundConnector extends StatelessWidget {
   @override
@@ -16,6 +20,29 @@ class SendToCommunityFundConnector extends StatelessWidget {
       converter: (store) => SendToCommunityFundViewModel(
         tokenSymbol: store.state.community.homeToken!.symbol,
         submitSendAmount: (amount) {
+          context.router.navigate(
+            SendToCommunityFundReviewPage(amount: amount),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class SendToCommunityFundReviewConnector extends StatelessWidget {
+  final String amount;
+
+  SendToCommunityFundReviewConnector(this.amount);
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, SendToCommunityFundReviewViewModel>(
+      distinct: true,
+      builder: (context, vm) => SendToCommunityFundReviewScreen(vm),
+      converter: (store) => SendToCommunityFundReviewViewModel(
+        amount: amount,
+        tokenSymbol: store.state.community.homeToken!.symbol,
+        confirmTransfer: () {
           // TODO
         },
       ),
@@ -39,9 +66,73 @@ class SendToContactConnector extends StatelessWidget {
         }),
         tokenSymbol: store.state.community.homeToken!.symbol,
         submitSendAmount: (amount) {
+          context.router.navigate(
+            SendToContactReviewPage(contactId: contactId, amount: amount),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class SendToContactReviewConnector extends StatelessWidget {
+  final String contactId;
+  final String amount;
+
+  SendToContactReviewConnector(this.contactId, this.amount);
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, SendToContactReviewViewModel>(
+      distinct: true,
+      builder: (context, vm) => SendToContactReviewScreen(vm),
+      converter: (store) => SendToContactReviewViewModel(
+        contact: store.state.user.contacts.singleWhere((contact) {
+          return contact.walletAddress == contactId;
+        }),
+        amount: amount,
+        tokenSymbol: store.state.community.homeToken!.symbol,
+        confirmTransfer: () {
           // TODO
         },
       ),
+    );
+  }
+}
+
+class ShopCheckoutReviewConnector extends StatelessWidget {
+  final String shopId;
+  final String itemId;
+  final int count;
+  final String location;
+  late final String amount;
+
+  ShopCheckoutReviewConnector(
+    this.shopId,
+    this.itemId,
+    this.count,
+    this.location,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, ShopCheckoutReviewViewModel>(
+      distinct: true,
+      builder: (context, vm) => ShopCheckoutReviewScreen(vm),
+      converter: (store) => ShopCheckoutReviewViewModel(
+        shop: store.state.community.shops[shopId]!,
+        shopItem: store.state.community.shops[shopId]!.items[itemId]!,
+        tokenSymbol: store.state.community.homeToken!.symbol,
+        amount: amount,
+        confirmTransfer: () {
+          // TODO
+        },
+      ),
+      onInit: (store) {
+        amount =
+            (store.state.community.shops[shopId]!.items[itemId]!.cost * count)
+                .toString();
+      },
     );
   }
 }
@@ -65,7 +156,12 @@ class ShopItemDetailsConnector extends StatelessWidget {
         shopItem: store.state.community.shops[shopId]!.items[itemId]!,
         tokenSymbol: store.state.community.homeToken!.symbol,
         checkout: (count, location) {
-          // TODO.
+          context.router.navigate(ShopCheckoutReviewPage(
+            shopId: shopId,
+            itemId: itemId,
+            count: count,
+            location: location,
+          ));
         },
       ),
     );
