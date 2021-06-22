@@ -63,6 +63,11 @@ const MaterialRoute walletRouter = MaterialRoute(
       page: SelectContactConnector,
     ),
     MaterialRoute(
+      name: 'ReceivePage',
+      path: 'receive',
+      page: ReceiveConnector,
+    ),
+    MaterialRoute(
       name: 'CashOutPage',
       path: 'cash-out',
       page: CashOutConnector,

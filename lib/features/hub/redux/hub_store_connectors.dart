@@ -11,6 +11,7 @@ import 'package:the_wellbeing_protocol/features/hub/screens/account_screen.dart'
 import 'package:the_wellbeing_protocol/features/hub/screens/cash_out_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/community_fund_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/protect_screen.dart';
+import 'package:the_wellbeing_protocol/features/hub/screens/receive_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/select_contact_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/select_shop_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/settings_screen.dart';
@@ -76,6 +77,21 @@ class ProtectConnector extends StatelessWidget {
     return StoreBuilder<AppState>(
       rebuildOnChange: false,
       builder: (context, vm) => ProtectScreen(),
+    );
+  }
+}
+
+class ReceiveConnector extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StoreBuilder<AppState>(
+      rebuildOnChange: false,
+      builder: (context, vm) => ReceiveScreen(
+        walletAddress: vm.state.user.walletAddress!,
+        share: () {
+          // TODO.
+        },
+      ),
     );
   }
 }

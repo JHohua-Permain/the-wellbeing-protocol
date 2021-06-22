@@ -164,6 +164,11 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i9.SelectContactConnector();
         }),
+    ReceivePage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i9.ReceiveConnector();
+        }),
     CashOutPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -228,6 +233,7 @@ class AppRouter extends _i1.RootStackRouter {
                 _i1.RouteConfig(SettingsPage.name, path: 'settings'),
                 _i1.RouteConfig(ProtectPage.name, path: 'settings/protect'),
                 _i1.RouteConfig(SelectContactPage.name, path: 'contacts'),
+                _i1.RouteConfig(ReceivePage.name, path: 'receive'),
                 _i1.RouteConfig(CashOutPage.name, path: 'cash-out'),
                 _i1.RouteConfig(TransactionHistoryPage.name,
                     path: 'transactions')
@@ -473,6 +479,12 @@ class SelectContactPage extends _i1.PageRouteInfo {
   const SelectContactPage() : super(name, path: 'contacts');
 
   static const String name = 'SelectContactPage';
+}
+
+class ReceivePage extends _i1.PageRouteInfo {
+  const ReceivePage() : super(name, path: 'receive');
+
+  static const String name = 'ReceivePage';
 }
 
 class CashOutPage extends _i1.PageRouteInfo {

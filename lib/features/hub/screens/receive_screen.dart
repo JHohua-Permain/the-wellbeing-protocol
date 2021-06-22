@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:the_wellbeing_protocol/common/utils/address_shortener.dart';
 import 'package:the_wellbeing_protocol/common/widgets/app_scaffold.dart';
+import 'package:the_wellbeing_protocol/common/widgets/common_button.dart';
 
 class ReceiveScreen extends StatefulWidget {
+  final String walletAddress;
+  final VoidCallback share;
+
+  ReceiveScreen({required this.walletAddress, required this.share});
+
   @override
   _ReceiveScreenState createState() => _ReceiveScreenState();
 }
@@ -9,6 +17,8 @@ class ReceiveScreen extends StatefulWidget {
 class _ReceiveScreenState extends State<ReceiveScreen> {
   @override
   Widget build(BuildContext context) {
+    String shortenedWalletAddress = shortenAddress(widget.walletAddress, 10);
+
     return AppScaffold(
       title: 'Receive',
       body: Container(
@@ -20,9 +30,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
               child: Text(
                 'Scan the QR code to receive money',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                ),
+                style: TextStyle(fontSize: 16),
               ),
             ),
             SizedBox(height: 30),
@@ -37,12 +45,13 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                       left: 40,
                       right: 40,
                     ),
-                    child: Placeholder(
-                      fallbackHeight: 200,
-                      fallbackWidth: 30,
+                    child: QrImage(
+                      data: widget.walletAddress,
+                      version: QrVersions.auto,
+                      size: 250,
                     ),
                   ),
-                  Text("13fr56kjn456 WALLET-ADDRESS"),
+                  Text(shortenedWalletAddress),
                   SizedBox(height: 30),
                   Text(
                     "Copy to clipboard",
@@ -53,23 +62,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
               ),
             ),
             SizedBox(height: 30),
-            Material(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              color: Color(0xFF801E48),
-              clipBehavior: Clip.antiAlias,
-              child: MaterialButton(
-                minWidth: 218.0,
-                height: 50,
-                color: const Color(0xFFFFAD8B),
-                child: Text(
-                  'Share',
-                  style: TextStyle(fontSize: 16.0, color: Colors.black),
-                ),
-                onPressed: () {},
-              ),
-            ),
+            CommonButton(label: 'Share', onPressed: widget.share),
             SizedBox(height: 30),
           ],
         ),
