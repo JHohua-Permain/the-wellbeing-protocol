@@ -40,6 +40,9 @@ List<Reducer<User>> newAuthUserReducers() {
     TypedReducer<User, SetUserPrimaryContactNum>((state, action) {
       return state.copyWith(primaryContactNum: action.primaryContactNum);
     }),
+    TypedReducer<User, SetUserTokenBalances>((state, action) {
+      return state.copyWith(wallet: action.tokenBalances);
+    }),
     TypedReducer<User, SetUserWalletAddress>((state, action) {
       return state.copyWith(walletAddress: action.walletAddress);
     }),

@@ -43,6 +43,12 @@ class SetUserPrimaryContactNum {
   SetUserPrimaryContactNum(this.primaryContactNum);
 }
 
+class SetUserTokenBalances {
+  final Map<String, String> tokenBalances;
+
+  SetUserTokenBalances(this.tokenBalances);
+}
+
 class SetUserWalletAddress {
   final String walletAddress;
 

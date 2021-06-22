@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:the_wellbeing_protocol/common/utils/address_shortener.dart';
 import 'package:the_wellbeing_protocol/common/utils/qr_scanner.dart';
+import 'package:the_wellbeing_protocol/core/models/token.dart';
 import 'package:the_wellbeing_protocol/core/states/app_state.dart';
 import 'package:the_wellbeing_protocol/features/hub/hub_view_models.dart';
 import 'package:the_wellbeing_protocol/features/hub/redux/hub_actions.dart';
@@ -247,44 +248,53 @@ class WalletConnector extends StatelessWidget {
     return StoreConnector<AppState, WalletViewModel>(
       distinct: true,
       builder: (context, vm) => WalletScreen(vm),
-      converter: (store) => WalletViewModel(
-        displayName: store.state.user.displayName,
-        walletAddress: store.state.user.walletAddress ?? '',
-        currentTokenBalance: '0',
-        //TODO: Re-implement.
-        currentTokenSymbol: store.state.community.homeToken?.symbol ?? '',
-        openQRScanner: () {
-          scanQRCode().then((code) {
-            // TODO.
-          }).catchError((_) {
-            // TODO.
-          });
-        },
-        logoutUser: () {
-          store.dispatch(Logout());
-        },
-        pushAccountScreen: () {
-          context.router.pushNamed('account');
-        },
-        pushBackupWalletScreen: () {
-          context.router.pushNamed('/backup');
-        },
-        pushSettingsScreen: () {
-          context.router.pushNamed('settings');
-        },
-        pushCashOutScreen: () {
-          context.router.pushNamed('cash-out');
-        },
-        pushReceiveScreen: () {
-          context.router.pushNamed('receive');
-        },
-        pushSelectContactScreen: () {
-          context.router.pushNamed('contacts');
-        },
-        pushTransactionHistoryScreen: () {
-          context.router.pushNamed('transactions');
-        },
-      ),
+      converter: (store) {
+        Token currentToken = store.state.community.homeToken!;
+        BigInt value =
+            BigInt.parse(store.state.user.wallet[currentToken.address] ?? '0');
+
+        BigInt tokenDecimals = BigInt.parse(currentToken.decimals);
+        BigInt divisor = BigInt.from(10).pow(tokenDecimals.toInt());
+        String currentTokenBalance = ((value) / divisor).toString();
+
+        return WalletViewModel(
+          displayName: store.state.user.displayName,
+          walletAddress: store.state.user.walletAddress ?? '',
+          currentTokenBalance: currentTokenBalance,
+          currentTokenSymbol: store.state.community.homeToken?.symbol ?? '',
+          openQRScanner: () {
+            scanQRCode().then((code) {
+              // TODO.
+            }).catchError((_) {
+              // TODO.
+            });
+          },
+          logoutUser: () {
+            store.dispatch(Logout());
+          },
+          pushAccountScreen: () {
+            context.router.pushNamed('account');
+          },
+          pushBackupWalletScreen: () {
+            context.router.pushNamed('/backup');
+          },
+          pushSettingsScreen: () {
+            context.router.pushNamed('settings');
+          },
+          pushCashOutScreen: () {
+            context.router.pushNamed('cash-out');
+          },
+          pushReceiveScreen: () {
+            context.router.pushNamed('receive');
+          },
+          pushSelectContactScreen: () {
+            context.router.pushNamed('contacts');
+          },
+          pushTransactionHistoryScreen: () {
+            context.router.pushNamed('transactions');
+          },
+        );
+      },
     );
   }
 }

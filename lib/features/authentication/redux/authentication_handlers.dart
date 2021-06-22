@@ -80,11 +80,23 @@ class HandleSettingDisplayName extends HandlerAction {
 class HandleUpdate extends HandlerAction {
   @override
   Future<dynamic> call(Store<AppState> store, AppServices services) async {
+    String walletAddress = store.state.user.walletAddress!;
     var web3 = services.fuseNetworkService;
     var api = services.fuseAPIService;
 
     String communityAddress = web3.getDefaultCommunity();
     Token homeToken = await api.fetchCommunityHomeToken(web3, communityAddress);
+
+    dynamic homeTokenBalanceData = await web3.getTokenBalance(
+      homeToken.address,
+      address: walletAddress,
+    );
+
+    String homeTokenBalance = homeTokenBalanceData.toString();
+
+    Map<String, String> tokenBalances = {homeToken.address: homeTokenBalance};
+
+    store.dispatch(SetUserTokenBalances(tokenBalances));
     store.dispatch(SetCommunityHomeToken(homeToken));
   }
 }
@@ -115,12 +127,22 @@ class HandleUserIntialisation extends HandlerAction {
 
     await api.prepareUserDataForDb(walletAddress, displayName);
 
+    dynamic homeTokenBalanceData = await web3.getTokenBalance(
+      homeToken.address,
+      address: walletAddress,
+    );
+
+    String homeTokenBalance = homeTokenBalanceData.toString();
+
+    Map<String, String> tokenBalances = {homeToken.address: homeTokenBalance};
+
     // If the user is already a part of the database, then a duplication error
     //  is thrown and the new display name is not set, so we make this call
     //  to manually set the display name.
     await api.updateDisplayName(walletAddress, displayName);
 
     store.dispatch(SetUserWalletAddress(walletAddress));
+    store.dispatch(SetUserTokenBalances(tokenBalances));
     store.dispatch(SetUserDisplayName(displayName));
     store.dispatch(SetCommunityAddress(communityAddress));
     store.dispatch(SetCommunityHomeToken(homeToken));
