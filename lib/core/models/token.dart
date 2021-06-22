@@ -12,6 +12,7 @@ class Token with _$Token {
     required String address,
     @Default('') String name,
     @Default('') String symbol,
+    @Default('0') String decimals,
   }) = _Token;
 
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);

@@ -29,7 +29,8 @@ class _$UserTearOff {
       Map<String, String> wallet = const {},
       String? mnemonic,
       String? jwt,
-      @JsonKey(ignore: true) List<CommunityEntity> contacts = const []}) {
+      @JsonKey(ignore: true) List<CommunityEntity> contacts = const [],
+      @JsonKey(ignore: true) List<Transfer> transfers = const []}) {
     return _User(
       accountAddress: accountAddress,
       walletAddress: walletAddress,
@@ -40,6 +41,7 @@ class _$UserTearOff {
       mnemonic: mnemonic,
       jwt: jwt,
       contacts: contacts,
+      transfers: transfers,
     );
   }
 
@@ -63,6 +65,8 @@ mixin _$User {
   String? get jwt => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   List<CommunityEntity> get contacts => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  List<Transfer> get transfers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -82,7 +86,8 @@ abstract class $UserCopyWith<$Res> {
       Map<String, String> wallet,
       String? mnemonic,
       String? jwt,
-      @JsonKey(ignore: true) List<CommunityEntity> contacts});
+      @JsonKey(ignore: true) List<CommunityEntity> contacts,
+      @JsonKey(ignore: true) List<Transfer> transfers});
 }
 
 /// @nodoc
@@ -104,6 +109,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? mnemonic = freezed,
     Object? jwt = freezed,
     Object? contacts = freezed,
+    Object? transfers = freezed,
   }) {
     return _then(_value.copyWith(
       accountAddress: accountAddress == freezed
@@ -142,6 +148,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
               as List<CommunityEntity>,
+      transfers: transfers == freezed
+          ? _value.transfers
+          : transfers // ignore: cast_nullable_to_non_nullable
+              as List<Transfer>,
     ));
   }
 }
@@ -160,7 +170,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       Map<String, String> wallet,
       String? mnemonic,
       String? jwt,
-      @JsonKey(ignore: true) List<CommunityEntity> contacts});
+      @JsonKey(ignore: true) List<CommunityEntity> contacts,
+      @JsonKey(ignore: true) List<Transfer> transfers});
 }
 
 /// @nodoc
@@ -183,6 +194,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? mnemonic = freezed,
     Object? jwt = freezed,
     Object? contacts = freezed,
+    Object? transfers = freezed,
   }) {
     return _then(_User(
       accountAddress: accountAddress == freezed
@@ -221,6 +233,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
               as List<CommunityEntity>,
+      transfers: transfers == freezed
+          ? _value.transfers
+          : transfers // ignore: cast_nullable_to_non_nullable
+              as List<Transfer>,
     ));
   }
 }
@@ -237,7 +253,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       this.wallet = const {},
       this.mnemonic,
       this.jwt,
-      @JsonKey(ignore: true) this.contacts = const []});
+      @JsonKey(ignore: true) this.contacts = const [],
+      @JsonKey(ignore: true) this.transfers = const []});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
@@ -264,10 +281,13 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   @JsonKey(ignore: true)
   final List<CommunityEntity> contacts;
+  @override
+  @JsonKey(ignore: true)
+  final List<Transfer> transfers;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(accountAddress: $accountAddress, walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communities: $communities, wallet: $wallet, mnemonic: $mnemonic, jwt: $jwt, contacts: $contacts)';
+    return 'User(accountAddress: $accountAddress, walletAddress: $walletAddress, primaryContactNum: $primaryContactNum, displayName: $displayName, communities: $communities, wallet: $wallet, mnemonic: $mnemonic, jwt: $jwt, contacts: $contacts, transfers: $transfers)';
   }
 
   @override
@@ -283,7 +303,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       ..add(DiagnosticsProperty('wallet', wallet))
       ..add(DiagnosticsProperty('mnemonic', mnemonic))
       ..add(DiagnosticsProperty('jwt', jwt))
-      ..add(DiagnosticsProperty('contacts', contacts));
+      ..add(DiagnosticsProperty('contacts', contacts))
+      ..add(DiagnosticsProperty('transfers', transfers));
   }
 
   @override
@@ -314,7 +335,10 @@ class _$_User with DiagnosticableTreeMixin implements _User {
                 const DeepCollectionEquality().equals(other.jwt, jwt)) &&
             (identical(other.contacts, contacts) ||
                 const DeepCollectionEquality()
-                    .equals(other.contacts, contacts)));
+                    .equals(other.contacts, contacts)) &&
+            (identical(other.transfers, transfers) ||
+                const DeepCollectionEquality()
+                    .equals(other.transfers, transfers)));
   }
 
   @override
@@ -328,7 +352,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(wallet) ^
       const DeepCollectionEquality().hash(mnemonic) ^
       const DeepCollectionEquality().hash(jwt) ^
-      const DeepCollectionEquality().hash(contacts);
+      const DeepCollectionEquality().hash(contacts) ^
+      const DeepCollectionEquality().hash(transfers);
 
   @JsonKey(ignore: true)
   @override
@@ -351,7 +376,8 @@ abstract class _User implements User {
       Map<String, String> wallet,
       String? mnemonic,
       String? jwt,
-      @JsonKey(ignore: true) List<CommunityEntity> contacts}) = _$_User;
+      @JsonKey(ignore: true) List<CommunityEntity> contacts,
+      @JsonKey(ignore: true) List<Transfer> transfers}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -374,6 +400,9 @@ abstract class _User implements User {
   @override
   @JsonKey(ignore: true)
   List<CommunityEntity> get contacts => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  List<Transfer> get transfers => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

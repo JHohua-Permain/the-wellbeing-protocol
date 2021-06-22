@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
 import 'package:the_wellbeing_protocol/core/models/shop_item.dart';
+import 'package:the_wellbeing_protocol/core/models/transfer.dart';
 
 class AccountViewModel extends Equatable {
   final String displayName;
@@ -98,6 +99,28 @@ class ShopViewModel extends Equatable {
 
   @override
   List<Object?> get props => [shop, tokenSymbol];
+}
+
+class TransactionHistoryViewModel extends Equatable {
+  final String tokenSymbol;
+  final String tokenDecimals;
+  final bool fetchingTransfers;
+  final List<Transfer> transfers;
+
+  const TransactionHistoryViewModel({
+    required this.tokenSymbol,
+    required this.tokenDecimals,
+    required this.fetchingTransfers,
+    required this.transfers,
+  });
+
+  @override
+  List<Object?> get props => [
+        tokenSymbol,
+        tokenDecimals,
+        fetchingTransfers,
+        transfers,
+      ];
 }
 
 class WalletViewModel extends Equatable {

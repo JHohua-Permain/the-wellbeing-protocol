@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_wellbeing_protocol/common/utils/address_shortener.dart';
 import 'package:the_wellbeing_protocol/common/utils/qr_scanner.dart';
 import 'package:the_wellbeing_protocol/core/states/app_state.dart';
 import 'package:the_wellbeing_protocol/features/hub/hub_view_models.dart';
@@ -18,6 +19,7 @@ import 'package:the_wellbeing_protocol/features/hub/screens/settings_screen.dart
 import 'package:the_wellbeing_protocol/features/hub/screens/shop_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/transaction_history_screen.dart';
 import 'package:the_wellbeing_protocol/features/hub/screens/wallet_screen.dart';
+import 'package:the_wellbeing_protocol/features/hub/widgets/transfer_widget.dart';
 
 class AccountConnector extends StatelessWidget {
   @override
@@ -198,9 +200,43 @@ class ShopConnector extends StatelessWidget {
 class TransactionHistoryConnector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(
-      rebuildOnChange: false,
-      builder: (context, vm) => TransactionHistoryScreen(),
+    return StoreConnector<AppState, TransactionHistoryViewModel>(
+      distinct: true,
+      builder: (context, vm) {
+        List<TransferWidget>? transferWidgets;
+        if (!vm.fetchingTransfers) {
+          transferWidgets = [];
+          vm.transfers.forEach((transfer) {
+            String displayName =
+                transfer.type == 'Send' ? transfer.to : transfer.from;
+            displayName = shortenAddress(displayName, 10);
+
+            BigInt tokenDecimals = BigInt.parse(vm.tokenDecimals);
+            BigInt divisor = BigInt.from(10).pow(tokenDecimals.toInt());
+            String amount = ((transfer.value) / divisor).toString();
+
+            transferWidgets!.add(TransferWidget(
+              displayName: displayName,
+              amount: amount,
+              tokenSymbol: vm.tokenSymbol,
+              type: transfer.type,
+              select: () {
+                // TODO.
+              },
+            ));
+          });
+        }
+        return TransactionHistoryScreen(vm, transferWidgets: transferWidgets);
+      },
+      converter: (store) => TransactionHistoryViewModel(
+        tokenSymbol: store.state.community.homeToken!.symbol,
+        tokenDecimals: store.state.community.homeToken!.decimals,
+        fetchingTransfers: store.state.isHandling,
+        transfers: store.state.user.transfers,
+      ),
+      onInit: (store) {
+        store.dispatch(FetchWalletTransfers());
+      },
     );
   }
 }

@@ -28,6 +28,9 @@ List<Reducer<User>> newHubUserReducers() {
     TypedReducer<User, SetDisplayName>((state, action) {
       return state.copyWith(displayName: action.displayName);
     }),
+    TypedReducer<User, SetTransfers>((state, action) {
+      return state.copyWith(transfers: action.transfers);
+    }),
     TypedReducer<User, SetWalletAddress>((state, action) {
       return state.copyWith(walletAddress: action.walletAddress);
     }),

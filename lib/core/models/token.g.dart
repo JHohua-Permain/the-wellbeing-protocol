@@ -11,6 +11,7 @@ _$_Token _$_$_TokenFromJson(Map<String, dynamic> json) {
     address: json['address'] as String,
     name: json['name'] as String? ?? '',
     symbol: json['symbol'] as String? ?? '',
+    decimals: json['decimals'] as String? ?? '0',
   );
 }
 
@@ -18,4 +19,5 @@ Map<String, dynamic> _$_$_TokenToJson(_$_Token instance) => <String, dynamic>{
       'address': instance.address,
       'name': instance.name,
       'symbol': instance.symbol,
+      'decimals': instance.decimals,
     };

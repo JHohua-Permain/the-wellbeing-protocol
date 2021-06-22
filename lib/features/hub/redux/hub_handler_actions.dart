@@ -4,6 +4,7 @@ import 'package:phone_number/phone_number.dart';
 import 'package:redux/src/store.dart';
 import 'package:the_wellbeing_protocol/common/redux/common_actions.dart';
 import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
+import 'package:the_wellbeing_protocol/core/models/transfer.dart';
 import 'package:the_wellbeing_protocol/core/services/app_services.dart';
 import 'package:the_wellbeing_protocol/core/states/app_state.dart';
 import 'package:the_wellbeing_protocol/features/hub/redux/hub_actions.dart';
@@ -73,5 +74,41 @@ class FetchContacts extends HandlerAction {
     else {
       throw UnimplementedError();
     }
+  }
+}
+
+class FetchWalletTransfers extends HandlerAction {
+  @override
+  Future<dynamic> call(Store<AppState> store, AppServices services) async {
+    String walletAddress = store.state.user.walletAddress!;
+    String tokenAddress = store.state.community.homeToken!.address;
+
+    // Map<String, dynamic> data =
+    //     await services.fuseAPIService.getActionsByWalletAddress(
+    //   walletAddress,
+    // );
+    // List<dynamic> docs = data['docs'];
+    // for (dynamic doc in docs) {
+    //   if (doc.containsKey('data')) {
+    //     dynamic actionData = doc['data'];
+    //     print('Transfer Data: $actionData');
+    //   }
+    // }
+
+    List<Transfer> transfers = [];
+    List<dynamic> transfersData =
+        await services.fuseExplorerService.fetchAccountTransferData(
+      accountAddress: walletAddress,
+      tokenAddress: tokenAddress,
+    );
+    for (Map<String, dynamic> transferData in transfersData) {
+      String? type = transferData['type'];
+      if (type != null && (type == 'SEND' || type == 'RECEIVE')) {
+        print('Transfer Data: $transferData');
+        transfers.add(Transfer.fromJson(transferData));
+      }
+    }
+
+    store.dispatch(SetTransfers(transfers));
   }
 }

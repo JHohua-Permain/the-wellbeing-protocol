@@ -1,5 +1,6 @@
 import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
 import 'package:the_wellbeing_protocol/core/models/token.dart';
+import 'package:the_wellbeing_protocol/core/models/transfer.dart';
 
 class ClearData {}
 
@@ -43,6 +44,12 @@ class SetShops {
   final Map<String, CommunityShop> shops;
 
   SetShops(this.shops);
+}
+
+class SetTransfers {
+  List<Transfer> transfers;
+
+  SetTransfers(this.transfers);
 }
 
 class SetWalletAddress {

@@ -15,6 +15,7 @@ class HandleAuthentication extends HandlerAction {
     if (mnemonic != null && jwt != null) {
       services.fuseNetworkService.setCredentialsFromMnemonic(mnemonic);
       services.fuseAPIService.setJwtToken(jwt);
+      await HandleUpdate().call(store, services);
       return store.dispatch(UpdateAuthState(AuthState.authenticated()));
     }
     return store.dispatch(UpdateAuthState(AuthState.unauthenticated()));
@@ -73,6 +74,18 @@ class HandleSettingDisplayName extends HandlerAction {
   Future<dynamic> call(Store<AppState> store, AppServices services) async {
     // TODO: Validation.
     await HandleUserIntialisation(displayName).call(store, services);
+  }
+}
+
+class HandleUpdate extends HandlerAction {
+  @override
+  Future<dynamic> call(Store<AppState> store, AppServices services) async {
+    var web3 = services.fuseNetworkService;
+    var api = services.fuseAPIService;
+
+    String communityAddress = web3.getDefaultCommunity();
+    Token homeToken = await api.fetchCommunityHomeToken(web3, communityAddress);
+    store.dispatch(SetCommunityHomeToken(homeToken));
   }
 }
 

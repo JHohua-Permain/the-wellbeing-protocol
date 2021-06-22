@@ -20,11 +20,16 @@ Token _$TokenFromJson(Map<String, dynamic> json) {
 class _$TokenTearOff {
   const _$TokenTearOff();
 
-  _Token call({required String address, String name = '', String symbol = ''}) {
+  _Token call(
+      {required String address,
+      String name = '',
+      String symbol = '',
+      String decimals = '0'}) {
     return _Token(
       address: address,
       name: name,
       symbol: symbol,
+      decimals: decimals,
     );
   }
 
@@ -41,6 +46,7 @@ mixin _$Token {
   String get address => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get symbol => throw _privateConstructorUsedError;
+  String get decimals => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +57,7 @@ mixin _$Token {
 abstract class $TokenCopyWith<$Res> {
   factory $TokenCopyWith(Token value, $Res Function(Token) then) =
       _$TokenCopyWithImpl<$Res>;
-  $Res call({String address, String name, String symbol});
+  $Res call({String address, String name, String symbol, String decimals});
 }
 
 /// @nodoc
@@ -67,6 +73,7 @@ class _$TokenCopyWithImpl<$Res> implements $TokenCopyWith<$Res> {
     Object? address = freezed,
     Object? name = freezed,
     Object? symbol = freezed,
+    Object? decimals = freezed,
   }) {
     return _then(_value.copyWith(
       address: address == freezed
@@ -81,6 +88,10 @@ class _$TokenCopyWithImpl<$Res> implements $TokenCopyWith<$Res> {
           ? _value.symbol
           : symbol // ignore: cast_nullable_to_non_nullable
               as String,
+      decimals: decimals == freezed
+          ? _value.decimals
+          : decimals // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -90,7 +101,7 @@ abstract class _$TokenCopyWith<$Res> implements $TokenCopyWith<$Res> {
   factory _$TokenCopyWith(_Token value, $Res Function(_Token) then) =
       __$TokenCopyWithImpl<$Res>;
   @override
-  $Res call({String address, String name, String symbol});
+  $Res call({String address, String name, String symbol, String decimals});
 }
 
 /// @nodoc
@@ -107,6 +118,7 @@ class __$TokenCopyWithImpl<$Res> extends _$TokenCopyWithImpl<$Res>
     Object? address = freezed,
     Object? name = freezed,
     Object? symbol = freezed,
+    Object? decimals = freezed,
   }) {
     return _then(_Token(
       address: address == freezed
@@ -121,6 +133,10 @@ class __$TokenCopyWithImpl<$Res> extends _$TokenCopyWithImpl<$Res>
           ? _value.symbol
           : symbol // ignore: cast_nullable_to_non_nullable
               as String,
+      decimals: decimals == freezed
+          ? _value.decimals
+          : decimals // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -128,7 +144,11 @@ class __$TokenCopyWithImpl<$Res> extends _$TokenCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Token with DiagnosticableTreeMixin implements _Token {
-  const _$_Token({required this.address, this.name = '', this.symbol = ''});
+  const _$_Token(
+      {required this.address,
+      this.name = '',
+      this.symbol = '',
+      this.decimals = '0'});
 
   factory _$_Token.fromJson(Map<String, dynamic> json) =>
       _$_$_TokenFromJson(json);
@@ -141,10 +161,13 @@ class _$_Token with DiagnosticableTreeMixin implements _Token {
   @JsonKey(defaultValue: '')
   @override
   final String symbol;
+  @JsonKey(defaultValue: '0')
+  @override
+  final String decimals;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Token(address: $address, name: $name, symbol: $symbol)';
+    return 'Token(address: $address, name: $name, symbol: $symbol, decimals: $decimals)';
   }
 
   @override
@@ -154,7 +177,8 @@ class _$_Token with DiagnosticableTreeMixin implements _Token {
       ..add(DiagnosticsProperty('type', 'Token'))
       ..add(DiagnosticsProperty('address', address))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('symbol', symbol));
+      ..add(DiagnosticsProperty('symbol', symbol))
+      ..add(DiagnosticsProperty('decimals', decimals));
   }
 
   @override
@@ -167,7 +191,10 @@ class _$_Token with DiagnosticableTreeMixin implements _Token {
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.symbol, symbol) ||
-                const DeepCollectionEquality().equals(other.symbol, symbol)));
+                const DeepCollectionEquality().equals(other.symbol, symbol)) &&
+            (identical(other.decimals, decimals) ||
+                const DeepCollectionEquality()
+                    .equals(other.decimals, decimals)));
   }
 
   @override
@@ -175,7 +202,8 @@ class _$_Token with DiagnosticableTreeMixin implements _Token {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(symbol);
+      const DeepCollectionEquality().hash(symbol) ^
+      const DeepCollectionEquality().hash(decimals);
 
   @JsonKey(ignore: true)
   @override
@@ -189,8 +217,11 @@ class _$_Token with DiagnosticableTreeMixin implements _Token {
 }
 
 abstract class _Token implements Token {
-  const factory _Token({required String address, String name, String symbol}) =
-      _$_Token;
+  const factory _Token(
+      {required String address,
+      String name,
+      String symbol,
+      String decimals}) = _$_Token;
 
   factory _Token.fromJson(Map<String, dynamic> json) = _$_Token.fromJson;
 
@@ -200,6 +231,8 @@ abstract class _Token implements Token {
   String get name => throw _privateConstructorUsedError;
   @override
   String get symbol => throw _privateConstructorUsedError;
+  @override
+  String get decimals => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TokenCopyWith<_Token> get copyWith => throw _privateConstructorUsedError;

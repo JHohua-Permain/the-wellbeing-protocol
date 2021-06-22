@@ -4,6 +4,7 @@ import 'package:redux/redux.dart';
 import 'package:the_wellbeing_protocol/app.dart';
 import 'package:the_wellbeing_protocol/core/services/app_services.dart';
 import 'package:the_wellbeing_protocol/core/services/fuse_api_service.dart';
+import 'package:the_wellbeing_protocol/core/services/fuse_explorer_service.dart';
 import 'package:the_wellbeing_protocol/core/services/fuse_network_service.dart';
 import 'package:the_wellbeing_protocol/core/states/app_state.dart';
 import 'package:the_wellbeing_protocol/redux/app_store.dart';
@@ -28,6 +29,7 @@ void main() async {
       daiPointsManagerAddress: '',
       transferManagerAddress: '',
     ),
+    FuseExplorerService(Constants.FUSE_EXPLORER_URL),
   );
 
   Store<AppState> store = await initAppStore(

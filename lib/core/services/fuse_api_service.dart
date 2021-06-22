@@ -13,6 +13,8 @@ class FuseAPIService extends API {
     String homeTokenAddress = communityData['homeTokenAddress'];
     dynamic homeTokenData = await web3.getTokenDetails(homeTokenAddress);
     homeTokenData['address'] = homeTokenAddress;
+    String homeTokenDecimals = (homeTokenData['decimals'] as BigInt).toString();
+    homeTokenData['decimals'] = homeTokenDecimals;
     return Token.fromJson(homeTokenData);
   }
 
