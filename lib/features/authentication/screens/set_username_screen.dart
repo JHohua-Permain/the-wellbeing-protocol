@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_wellbeing_protocol/shared/widgets/common_button.dart';
+import 'package:the_wellbeing_protocol/common/widgets/common_button.dart';
 
 class SetUsernameScreen extends StatelessWidget {
   final _displayNameController = TextEditingController();

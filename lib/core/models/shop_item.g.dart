@@ -8,6 +8,7 @@ part of 'shop_item.dart';
 
 _$_ShopItem _$_$_ShopItemFromJson(Map<String, dynamic> json) {
   return _$_ShopItem(
+    id: json['id'] as String,
     name: json['name'] as String,
     cost: json['cost'] as int,
     stock: json['stock'] as int,
@@ -16,6 +17,7 @@ _$_ShopItem _$_$_ShopItemFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_ShopItemToJson(_$_ShopItem instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'cost': instance.cost,
       'stock': instance.stock,

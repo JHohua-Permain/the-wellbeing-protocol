@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:the_wellbeing_protocol/common/widgets/app_scaffold.dart';
 import 'package:the_wellbeing_protocol/features/authentication/authentication_view_models.dart';
-import 'package:the_wellbeing_protocol/shared/widgets/app_scaffold.dart';
 
 class RestoreScreen extends StatefulWidget {
   final RestoreViewModel vm;

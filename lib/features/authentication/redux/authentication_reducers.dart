@@ -1,43 +1,47 @@
 import 'package:redux/redux.dart';
-import 'package:the_wellbeing_protocol/core/models/user.dart';
+import 'package:the_wellbeing_protocol/core/states/auth_state.dart';
+import 'package:the_wellbeing_protocol/core/states/community.dart';
+import 'package:the_wellbeing_protocol/core/states/user.dart';
 import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_actions.dart';
 
-final List<Reducer<User>> Function() newAuthenticationReducers = () => [
-      TypedReducer<User, CompleteAuthentication>(completeAuthenticationReducer),
-      TypedReducer<User, CompleteLogin>(completeLoginReducer),
-      TypedReducer<User, CompleteRestore>(completeRestoreReducer),
-      TypedReducer<User, CompleteVerification>(completeVerificationReducer),
-      TypedReducer<User, FailedAuthentication>(failedAuthenticationReducer),
-    ];
-
-User completeAuthenticationReducer(User state, CompleteAuthentication action) {
-  return state.copyWith(
-    authenticationState: action.authenticationState,
-  );
+AuthState authStateReducer(AuthState state, dynamic action) {
+  if (action is UpdateAuthState) {
+    return action.authState;
+  } else {
+    return state;
+  }
 }
 
-User completeLoginReducer(User state, CompleteLogin action) {
-  return state.copyWith(
-    authenticationState: action.authenticationState,
-  );
+List<Reducer<Community>> newAuthCommunityReducers() {
+  return [
+    TypedReducer<Community, SetCommunityAddress>((state, action) {
+      return state.copyWith(communityAddress: action.communityAddress);
+    }),
+    TypedReducer<Community, SetCommunityHomeToken>((state, action) {
+      return state.copyWith(homeToken: action.homeToken);
+    }),
+  ];
 }
 
-User completeRestoreReducer(User state, CompleteRestore action) {
-  return state.copyWith(
-    authenticationState: action.authenticationState,
-  );
-}
-
-User completeVerificationReducer(User state, CompleteVerification action) {
-  return state.copyWith(
-    accountAddress: action.accountAddress,
-    primaryContactNum: action.primaryContactNum,
-    authenticationState: action.authenticationState,
-  );
-}
-
-User failedAuthenticationReducer(User state, FailedAuthentication action) {
-  return state.copyWith(
-    authenticationState: action.authenticationState,
-  );
+List<Reducer<User>> newAuthUserReducers() {
+  return [
+    TypedReducer<User, SetUserAccountAddress>((state, action) {
+      return state.copyWith(accountAddress: action.accountAddress);
+    }),
+    TypedReducer<User, SetUserDisplayName>((state, action) {
+      return state.copyWith(displayName: action.displayName);
+    }),
+    TypedReducer<User, SetUserJwt>((state, action) {
+      return state.copyWith(jwt: action.jwt);
+    }),
+    TypedReducer<User, SetUserMnemonic>((state, action) {
+      return state.copyWith(mnemonic: action.mnemonic);
+    }),
+    TypedReducer<User, SetUserPrimaryContactNum>((state, action) {
+      return state.copyWith(primaryContactNum: action.primaryContactNum);
+    }),
+    TypedReducer<User, SetUserWalletAddress>((state, action) {
+      return state.copyWith(walletAddress: action.walletAddress);
+    }),
+  ];
 }

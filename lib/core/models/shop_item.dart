@@ -9,6 +9,7 @@ part 'shop_item.g.dart';
 @freezed
 class ShopItem with _$ShopItem {
   const factory ShopItem({
+    required String id,
     required String name,
     required int cost,
     required int stock,

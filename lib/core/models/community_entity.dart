@@ -19,6 +19,14 @@ List<int> avatarToJson(Uint8List? avatar) {
 @immutable
 @freezed
 class CommunityEntity with _$CommunityEntity {
+  const factory CommunityEntity({
+    required String walletAddress,
+    String? primaryContactNum,
+    @Default('') String displayName,
+    @Default(0) int communityFundContribution,
+    @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) Uint8List? avatar,
+  }) = _CommunityEntity;
+
   factory CommunityEntity.fromJson(Map<String, dynamic> json) =>
       _$CommunityEntityFromJson(json);
 
@@ -35,7 +43,7 @@ class CommunityEntity with _$CommunityEntity {
     required List<String> locations,
     String? primaryContactNum,
     @Default('') String displayName,
-    @Default([]) List<ShopItem> items,
+    @Default({}) Map<String, ShopItem> items,
     @Default(0) int communityFundContribution,
     @JsonKey(fromJson: avatarFromJson, toJson: avatarToJson) Uint8List? avatar,
   }) = CommunityShop;

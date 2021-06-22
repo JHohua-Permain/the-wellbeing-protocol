@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:the_wellbeing_protocol/core/state/app_state.dart';
-import 'package:the_wellbeing_protocol/core/state/authentication_state.dart';
+import 'package:the_wellbeing_protocol/core/states/app_state.dart';
 import 'package:the_wellbeing_protocol/features/authentication/authentication_view_models.dart';
-import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_actions.dart';
+import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_handlers.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/login_screen.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/restore_screen.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/splash_screen.dart';
@@ -18,17 +17,17 @@ class LoginConnector extends StatelessWidget {
       distinct: true,
       builder: (context, vm) => LoginScreen(vm),
       converter: (store) => LoginViewModel(
-        authenticationState: store.state.user.authenticationState,
+        authState: store.state.authState,
         login: (phoneNum) {
-          store.dispatch(BeginLogin(phoneNum));
+          store.dispatch(HandleLogin(phoneNum));
         },
       ),
       onWillChange: (previousViewModel, newViewModel) {
-        newViewModel.authenticationState.maybeWhen(
+        newViewModel.authState.maybeWhen(
           authenticated: () {
             context.router.navigateNamed('/');
           },
-          awaitingVerification: (_, __) {
+          awaitingVerification: (_) {
             context.router.navigateNamed('/login/verify');
           },
           orElse: () => null,
@@ -45,18 +44,13 @@ class RestoreConnector extends StatelessWidget {
       distinct: true,
       builder: (context, vm) => RestoreScreen(vm),
       converter: (store) => RestoreViewModel(
-        authenticationState: store.state.user.authenticationState,
+        authState: store.state.authState,
         restore: (mnemonic) {
-          store.dispatch(BeginRestore(mnemonic));
+          store.dispatch(HandleRestore(mnemonic));
         },
       ),
-      onInit: (store) {
-        if (store.state.user.authenticationState is AwaitingLogin) {
-          context.router.navigateNamed('/login');
-        }
-      },
       onWillChange: (previousViewModel, newViewModel) {
-        newViewModel.authenticationState.maybeWhen(
+        newViewModel.authState.maybeWhen(
           awaitingLogin: () {
             context.router.navigateNamed('/login');
           },
@@ -75,20 +69,20 @@ class SplashConnector extends StatelessWidget {
       distinct: true,
       builder: (context, _) => SplashScreen(),
       converter: (store) => SplashViewModel(
-        authenticationState: store.state.user.authenticationState,
+        authState: store.state.authState,
       ),
       onInit: (store) {
-        store.state.user.authenticationState.maybeWhen(
+        store.state.authState.maybeWhen(
           authenticated: () {
             context.router.navigateNamed('/hub');
           },
           orElse: () {
-            store.dispatch(BeginAuthentication());
+            store.dispatch(HandleAuthentication());
           },
         );
       },
       onWillChange: (previousViewModel, newViewModel) {
-        newViewModel.authenticationState.maybeWhen(
+        newViewModel.authState.maybeWhen(
           authenticated: () {
             context.router.navigateNamed('/hub');
           },
@@ -108,24 +102,14 @@ class VerificationConnector extends StatelessWidget {
       distinct: true,
       builder: (context, vm) => VerificationScreen(vm),
       converter: (store) => VerificationViewModel(
-        authenticationState: store.state.user.authenticationState,
-        phoneNum: () {
-          // TODO: Cleaner way of doing this.
-          final authState = store.state.user.authenticationState;
-          if (authState is AwaitingVerification) {
-            return authState.phoneNumber;
-          }
-          return '';
-        }(),
+        authState: store.state.authState,
+        phoneNum: store.state.user.primaryContactNum!,
         verify: (verificationCode) {
-          store.dispatch(BeginVerification(
-            store.state.user.authenticationState,
-            verificationCode,
-          ));
+          store.dispatch(HandleVerification(verificationCode));
         },
       ),
       onWillChange: (previousViewModel, newViewModel) {
-        newViewModel.authenticationState.maybeWhen(
+        newViewModel.authState.maybeWhen(
           authenticated: () {
             context.router.navigateNamed('/');
           },

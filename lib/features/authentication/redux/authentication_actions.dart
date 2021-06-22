@@ -1,57 +1,56 @@
-import 'package:the_wellbeing_protocol/core/state/authentication_state.dart';
-import 'package:the_wellbeing_protocol/redux/common/common_actions.dart';
+import 'package:the_wellbeing_protocol/core/models/token.dart';
+import 'package:the_wellbeing_protocol/core/states/auth_state.dart';
 
-class BeginAuthentication implements BeginningAction {}
+class SetCommunityAddress {
+  final String communityAddress;
 
-class BeginLogin implements BeginningAction {
-  final String phoneNum;
-  BeginLogin(this.phoneNum);
+  SetCommunityAddress(this.communityAddress);
 }
 
-class BeginRestore implements BeginningAction {
-  final String mnemonic;
-  BeginRestore(this.mnemonic);
+class SetCommunityHomeToken {
+  final Token homeToken;
+
+  SetCommunityHomeToken(this.homeToken);
 }
 
-class BeginVerification implements BeginningAction {
-  final AuthenticationState authenticationState;
-  final String? verificationCode;
-  BeginVerification(
-    this.authenticationState, [
-    this.verificationCode,
-  ]);
-}
-
-class CompleteAuthentication implements CompletingAction {
-  final AuthenticationState authenticationState =
-      AuthenticationState.authenticated();
-}
-
-class CompleteLogin implements CompletingAction {
-  final AuthenticationState authenticationState;
-
-  CompleteLogin(String phoneNum, [String? verificationId])
-      : authenticationState = AuthenticationState.awaitingVerification(
-          phoneNum,
-          verificationId,
-        );
-}
-
-class CompleteRestore implements CompletingAction {
-  final AuthenticationState authenticationState =
-      AuthenticationState.awaitingLogin();
-}
-
-class CompleteVerification implements CompletingAction {
+class SetUserAccountAddress {
   final String accountAddress;
-  final String primaryContactNum;
-  final AuthenticationState authenticationState =
-      AuthenticationState.authenticated();
 
-  CompleteVerification(this.accountAddress, this.primaryContactNum);
+  SetUserAccountAddress(this.accountAddress);
 }
 
-class FailedAuthentication implements CompletingAction {
-  final AuthenticationState authenticationState =
-      AuthenticationState.unauthenticated();
+class SetUserDisplayName {
+  final String displayName;
+
+  SetUserDisplayName(this.displayName);
+}
+
+class SetUserJwt {
+  final String jwt;
+
+  SetUserJwt(this.jwt);
+}
+
+class SetUserMnemonic {
+  final String mnemonic;
+
+  SetUserMnemonic(this.mnemonic);
+}
+
+class SetUserPrimaryContactNum {
+  final String primaryContactNum;
+
+  SetUserPrimaryContactNum(this.primaryContactNum);
+}
+
+class SetUserWalletAddress {
+  final String walletAddress;
+
+  SetUserWalletAddress(this.walletAddress);
+}
+
+class UpdateAuthState {
+  final AuthState authState;
+
+  UpdateAuthState(this.authState);
 }

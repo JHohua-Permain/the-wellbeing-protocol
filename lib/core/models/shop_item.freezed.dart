@@ -21,8 +21,12 @@ class _$ShopItemTearOff {
   const _$ShopItemTearOff();
 
   _ShopItem call(
-      {required String name, required int cost, required int stock}) {
+      {required String id,
+      required String name,
+      required int cost,
+      required int stock}) {
     return _ShopItem(
+      id: id,
       name: name,
       cost: cost,
       stock: stock,
@@ -39,6 +43,7 @@ const $ShopItem = _$ShopItemTearOff();
 
 /// @nodoc
 mixin _$ShopItem {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get cost => throw _privateConstructorUsedError;
   int get stock => throw _privateConstructorUsedError;
@@ -53,7 +58,7 @@ mixin _$ShopItem {
 abstract class $ShopItemCopyWith<$Res> {
   factory $ShopItemCopyWith(ShopItem value, $Res Function(ShopItem) then) =
       _$ShopItemCopyWithImpl<$Res>;
-  $Res call({String name, int cost, int stock});
+  $Res call({String id, String name, int cost, int stock});
 }
 
 /// @nodoc
@@ -66,11 +71,16 @@ class _$ShopItemCopyWithImpl<$Res> implements $ShopItemCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? cost = freezed,
     Object? stock = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -92,7 +102,7 @@ abstract class _$ShopItemCopyWith<$Res> implements $ShopItemCopyWith<$Res> {
   factory _$ShopItemCopyWith(_ShopItem value, $Res Function(_ShopItem) then) =
       __$ShopItemCopyWithImpl<$Res>;
   @override
-  $Res call({String name, int cost, int stock});
+  $Res call({String id, String name, int cost, int stock});
 }
 
 /// @nodoc
@@ -106,11 +116,16 @@ class __$ShopItemCopyWithImpl<$Res> extends _$ShopItemCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? cost = freezed,
     Object? stock = freezed,
   }) {
     return _then(_ShopItem(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -131,11 +146,16 @@ class __$ShopItemCopyWithImpl<$Res> extends _$ShopItemCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ShopItem with DiagnosticableTreeMixin implements _ShopItem {
   const _$_ShopItem(
-      {required this.name, required this.cost, required this.stock});
+      {required this.id,
+      required this.name,
+      required this.cost,
+      required this.stock});
 
   factory _$_ShopItem.fromJson(Map<String, dynamic> json) =>
       _$_$_ShopItemFromJson(json);
 
+  @override
+  final String id;
   @override
   final String name;
   @override
@@ -145,7 +165,7 @@ class _$_ShopItem with DiagnosticableTreeMixin implements _ShopItem {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ShopItem(name: $name, cost: $cost, stock: $stock)';
+    return 'ShopItem(id: $id, name: $name, cost: $cost, stock: $stock)';
   }
 
   @override
@@ -153,6 +173,7 @@ class _$_ShopItem with DiagnosticableTreeMixin implements _ShopItem {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ShopItem'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('cost', cost))
       ..add(DiagnosticsProperty('stock', stock));
@@ -162,6 +183,8 @@ class _$_ShopItem with DiagnosticableTreeMixin implements _ShopItem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ShopItem &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.cost, cost) ||
@@ -173,6 +196,7 @@ class _$_ShopItem with DiagnosticableTreeMixin implements _ShopItem {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(cost) ^
       const DeepCollectionEquality().hash(stock);
@@ -190,12 +214,15 @@ class _$_ShopItem with DiagnosticableTreeMixin implements _ShopItem {
 
 abstract class _ShopItem implements ShopItem {
   const factory _ShopItem(
-      {required String name,
+      {required String id,
+      required String name,
       required int cost,
       required int stock}) = _$_ShopItem;
 
   factory _ShopItem.fromJson(Map<String, dynamic> json) = _$_ShopItem.fromJson;
 
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override

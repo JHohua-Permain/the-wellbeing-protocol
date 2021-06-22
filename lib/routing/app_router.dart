@@ -1,139 +1,27 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:the_wellbeing_protocol/app_hub.dart';
-import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_store_connectors.dart';
-import 'package:the_wellbeing_protocol/features/community/redux/community_store_connectors.dart';
-import 'package:the_wellbeing_protocol/features/shop/redux/shop_store_connectors.dart';
-import 'package:the_wellbeing_protocol/features/wallet/redux/wallet_store_connectors.dart';
+import 'package:the_wellbeing_protocol/features/backup/backup_routing.dart';
 import 'package:the_wellbeing_protocol/routing/auth_guard.dart';
-import 'package:the_wellbeing_protocol/shared/widgets/progress_dialog.dart';
-
-const MaterialRoute _communityFundRouter = MaterialRoute(
-  page: EmptyRouterPage,
-  name: 'CommunityFundRouter',
-  children: [
-    MaterialRoute(
-      name: 'CommunityFundPage',
-      path: 'community/fund',
-      page: CommunityFundConnector,
-      initial: true,
-    ),
-    MaterialRoute(
-      name: 'SendToCommunityFundPage',
-      path: 'community/fund/contribute',
-      page: SendToCommunityFundConnector,
-    ),
-  ],
-);
-
-const MaterialRoute _shopRouter = MaterialRoute(
-  page: EmptyRouterPage,
-  name: 'ShopRouter',
-  children: [
-    MaterialRoute(
-      name: 'SelectShopPage',
-      path: 'shops',
-      page: SelectShopConnector,
-      initial: true,
-    ),
-    MaterialRoute(
-      name: 'ShopPage',
-      path: 'shops/shop',
-      page: ShopConnector,
-    ),
-  ],
-);
-
-const MaterialRoute _walletRouter = MaterialRoute(
-  page: EmptyRouterPage,
-  name: 'WalletRouter',
-  children: [
-    MaterialRoute(
-      name: 'WalletPage',
-      path: 'wallet',
-      page: WalletConnector,
-      initial: true,
-    ),
-    MaterialRoute(
-      name: 'AccountPage',
-      path: 'account',
-      page: AccountConnector,
-    ),
-    MaterialRoute(
-      name: 'BackupWalletPage',
-      path: 'backup',
-      page: BackupWalletConnector,
-    ),
-    MaterialRoute(
-      name: 'SettingsPage',
-      path: 'settings',
-      page: SettingsConnector,
-    ),
-    MaterialRoute(
-      name: 'SelectContactPage',
-      path: 'contacts',
-      page: SelectContactConnector,
-    ),
-    MaterialRoute(
-      name: 'SendToContactPage',
-      path: 'contacts/send',
-      page: SendToContactConnector,
-    ),
-    MaterialRoute(
-      name: 'CashOutPage',
-      path: 'cash-out',
-      page: CashOutConnector,
-    ),
-    MaterialRoute(
-      name: 'TransactionHistoryPage',
-      path: 'transactions',
-      page: TransactionHistoryConnector,
-    ),
-  ],
-);
+import 'package:the_wellbeing_protocol/common/widgets/progress_dialog.dart';
+import 'package:the_wellbeing_protocol/features/authentication/auth_routing.dart';
+import 'package:the_wellbeing_protocol/features/hub/hub_routing.dart';
+import 'package:the_wellbeing_protocol/features/transactions/transactions_routing.dart';
 
 @MaterialAutoRouter(
   routes: [
+    ...authRoutes,
+    ...transactionRoutes,
+    ...backupRoutes,
     MaterialRoute(
-      name: 'SplashPage',
-      path: '/',
-      page: SplashConnector,
-      initial: true,
-    ),
-    MaterialRoute(
-      name: 'WelcomePage',
-      path: '/welcome',
-      page: WelcomeConnector,
-    ),
-    MaterialRoute(
-      name: 'LoginPage',
-      path: '/login',
-      page: LoginConnector,
-    ),
-    MaterialRoute(
-      name: 'VerificationPage',
-      path: '/login/verify',
-      page: VerificationConnector,
-    ),
-    MaterialRoute(
-      name: 'RestorePage',
-      path: '/restore',
-      page: RestoreConnector,
-    ),
-    MaterialRoute(
-      name: 'AppHubWindow',
+      name: 'AppHubRoute',
       path: '/hub',
       page: AppHub,
       guards: [AuthGuard],
       children: [
-        _walletRouter,
-        _shopRouter,
-        _communityFundRouter,
+        walletRouter,
+        shopRouter,
+        communityFundRouter,
       ],
-    ),
-    MaterialRoute(
-      name: 'ShopItemDetailsPage',
-      path: '/shops/shop/item',
-      page: ShopItemDetailsConnector,
     ),
     CustomRoute(
       name: 'ProgressPopup',

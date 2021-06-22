@@ -7,14 +7,14 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../app_hub.dart' as _i5;
-import '../core/models/shop_item.dart' as _i10;
+import '../app_hub.dart' as _i7;
+import '../common/widgets/progress_dialog.dart' as _i8;
 import '../features/authentication/redux/authentication_store_connectors.dart'
     as _i4;
-import '../features/community/redux/community_store_connectors.dart' as _i9;
-import '../features/shop/redux/shop_store_connectors.dart' as _i6;
-import '../features/wallet/redux/wallet_store_connectors.dart' as _i8;
-import '../shared/widgets/progress_dialog.dart' as _i7;
+import '../features/backup/redux/backup_store_connectors.dart' as _i6;
+import '../features/hub/redux/hub_store_connectors.dart' as _i9;
+import '../features/transactions/redux/transactions_store_connectors.dart'
+    as _i5;
 import 'auth_guard.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -37,6 +37,11 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i4.WelcomeConnector();
         }),
+    RestorePage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i4.RestoreConnector();
+        }),
     LoginPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -47,26 +52,44 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i4.VerificationConnector();
         }),
-    RestorePage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    SendToContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return _i4.RestoreConnector();
+        builder: (data) {
+          final pathParams = data.pathParams;
+          final args = data.argsAs<SendToContactPageArgs>(
+              orElse: () => SendToContactPageArgs(
+                  contactId: pathParams.getString('contactId')));
+          return _i5.SendToContactConnector(args.contactId);
         }),
-    AppHubWindow.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    SendToCommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i5.AppHub();
+          return _i5.SendToCommunityFundConnector();
         }),
     ShopItemDetailsPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<ShopItemDetailsPageArgs>();
-          return _i6.ShopItemDetailsConnector(args.selectedShop, args.shopItem);
+          final pathParams = data.pathParams;
+          final args = data.argsAs<ShopItemDetailsPageArgs>(
+              orElse: () => ShopItemDetailsPageArgs(
+                  shopId: pathParams.getString('shopId'),
+                  itemId: pathParams.getString('itemId')));
+          return _i5.ShopItemDetailsConnector(args.shopId, args.itemId);
+        }),
+    BackupWalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i6.BackupWalletConnector();
+        }),
+    AppHubRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.AppHub();
         }),
     ProgressPopup.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.ProgressDialog();
+          return _i8.ProgressDialog();
         },
         fullscreenDialog: true,
         opaque: false,
@@ -89,63 +112,51 @@ class AppRouter extends _i1.RootStackRouter {
     WalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.WalletConnector();
+          return _i9.WalletConnector();
         }),
     AccountPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.AccountConnector();
-        }),
-    BackupWalletPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i8.BackupWalletConnector();
+          return _i9.AccountConnector();
         }),
     SettingsPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.SettingsConnector();
+          return _i9.SettingsConnector();
         }),
     SelectContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.SelectContactConnector();
-        }),
-    SendToContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i8.SendToContactConnector();
+          return _i9.SelectContactConnector();
         }),
     CashOutPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.CashOutConnector();
+          return _i9.CashOutConnector();
         }),
     TransactionHistoryPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.TransactionHistoryConnector();
+          return _i9.TransactionHistoryConnector();
         }),
     SelectShopPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i6.SelectShopConnector();
+          return _i9.SelectShopConnector();
         }),
     ShopPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<ShopPageArgs>();
-          return _i6.ShopConnector(args.selectedShop);
+          final pathParams = data.pathParams;
+          final args = data.argsAs<ShopPageArgs>(
+              orElse: () =>
+                  ShopPageArgs(shopId: pathParams.getString('shopId')));
+          return _i9.ShopConnector(args.shopId);
         }),
     CommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
           return _i9.CommunityFundConnector();
-        }),
-    SendToCommunityFundPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i9.SendToCommunityFundConnector();
         })
   };
 
@@ -153,10 +164,16 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(SplashPage.name, path: '/'),
         _i1.RouteConfig(WelcomePage.name, path: '/welcome'),
+        _i1.RouteConfig(RestorePage.name, path: '/restore'),
         _i1.RouteConfig(LoginPage.name, path: '/login'),
         _i1.RouteConfig(VerificationPage.name, path: '/login/verify'),
-        _i1.RouteConfig(RestorePage.name, path: '/restore'),
-        _i1.RouteConfig(AppHubWindow.name, path: '/hub', guards: [
+        _i1.RouteConfig(SendToContactPage.name, path: '/contacts/:contactId'),
+        _i1.RouteConfig(SendToCommunityFundPage.name,
+            path: '/community/fund/contribute'),
+        _i1.RouteConfig(ShopItemDetailsPage.name,
+            path: '/shops/:shopId/:itemId'),
+        _i1.RouteConfig(BackupWalletPage.name, path: '/backup'),
+        _i1.RouteConfig(AppHubRoute.name, path: '/hub', guards: [
           authGuard
         ], children: [
           _i1.RouteConfig(WalletRouter.name,
@@ -166,10 +183,8 @@ class AppRouter extends _i1.RootStackRouter {
                     path: '', redirectTo: 'wallet', fullMatch: true),
                 _i1.RouteConfig(WalletPage.name, path: 'wallet'),
                 _i1.RouteConfig(AccountPage.name, path: 'account'),
-                _i1.RouteConfig(BackupWalletPage.name, path: 'backup'),
                 _i1.RouteConfig(SettingsPage.name, path: 'settings'),
                 _i1.RouteConfig(SelectContactPage.name, path: 'contacts'),
-                _i1.RouteConfig(SendToContactPage.name, path: 'contacts/send'),
                 _i1.RouteConfig(CashOutPage.name, path: 'cash-out'),
                 _i1.RouteConfig(TransactionHistoryPage.name,
                     path: 'transactions')
@@ -180,19 +195,16 @@ class AppRouter extends _i1.RootStackRouter {
                 _i1.RouteConfig('#redirect',
                     path: '', redirectTo: 'shops', fullMatch: true),
                 _i1.RouteConfig(SelectShopPage.name, path: 'shops'),
-                _i1.RouteConfig(ShopPage.name, path: 'shops/shop')
+                _i1.RouteConfig(ShopPage.name, path: 'shops/:shopId')
               ]),
           _i1.RouteConfig(CommunityFundRouter.name,
               path: 'empty-router-page',
               children: [
                 _i1.RouteConfig('#redirect',
                     path: '', redirectTo: 'community/fund', fullMatch: true),
-                _i1.RouteConfig(CommunityFundPage.name, path: 'community/fund'),
-                _i1.RouteConfig(SendToCommunityFundPage.name,
-                    path: 'community/fund/contribute')
+                _i1.RouteConfig(CommunityFundPage.name, path: 'community/fund')
               ])
         ]),
-        _i1.RouteConfig(ShopItemDetailsPage.name, path: '/shops/shop/item'),
         _i1.RouteConfig(ProgressPopup.name, path: '/progress-dialog')
       ];
 }
@@ -209,6 +221,12 @@ class WelcomePage extends _i1.PageRouteInfo {
   static const String name = 'WelcomePage';
 }
 
+class RestorePage extends _i1.PageRouteInfo {
+  const RestorePage() : super(name, path: '/restore');
+
+  static const String name = 'RestorePage';
+}
+
 class LoginPage extends _i1.PageRouteInfo {
   const LoginPage() : super(name, path: '/login');
 
@@ -221,37 +239,58 @@ class VerificationPage extends _i1.PageRouteInfo {
   static const String name = 'VerificationPage';
 }
 
-class RestorePage extends _i1.PageRouteInfo {
-  const RestorePage() : super(name, path: '/restore');
+class SendToContactPage extends _i1.PageRouteInfo<SendToContactPageArgs> {
+  SendToContactPage({required String contactId})
+      : super(name,
+            path: '/contacts/:contactId',
+            args: SendToContactPageArgs(contactId: contactId),
+            rawPathParams: {'contactId': contactId});
 
-  static const String name = 'RestorePage';
+  static const String name = 'SendToContactPage';
 }
 
-class AppHubWindow extends _i1.PageRouteInfo {
-  const AppHubWindow({List<_i1.PageRouteInfo>? children})
-      : super(name, path: '/hub', initialChildren: children);
+class SendToContactPageArgs {
+  const SendToContactPageArgs({required this.contactId});
 
-  static const String name = 'AppHubWindow';
+  final String contactId;
+}
+
+class SendToCommunityFundPage extends _i1.PageRouteInfo {
+  const SendToCommunityFundPage()
+      : super(name, path: '/community/fund/contribute');
+
+  static const String name = 'SendToCommunityFundPage';
 }
 
 class ShopItemDetailsPage extends _i1.PageRouteInfo<ShopItemDetailsPageArgs> {
-  ShopItemDetailsPage(
-      {required dynamic selectedShop, required _i10.ShopItem shopItem})
+  ShopItemDetailsPage({required String shopId, required String itemId})
       : super(name,
-            path: '/shops/shop/item',
-            args: ShopItemDetailsPageArgs(
-                selectedShop: selectedShop, shopItem: shopItem));
+            path: '/shops/:shopId/:itemId',
+            args: ShopItemDetailsPageArgs(shopId: shopId, itemId: itemId),
+            rawPathParams: {'shopId': shopId, 'itemId': itemId});
 
   static const String name = 'ShopItemDetailsPage';
 }
 
 class ShopItemDetailsPageArgs {
-  const ShopItemDetailsPageArgs(
-      {required this.selectedShop, required this.shopItem});
+  const ShopItemDetailsPageArgs({required this.shopId, required this.itemId});
 
-  final dynamic selectedShop;
+  final String shopId;
 
-  final _i10.ShopItem shopItem;
+  final String itemId;
+}
+
+class BackupWalletPage extends _i1.PageRouteInfo {
+  const BackupWalletPage() : super(name, path: '/backup');
+
+  static const String name = 'BackupWalletPage';
+}
+
+class AppHubRoute extends _i1.PageRouteInfo {
+  const AppHubRoute({List<_i1.PageRouteInfo>? children})
+      : super(name, path: '/hub', initialChildren: children);
+
+  static const String name = 'AppHubRoute';
 }
 
 class ProgressPopup extends _i1.PageRouteInfo {
@@ -293,12 +332,6 @@ class AccountPage extends _i1.PageRouteInfo {
   static const String name = 'AccountPage';
 }
 
-class BackupWalletPage extends _i1.PageRouteInfo {
-  const BackupWalletPage() : super(name, path: 'backup');
-
-  static const String name = 'BackupWalletPage';
-}
-
 class SettingsPage extends _i1.PageRouteInfo {
   const SettingsPage() : super(name, path: 'settings');
 
@@ -309,12 +342,6 @@ class SelectContactPage extends _i1.PageRouteInfo {
   const SelectContactPage() : super(name, path: 'contacts');
 
   static const String name = 'SelectContactPage';
-}
-
-class SendToContactPage extends _i1.PageRouteInfo {
-  const SendToContactPage() : super(name, path: 'contacts/send');
-
-  static const String name = 'SendToContactPage';
 }
 
 class CashOutPage extends _i1.PageRouteInfo {
@@ -336,28 +363,23 @@ class SelectShopPage extends _i1.PageRouteInfo {
 }
 
 class ShopPage extends _i1.PageRouteInfo<ShopPageArgs> {
-  ShopPage({required dynamic selectedShop})
+  ShopPage({required String shopId})
       : super(name,
-            path: 'shops/shop', args: ShopPageArgs(selectedShop: selectedShop));
+            path: 'shops/:shopId',
+            args: ShopPageArgs(shopId: shopId),
+            rawPathParams: {'shopId': shopId});
 
   static const String name = 'ShopPage';
 }
 
 class ShopPageArgs {
-  const ShopPageArgs({required this.selectedShop});
+  const ShopPageArgs({required this.shopId});
 
-  final dynamic selectedShop;
+  final String shopId;
 }
 
 class CommunityFundPage extends _i1.PageRouteInfo {
   const CommunityFundPage() : super(name, path: 'community/fund');
 
   static const String name = 'CommunityFundPage';
-}
-
-class SendToCommunityFundPage extends _i1.PageRouteInfo {
-  const SendToCommunityFundPage()
-      : super(name, path: 'community/fund/contribute');
-
-  static const String name = 'SendToCommunityFundPage';
 }
