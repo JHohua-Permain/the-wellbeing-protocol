@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_wellbeing_protocol/common/utils/qr_scanner.dart';
 import 'package:the_wellbeing_protocol/core/states/app_state.dart';
 import 'package:the_wellbeing_protocol/features/hub/hub_view_models.dart';
 import 'package:the_wellbeing_protocol/features/hub/redux/hub_actions.dart';
@@ -200,6 +201,13 @@ class WalletConnector extends StatelessWidget {
         currentTokenBalance: '0',
         //TODO: Re-implement.
         currentTokenSymbol: store.state.community.homeToken?.symbol ?? '',
+        openQRScanner: () {
+          scanQRCode().then((code) {
+            // TODO.
+          }).catchError((_) {
+            // TODO.
+          });
+        },
         logoutUser: () {
           store.dispatch(Logout());
         },

@@ -105,6 +105,7 @@ class WalletViewModel extends Equatable {
   final String walletAddress;
   final String currentTokenBalance;
   final String currentTokenSymbol;
+  final VoidCallback openQRScanner;
   final VoidCallback logoutUser;
   final VoidCallback pushAccountScreen;
   final VoidCallback pushBackupWalletScreen;
@@ -119,6 +120,7 @@ class WalletViewModel extends Equatable {
     required this.walletAddress,
     required this.currentTokenBalance,
     required this.currentTokenSymbol,
+    required this.openQRScanner,
     required this.logoutUser,
     required this.pushAccountScreen,
     required this.pushBackupWalletScreen,

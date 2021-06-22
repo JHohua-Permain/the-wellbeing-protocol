@@ -77,7 +77,10 @@ class WalletScreen extends StatelessWidget {
                 tokenSymbol: vm.currentTokenSymbol,
               ),
               Spacer(),
-              InkWell(child: Image.asset('assets/images/QRCode.png')),
+              InkWell(
+                child: Image.asset('assets/images/QRCode.png'),
+                onTap: vm.openQRScanner,
+              ),
             ],
           ),
         ],
