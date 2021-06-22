@@ -28,4 +28,9 @@ const List<MaterialRoute> authRoutes = [
     path: '/login/verify',
     page: VerificationConnector,
   ),
+  MaterialRoute(
+    name: 'SetUsernamePage',
+    path: '/login/username',
+    page: SetUsernameConnector,
+  ),
 ];

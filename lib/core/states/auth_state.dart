@@ -10,6 +10,9 @@ class AuthState with _$AuthState {
 
   const factory AuthState.awaitingLogin() = AwaitingLogin;
 
+  const factory AuthState.awaitingUserInitialisation() =
+      AwaitingUserInitialisation;
+
   const factory AuthState.awaitingVerification([
     String? verificationId,
   ]) = AwaitingVerification;

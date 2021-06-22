@@ -16,4 +16,19 @@ class FuseAPIService extends API {
     homeTokenData['address'] = homeTokenAddress;
     return Token.fromJson(homeTokenData);
   }
+
+  Future<dynamic> prepareUserDataForDb(
+    String walletAddress,
+    String displayName,
+  ) async {
+    Map<String, dynamic> userData = {
+      "accountAddress": walletAddress,
+      "email": 'wallet-user@fuse.io',
+      "provider": 'HDWallet',
+      "subscribe": false,
+      "source": 'wallet-v2',
+      "displayName": displayName
+    };
+    return saveUserToDb(userData);
+  }
 }

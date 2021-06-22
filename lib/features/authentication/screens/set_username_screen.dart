@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:the_wellbeing_protocol/common/widgets/common_button.dart';
+import 'package:the_wellbeing_protocol/features/authentication/authentication_view_models.dart';
 
 class SetUsernameScreen extends StatelessWidget {
-  final _displayNameController = TextEditingController();
+  final SetUsernameViewModel vm;
+  final TextEditingController _displayNameController = TextEditingController();
 
-  SetUsernameScreen();
+  SetUsernameScreen(this.vm);
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +27,7 @@ class SetUsernameScreen extends StatelessWidget {
                   child: Text(
                     'Pick your display name',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
                 Padding(
@@ -35,9 +35,7 @@ class SetUsernameScreen extends StatelessWidget {
                   child: Text(
                     'This name will be shown to contacts that send\n you money to identify your account',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 15,
-                    ),
+                    style: TextStyle(fontSize: 15),
                   ),
                 ),
                 SizedBox(height: 10.0),
@@ -47,27 +45,19 @@ class SetUsernameScreen extends StatelessWidget {
                   child: TextFormField(
                     controller: _displayNameController,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
+                    style: TextStyle(fontSize: 20),
                     autofocus: true,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(0.0),
                       border: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 2,
-                        ),
+                        borderSide: BorderSide(width: 2),
                       ),
                       fillColor: Theme.of(context).canvasColor,
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 2,
-                        ),
+                        borderSide: BorderSide(width: 2),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 2,
-                        ),
+                        borderSide: BorderSide(width: 2),
                       ),
                     ),
                   ),
@@ -78,7 +68,9 @@ class SetUsernameScreen extends StatelessWidget {
                     Center(
                       child: CommonButton(
                         label: 'Next',
-                        onPressed: () {},
+                        onPressed: () {
+                          vm.setDisplayName(_displayNameController.value.text);
+                        },
                       ),
                     ),
                     SizedBox(height: 40.0),

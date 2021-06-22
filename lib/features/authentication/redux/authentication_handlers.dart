@@ -64,28 +64,54 @@ class HandleRestore extends HandlerAction {
   }
 }
 
-class HandleUserIntialisation extends HandlerAction {
+class HandleSettingDisplayName extends HandlerAction {
+  final String displayName;
+
+  HandleSettingDisplayName(this.displayName);
+
   @override
   Future<dynamic> call(Store<AppState> store, AppServices services) async {
-    String communityAddress = services.fuseNetworkService.getDefaultCommunity();
-    Token homeToken = await services.fuseAPIService
-        .fetchCommunityHomeToken(services.fuseNetworkService, communityAddress);
+    // TODO: Validation.
+    await HandleUserIntialisation(displayName).call(store, services);
+  }
+}
 
-    await services.fuseAPIService
-        .createWallet(communityAddress: communityAddress);
+class HandleUserIntialisation extends HandlerAction {
+  final String displayName;
 
-    dynamic walletData = await services.fuseAPIService.getWallet();
+  HandleUserIntialisation(this.displayName);
+
+  @override
+  Future<dynamic> call(Store<AppState> store, AppServices services) async {
+    var web3 = services.fuseNetworkService;
+    var api = services.fuseAPIService;
+
+    String communityAddress = web3.getDefaultCommunity();
+    Token homeToken = await api.fetchCommunityHomeToken(web3, communityAddress);
+
+    await api.createWallet(communityAddress: communityAddress);
+
+    dynamic walletData = await api.getWallet();
     String walletAddress = walletData['walletAddress'];
-    await services.fuseAPIService.joinCommunity(
+    await api.joinCommunity(
       services.fuseNetworkService,
       walletAddress,
       communityAddress,
       tokenAddress: homeToken.address,
     );
 
+    await api.prepareUserDataForDb(walletAddress, displayName);
+
+    // If the user is already a part of the database, then a duplication error
+    //  is thrown and the new display name is not set, so we make this call
+    //  to manually set the display name.
+    await api.updateDisplayName(walletAddress, displayName);
+
     store.dispatch(SetUserWalletAddress(walletAddress));
+    store.dispatch(SetUserDisplayName(displayName));
     store.dispatch(SetCommunityAddress(communityAddress));
     store.dispatch(SetCommunityHomeToken(homeToken));
+    store.dispatch(UpdateAuthState(AuthState.authenticated()));
   }
 }
 
@@ -126,7 +152,7 @@ class HandleVerification extends HandlerAction {
 
     services.fuseAPIService.setJwtToken(jwt);
     store.dispatch(SetUserJwt(jwt));
-    await HandleUserIntialisation().call(store, services);
-    return store.dispatch(UpdateAuthState(AuthState.authenticated()));
+    return store
+        .dispatch(UpdateAuthState(AuthState.awaitingUserInitialisation()));
   }
 }

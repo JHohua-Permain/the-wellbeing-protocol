@@ -4,7 +4,7 @@ import 'package:the_wellbeing_protocol/features/hub/redux/hub_actions.dart';
 AppThunkAction changeDisplayName(String displayName) {
   return (store, services) async {
     await services.fuseAPIService.updateDisplayName(
-      store.state.user.accountAddress!,
+      store.state.user.walletAddress!,
       displayName,
     );
     return store.dispatch(SetDisplayName(displayName));

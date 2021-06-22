@@ -28,6 +28,19 @@ class RestoreViewModel extends Equatable {
   List<Object?> get props => [authState];
 }
 
+class SetUsernameViewModel extends Equatable {
+  final AuthState authState;
+  final ValueSetter<String> setDisplayName;
+
+  const SetUsernameViewModel({
+    required this.authState,
+    required this.setDisplayName,
+  });
+
+  @override
+  List<Object?> get props => [authState];
+}
+
 class SplashViewModel extends Equatable {
   final AuthState authState;
 

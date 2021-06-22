@@ -6,6 +6,7 @@ import 'package:the_wellbeing_protocol/features/authentication/authentication_vi
 import 'package:the_wellbeing_protocol/features/authentication/redux/authentication_handlers.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/login_screen.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/restore_screen.dart';
+import 'package:the_wellbeing_protocol/features/authentication/screens/set_username_screen.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/splash_screen.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/verification_screen.dart';
 import 'package:the_wellbeing_protocol/features/authentication/screens/welcome_screen.dart';
@@ -26,6 +27,9 @@ class LoginConnector extends StatelessWidget {
         newViewModel.authState.maybeWhen(
           authenticated: () {
             context.router.navigateNamed('/');
+          },
+          awaitingUserInitialisation: () {
+            context.router.navigateNamed('/login/username');
           },
           awaitingVerification: (_) {
             context.router.navigateNamed('/login/verify');
@@ -53,6 +57,30 @@ class RestoreConnector extends StatelessWidget {
         newViewModel.authState.maybeWhen(
           awaitingLogin: () {
             context.router.navigateNamed('/login');
+          },
+          orElse: () => null,
+        );
+      },
+    );
+  }
+}
+
+class SetUsernameConnector extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, SetUsernameViewModel>(
+      rebuildOnChange: false,
+      builder: (context, vm) => SetUsernameScreen(vm),
+      converter: (store) => SetUsernameViewModel(
+        authState: store.state.authState,
+        setDisplayName: (displayName) {
+          store.dispatch(HandleSettingDisplayName(displayName));
+        },
+      ),
+      onWillChange: (previousViewModel, newViewModel) {
+        newViewModel.authState.maybeWhen(
+          authenticated: () {
+            context.router.navigateNamed('/');
           },
           orElse: () => null,
         );
@@ -112,6 +140,9 @@ class VerificationConnector extends StatelessWidget {
         newViewModel.authState.maybeWhen(
           authenticated: () {
             context.router.navigateNamed('/');
+          },
+          awaitingUserInitialisation: () {
+            context.router.navigateNamed('/login/username');
           },
           orElse: () => null,
         );

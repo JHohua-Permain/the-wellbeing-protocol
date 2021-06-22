@@ -52,6 +52,11 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i4.VerificationConnector();
         }),
+    SetUsernamePage.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i4.SetUsernameConnector();
+        }),
     SendToContactPage.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
@@ -207,6 +212,7 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(RestorePage.name, path: '/restore'),
         _i1.RouteConfig(LoginPage.name, path: '/login'),
         _i1.RouteConfig(VerificationPage.name, path: '/login/verify'),
+        _i1.RouteConfig(SetUsernamePage.name, path: '/login/username'),
         _i1.RouteConfig(SendToContactPage.name, path: '/contacts/:contactId'),
         _i1.RouteConfig(SendToContactReviewPage.name, path: '/contacts/review'),
         _i1.RouteConfig(ShopItemDetailsPage.name,
@@ -286,6 +292,12 @@ class VerificationPage extends _i1.PageRouteInfo {
   const VerificationPage() : super(name, path: '/login/verify');
 
   static const String name = 'VerificationPage';
+}
+
+class SetUsernamePage extends _i1.PageRouteInfo {
+  const SetUsernamePage() : super(name, path: '/login/username');
+
+  static const String name = 'SetUsernamePage';
 }
 
 class SendToContactPage extends _i1.PageRouteInfo<SendToContactPageArgs> {

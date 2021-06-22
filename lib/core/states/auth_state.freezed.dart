@@ -24,6 +24,10 @@ class _$AuthStateTearOff {
     return const AwaitingLogin();
   }
 
+  AwaitingUserInitialisation awaitingUserInitialisation() {
+    return const AwaitingUserInitialisation();
+  }
+
   AwaitingVerification awaitingVerification([String? verificationId]) {
     return AwaitingVerification(
       verificationId,
@@ -48,6 +52,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
     required TResult Function() awaitingLogin,
+    required TResult Function() awaitingUserInitialisation,
     required TResult Function(String? verificationId) awaitingVerification,
     required TResult Function() initial,
     required TResult Function() unauthenticated,
@@ -57,6 +62,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
     TResult Function()? awaitingLogin,
+    TResult Function()? awaitingUserInitialisation,
     TResult Function(String? verificationId)? awaitingVerification,
     TResult Function()? initial,
     TResult Function()? unauthenticated,
@@ -67,6 +73,8 @@ mixin _$AuthState {
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(AwaitingLogin value) awaitingLogin,
+    required TResult Function(AwaitingUserInitialisation value)
+        awaitingUserInitialisation,
     required TResult Function(AwaitingVerification value) awaitingVerification,
     required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
@@ -76,6 +84,8 @@ mixin _$AuthState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
     TResult Function(AwaitingLogin value)? awaitingLogin,
+    TResult Function(AwaitingUserInitialisation value)?
+        awaitingUserInitialisation,
     TResult Function(AwaitingVerification value)? awaitingVerification,
     TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
@@ -146,6 +156,7 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
     required TResult Function() awaitingLogin,
+    required TResult Function() awaitingUserInitialisation,
     required TResult Function(String? verificationId) awaitingVerification,
     required TResult Function() initial,
     required TResult Function() unauthenticated,
@@ -158,6 +169,7 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
     TResult Function()? awaitingLogin,
+    TResult Function()? awaitingUserInitialisation,
     TResult Function(String? verificationId)? awaitingVerification,
     TResult Function()? initial,
     TResult Function()? unauthenticated,
@@ -174,6 +186,8 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(AwaitingLogin value) awaitingLogin,
+    required TResult Function(AwaitingUserInitialisation value)
+        awaitingUserInitialisation,
     required TResult Function(AwaitingVerification value) awaitingVerification,
     required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
@@ -186,6 +200,8 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
     TResult Function(AwaitingLogin value)? awaitingLogin,
+    TResult Function(AwaitingUserInitialisation value)?
+        awaitingUserInitialisation,
     TResult Function(AwaitingVerification value)? awaitingVerification,
     TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
@@ -249,6 +265,7 @@ class _$AwaitingLogin with DiagnosticableTreeMixin implements AwaitingLogin {
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
     required TResult Function() awaitingLogin,
+    required TResult Function() awaitingUserInitialisation,
     required TResult Function(String? verificationId) awaitingVerification,
     required TResult Function() initial,
     required TResult Function() unauthenticated,
@@ -261,6 +278,7 @@ class _$AwaitingLogin with DiagnosticableTreeMixin implements AwaitingLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
     TResult Function()? awaitingLogin,
+    TResult Function()? awaitingUserInitialisation,
     TResult Function(String? verificationId)? awaitingVerification,
     TResult Function()? initial,
     TResult Function()? unauthenticated,
@@ -277,6 +295,8 @@ class _$AwaitingLogin with DiagnosticableTreeMixin implements AwaitingLogin {
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(AwaitingLogin value) awaitingLogin,
+    required TResult Function(AwaitingUserInitialisation value)
+        awaitingUserInitialisation,
     required TResult Function(AwaitingVerification value) awaitingVerification,
     required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
@@ -289,6 +309,8 @@ class _$AwaitingLogin with DiagnosticableTreeMixin implements AwaitingLogin {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
     TResult Function(AwaitingLogin value)? awaitingLogin,
+    TResult Function(AwaitingUserInitialisation value)?
+        awaitingUserInitialisation,
     TResult Function(AwaitingVerification value)? awaitingVerification,
     TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
@@ -303,6 +325,121 @@ class _$AwaitingLogin with DiagnosticableTreeMixin implements AwaitingLogin {
 
 abstract class AwaitingLogin implements AuthState {
   const factory AwaitingLogin() = _$AwaitingLogin;
+}
+
+/// @nodoc
+abstract class $AwaitingUserInitialisationCopyWith<$Res> {
+  factory $AwaitingUserInitialisationCopyWith(AwaitingUserInitialisation value,
+          $Res Function(AwaitingUserInitialisation) then) =
+      _$AwaitingUserInitialisationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AwaitingUserInitialisationCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements $AwaitingUserInitialisationCopyWith<$Res> {
+  _$AwaitingUserInitialisationCopyWithImpl(AwaitingUserInitialisation _value,
+      $Res Function(AwaitingUserInitialisation) _then)
+      : super(_value, (v) => _then(v as AwaitingUserInitialisation));
+
+  @override
+  AwaitingUserInitialisation get _value =>
+      super._value as AwaitingUserInitialisation;
+}
+
+/// @nodoc
+
+class _$AwaitingUserInitialisation
+    with DiagnosticableTreeMixin
+    implements AwaitingUserInitialisation {
+  const _$AwaitingUserInitialisation();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthState.awaitingUserInitialisation()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'AuthState.awaitingUserInitialisation'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is AwaitingUserInitialisation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authenticated,
+    required TResult Function() awaitingLogin,
+    required TResult Function() awaitingUserInitialisation,
+    required TResult Function(String? verificationId) awaitingVerification,
+    required TResult Function() initial,
+    required TResult Function() unauthenticated,
+  }) {
+    return awaitingUserInitialisation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authenticated,
+    TResult Function()? awaitingLogin,
+    TResult Function()? awaitingUserInitialisation,
+    TResult Function(String? verificationId)? awaitingVerification,
+    TResult Function()? initial,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (awaitingUserInitialisation != null) {
+      return awaitingUserInitialisation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
+    required TResult Function(AwaitingUserInitialisation value)
+        awaitingUserInitialisation,
+    required TResult Function(AwaitingVerification value) awaitingVerification,
+    required TResult Function(Initial value) initial,
+    required TResult Function(Unauthenticated value) unauthenticated,
+  }) {
+    return awaitingUserInitialisation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
+    TResult Function(AwaitingUserInitialisation value)?
+        awaitingUserInitialisation,
+    TResult Function(AwaitingVerification value)? awaitingVerification,
+    TResult Function(Initial value)? initial,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (awaitingUserInitialisation != null) {
+      return awaitingUserInitialisation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AwaitingUserInitialisation implements AuthState {
+  const factory AwaitingUserInitialisation() = _$AwaitingUserInitialisation;
 }
 
 /// @nodoc
@@ -385,6 +522,7 @@ class _$AwaitingVerification
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
     required TResult Function() awaitingLogin,
+    required TResult Function() awaitingUserInitialisation,
     required TResult Function(String? verificationId) awaitingVerification,
     required TResult Function() initial,
     required TResult Function() unauthenticated,
@@ -397,6 +535,7 @@ class _$AwaitingVerification
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
     TResult Function()? awaitingLogin,
+    TResult Function()? awaitingUserInitialisation,
     TResult Function(String? verificationId)? awaitingVerification,
     TResult Function()? initial,
     TResult Function()? unauthenticated,
@@ -413,6 +552,8 @@ class _$AwaitingVerification
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(AwaitingLogin value) awaitingLogin,
+    required TResult Function(AwaitingUserInitialisation value)
+        awaitingUserInitialisation,
     required TResult Function(AwaitingVerification value) awaitingVerification,
     required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
@@ -425,6 +566,8 @@ class _$AwaitingVerification
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
     TResult Function(AwaitingLogin value)? awaitingLogin,
+    TResult Function(AwaitingUserInitialisation value)?
+        awaitingUserInitialisation,
     TResult Function(AwaitingVerification value)? awaitingVerification,
     TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
@@ -492,6 +635,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
     required TResult Function() awaitingLogin,
+    required TResult Function() awaitingUserInitialisation,
     required TResult Function(String? verificationId) awaitingVerification,
     required TResult Function() initial,
     required TResult Function() unauthenticated,
@@ -504,6 +648,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
     TResult Function()? awaitingLogin,
+    TResult Function()? awaitingUserInitialisation,
     TResult Function(String? verificationId)? awaitingVerification,
     TResult Function()? initial,
     TResult Function()? unauthenticated,
@@ -520,6 +665,8 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(AwaitingLogin value) awaitingLogin,
+    required TResult Function(AwaitingUserInitialisation value)
+        awaitingUserInitialisation,
     required TResult Function(AwaitingVerification value) awaitingVerification,
     required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
@@ -532,6 +679,8 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
     TResult Function(AwaitingLogin value)? awaitingLogin,
+    TResult Function(AwaitingUserInitialisation value)?
+        awaitingUserInitialisation,
     TResult Function(AwaitingVerification value)? awaitingVerification,
     TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
@@ -597,6 +746,7 @@ class _$Unauthenticated
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
     required TResult Function() awaitingLogin,
+    required TResult Function() awaitingUserInitialisation,
     required TResult Function(String? verificationId) awaitingVerification,
     required TResult Function() initial,
     required TResult Function() unauthenticated,
@@ -609,6 +759,7 @@ class _$Unauthenticated
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
     TResult Function()? awaitingLogin,
+    TResult Function()? awaitingUserInitialisation,
     TResult Function(String? verificationId)? awaitingVerification,
     TResult Function()? initial,
     TResult Function()? unauthenticated,
@@ -625,6 +776,8 @@ class _$Unauthenticated
   TResult map<TResult extends Object?>({
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(AwaitingLogin value) awaitingLogin,
+    required TResult Function(AwaitingUserInitialisation value)
+        awaitingUserInitialisation,
     required TResult Function(AwaitingVerification value) awaitingVerification,
     required TResult Function(Initial value) initial,
     required TResult Function(Unauthenticated value) unauthenticated,
@@ -637,6 +790,8 @@ class _$Unauthenticated
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Authenticated value)? authenticated,
     TResult Function(AwaitingLogin value)? awaitingLogin,
+    TResult Function(AwaitingUserInitialisation value)?
+        awaitingUserInitialisation,
     TResult Function(AwaitingVerification value)? awaitingVerification,
     TResult Function(Initial value)? initial,
     TResult Function(Unauthenticated value)? unauthenticated,
