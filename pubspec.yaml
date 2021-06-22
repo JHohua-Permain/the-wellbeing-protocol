@@ -10,7 +10,7 @@ dependencies:
   wallet_core:
     git:
       url: https://github.com/JHohua-Permain/wallet_core.git
-      ref: next
+      ref: feat/null-safety
 
   flutter:
     sdk: flutter

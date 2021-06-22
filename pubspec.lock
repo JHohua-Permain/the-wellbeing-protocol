@@ -49,7 +49,7 @@ packages:
       name: bip32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.10"
+    version: "2.0.0"
   bip39:
     dependency: transitive
     description:
@@ -217,7 +217,7 @@ packages:
       name: decimal
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   device_info:
     dependency: "direct main"
     description:
@@ -470,7 +470,7 @@ packages:
       name: graphql
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0-beta.2"
+    version: "5.0.0"
   graphs:
     dependency: transitive
     description:
@@ -491,7 +491,7 @@ packages:
       name: hive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.0-nullsafety.2"
+    version: "2.0.4"
   http:
     dependency: transitive
     description:
@@ -589,7 +589,7 @@ packages:
       name: normalize
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.2"
+    version: "0.5.4"
   numeric_keyboard:
     dependency: "direct main"
     description:
@@ -729,7 +729,7 @@ packages:
       name: rational
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0+1"
+    version: "1.2.1"
   redux:
     dependency: "direct main"
     description:
@@ -758,6 +758,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0"
+  resource:
+    dependency: transitive
+    description:
+      name: resource
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.7"
   rxdart:
     dependency: transitive
     description:
@@ -879,11 +886,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: next
-      resolved-ref: b2ca6939b4ab2fa2419cbf845e7b2724cf02db25
+      ref: "feat/null-safety"
+      resolved-ref: "656f45fad55d0988ae8128e5cb6ea9f12d60d9eb"
       url: "https://github.com/JHohua-Permain/wallet_core.git"
     source: git
-    version: "0.2.5+1"
+    version: "0.3.0"
   watcher:
     dependency: transitive
     description:
@@ -897,7 +904,7 @@ packages:
       name: web3dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.4"
   web_socket_channel:
     dependency: transitive
     description:

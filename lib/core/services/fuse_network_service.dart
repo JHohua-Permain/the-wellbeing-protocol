@@ -1,4 +1,3 @@
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:wallet_core/wallet_core.dart';
 
 ///A service used to connect to Fuse's RPC server.
@@ -9,12 +8,16 @@ class FuseNetworkService extends Web3 {
     required int networkId,
     required String defaultCommunityAddress,
     required String communityManagerAddress,
+    required String daiPointsManagerAddress,
+    required String transferManagerAddress,
   }) : super(
-          () async => true,
+          approveCb: () async => true,
           url: url,
           networkId: networkId,
           defaultCommunityAddress: defaultCommunityAddress,
           communityManagerAddress: communityManagerAddress,
+          daiPointsManagerAddress: daiPointsManagerAddress,
+          transferManagerAddress: transferManagerAddress,
         );
 
   String generateMnemonic() {
