@@ -138,7 +138,7 @@ class _SelectContactScreenState extends State<SelectContactScreen> {
               ),
             ),
             onTap: () {
-              // TODO
+              widget.vm.openQRScanner;
             },
           ),
         ],

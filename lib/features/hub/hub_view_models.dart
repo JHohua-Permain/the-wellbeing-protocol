@@ -46,11 +46,13 @@ class SelectContactViewModel extends Equatable {
   final bool hasContacts;
   final List<CommunityEntity> contacts;
   final ValueSetter<CommunityEntity> selectContact;
+  final VoidCallback openQRScanner;
 
   const SelectContactViewModel({
     required this.hasContacts,
     required this.contacts,
     required this.selectContact,
+    required this.openQRScanner,
   });
 
   @override

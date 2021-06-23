@@ -183,6 +183,9 @@ class TransactionSuccessConnector extends StatelessWidget {
               context.router.innerRouterOf<TabsRouter>('AppHubRoute');
           if (hubRouter != null) {
             hubRouter.setActiveIndex(0);
+            StackRouter walletRouter =
+                hubRouter.innerRouterOf<StackRouter>('WalletRouter')!;
+            walletRouter.navigateNamed('wallet');
           }
         },
       ),

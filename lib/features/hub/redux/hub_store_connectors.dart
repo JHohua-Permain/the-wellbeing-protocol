@@ -106,18 +106,26 @@ class SelectContactConnector extends StatelessWidget {
       distinct: true,
       builder: (context, vm) => SelectContactScreen(vm),
       converter: (store) => SelectContactViewModel(
-          hasContacts: store.state.user.contacts.isNotEmpty,
-          contacts: store.state.user.contacts,
-          selectContact: (contact) {
-            if (contact.walletAddress != '') {
-              context.router.navigateNamed(
-                '/contacts/${contact.walletAddress}',
-              );
-            } else {
-              // If a contact does not possess a wallet address.
-              // TODO.
-            }
-          }),
+        hasContacts: store.state.user.contacts.isNotEmpty,
+        contacts: store.state.user.contacts,
+        selectContact: (contact) {
+          if (contact.walletAddress != '') {
+            context.router.navigateNamed(
+              '/contacts/${contact.walletAddress}',
+            );
+          } else {
+            // If a contact does not possess a wallet address.
+            // TODO.
+          }
+        },
+        openQRScanner: () {
+          scanQRCode().then((code) {
+            // TODO.
+          }).catchError((_) {
+            // TODO.
+          });
+        },
+      ),
       onInit: (store) {
         store.dispatch(FetchContacts());
       },
