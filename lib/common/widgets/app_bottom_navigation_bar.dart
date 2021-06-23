@@ -16,15 +16,15 @@ class AppBottomNavigationBar extends StatelessWidget {
         items: [
           _buildBottomNavigationBarItem(
             'Wallet',
-            'assets/images/square.png',
+            Icons.home,
           ),
           _buildBottomNavigationBarItem(
             'Shop',
-            'assets/images/square.png',
+            Icons.shopping_cart,
           ),
           _buildBottomNavigationBarItem(
             'Community Fund',
-            'assets/images/square.png',
+            Icons.people,
           ),
         ],
       ),
@@ -34,13 +34,13 @@ class AppBottomNavigationBar extends StatelessWidget {
   ///Helper method used to build the bottom navigation bar items.
   BottomNavigationBarItem _buildBottomNavigationBarItem(
     String label,
-    String imageUri,
+    IconData icon,
   ) {
     return BottomNavigationBarItem(
       label: label,
       icon: Padding(
         padding: const EdgeInsets.all(5.0),
-        child: ImageIcon(AssetImage(imageUri)),
+        child: Icon(icon),
       ),
     );
   }
