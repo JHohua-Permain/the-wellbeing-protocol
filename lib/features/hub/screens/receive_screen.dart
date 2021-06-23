@@ -23,9 +23,8 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
       title: 'Receive',
       body: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(height: 30),
             Center(
               child: Text(
                 'Scan the QR code to receive money',
@@ -33,7 +32,6 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            SizedBox(height: 30),
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,9 +59,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
             CommonButton(label: 'Share', onPressed: widget.share),
-            SizedBox(height: 30),
           ],
         ),
       ),
