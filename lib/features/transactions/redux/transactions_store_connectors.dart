@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_wellbeing_protocol/core/models/community_entity.dart';
 import 'package:the_wellbeing_protocol/core/states/app_state.dart';
+import 'package:the_wellbeing_protocol/features/transactions/redux/transaction_thunk_actions.dart';
 import 'package:the_wellbeing_protocol/features/transactions/screens/send_to_community_fund_review_screen.dart';
 import 'package:the_wellbeing_protocol/features/transactions/screens/send_to_community_fund_screen.dart';
 import 'package:the_wellbeing_protocol/features/transactions/screens/send_to_contact_review_screen.dart';
@@ -88,17 +90,22 @@ class SendToContactReviewConnector extends StatelessWidget {
     return StoreConnector<AppState, SendToContactReviewViewModel>(
       distinct: true,
       builder: (context, vm) => SendToContactReviewScreen(vm),
-      converter: (store) => SendToContactReviewViewModel(
-        contact: store.state.user.contacts.singleWhere((contact) {
-          return contact.walletAddress == contactId;
-        }),
-        amount: amount,
-        tokenSymbol: store.state.community.homeToken!.symbol,
-        confirmTransfer: () {
-          // TODO.
-          context.router.navigate(TransactionSuccessPage());
-        },
-      ),
+      converter: (store) {
+        CommunityEntity contact = store.state.user.contacts.singleWhere(
+          (contact) => contact.walletAddress == contactId,
+        );
+
+        return SendToContactReviewViewModel(
+          contact: contact,
+          amount: amount,
+          tokenSymbol: store.state.community.homeToken!.symbol,
+          confirmTransfer: () {
+            // TODO: Proper Implementation.
+            store.dispatch(sendTokens(contact.walletAddress, amount));
+            context.router.navigate(TransactionSuccessPage());
+          },
+        );
+      },
     );
   }
 }

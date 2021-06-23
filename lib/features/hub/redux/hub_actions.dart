@@ -46,6 +46,13 @@ class SetShops {
   SetShops(this.shops);
 }
 
+class SetTokenBalances {
+  final Map<String, String> tokenBalances;
+
+  SetTokenBalances(this.tokenBalances);
+}
+
+
 class SetTransfers {
   List<Transfer> transfers;
 

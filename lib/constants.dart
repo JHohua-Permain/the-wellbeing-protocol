@@ -11,6 +11,8 @@ const COMMUNITY_ADDRESS_JEREMY = "0x858bce60ffA86cba96DbE47Dde8A87ed7E9DfBF8";
 const COMMUNITY_MANAGER_ADDRESS_JEREMY =
     '0x0D4926876ba1ada6E9b542e018eBeD517FFc8050';
 
+const FUSE_EXPLORER_URL = 'https://explorer.fuse.io/api';
+
 /// The uri to connect to the Fuse sub-graph.
 const FUSE_GRAPH_BASE_URL = 'https://graph.fuse.io/subgraphs/name/fuseio';
 
@@ -23,7 +25,7 @@ const FUSE_NETWORK_RPC_URL = "https://rpc.fuse.io";
 /// The base uri used to connect to the Fuse Studio backend server.
 const FUSE_STUDIO_API_BASE_URL = "https://studio.fuse.io/api";
 
-const String FUSE_EXPLORER_URL = 'https://explorer.fuse.io/api';
+const TRANSFER_MANAGER_ADDRESS = '0xBC4eFE38e1C6172d587efCDE0f5B98a24f145911';
 
 // const JEZ_TOKEN_ADDRESS = "0xe8CD1134F1B4Ef599Fa1F2e3B181F2A2D98E8c8C";
 // const BEN_TOKEN_ADDRESS = "0xf2E83701aD3e0131636D53b93B32167d33b925cD";

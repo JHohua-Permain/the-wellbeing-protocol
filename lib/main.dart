@@ -27,7 +27,7 @@ void main() async {
       defaultCommunityAddress: Variables.DEFAULT_COMMUNITY_ADDRESS,
       communityManagerAddress: Variables.DEFAULT_COMMUNITY_MANAGER_ADDRESS,
       daiPointsManagerAddress: '',
-      transferManagerAddress: '',
+      transferManagerAddress: Constants.TRANSFER_MANAGER_ADDRESS,
     ),
     FuseExplorerService(Constants.FUSE_EXPLORER_URL),
   );

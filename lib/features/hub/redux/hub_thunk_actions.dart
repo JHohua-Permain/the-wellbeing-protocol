@@ -11,6 +11,23 @@ AppThunkAction changeDisplayName(String displayName) {
   };
 }
 
+// AppThunkAction fetchTokenBalances() {
+//   return (store, services) async {
+//     String walletAddress = store.state.user.walletAddress!;
+//     String tokenAddress = store.state.community.homeToken!.address;
+//     var web3 = services.fuseNetworkService;
+//
+//     dynamic homeTokenBalanceData = await web3.getTokenBalance(
+//       tokenAddress,
+//       address: walletAddress,
+//     );
+//     String homeTokenBalance = homeTokenBalanceData.toString();
+//     Map<String, String> tokenBalances = {tokenAddress: homeTokenBalance};
+//
+//     store.dispatch(SetTokenBalances(tokenBalances));
+//   };
+// }
+
 // AppThunkAction fetchTokenBalance(String tokenAddress) {
 //   return (store, services) async {
 //     final tokenBalanceData = await services.fuseNetworkService.getTokenBalance(

@@ -303,6 +303,9 @@ class WalletConnector extends StatelessWidget {
           },
         );
       },
+      // onInit: (store) {
+      //   store.dispatch(fetchTokenBalances());
+      // },
     );
   }
 }
