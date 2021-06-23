@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_wellbeing_protocol/common/widgets/app_circle_avatar.dart';
 import 'package:the_wellbeing_protocol/common/widgets/app_scaffold.dart';
 import 'package:the_wellbeing_protocol/features/hub/hub_view_models.dart';
 
@@ -21,15 +22,7 @@ class ShopScreen extends StatelessWidget {
               vm.selectItem(index);
             },
             // TODO: Get from Shop Item.
-            leading: CircleAvatar(
-              backgroundColor: Colors.grey[350],
-              radius: 30,
-              child: Icon(
-                Icons.person_rounded,
-                size: 20,
-                color: Colors.grey[600],
-              ),
-            ),
+            leading: AppCircleAvatar(),
             trailing: Wrap(
               spacing: 12,
               children: <Widget>[
