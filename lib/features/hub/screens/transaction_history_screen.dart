@@ -45,7 +45,7 @@ class TransactionHistoryScreen extends StatelessWidget {
         shrinkWrap: true,
         itemCount: vm.transfers.length,
         itemBuilder: (context, index) => Column(
-          children: transferWidgets!,
+          children: [transferWidgets![index]],
         ),
         separatorBuilder: (context, int index) => Divider(
           height: 10,
